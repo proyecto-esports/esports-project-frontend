@@ -19,7 +19,14 @@ const Login = () => {
   const handleClick = () => setShow(!show);
 
   return (
-    <Box bg="#272d54" w="100vw" h="100vh">
+    <Box
+      display="flex"
+      alignItems="center"
+      flexDirection="column"
+      bg="#272d54"
+      w="100vw"
+      h="100vh"
+    >
       <Image
         src="https://res.cloudinary.com/dlqo06xcs/image/upload/v1670349592/LOGO_gbbhqo.png"
         alt="E-Tactic"
