@@ -1,9 +1,12 @@
+import { ChakraProvider } from '@chakra-ui/react';
 import { Outlet } from 'react-router-dom';
 
 const Root = () => {
   return (
     <>
-      <Outlet />
+      <ChakraProvider>
+        <Outlet />
+      </ChakraProvider>
     </>
   );
 };

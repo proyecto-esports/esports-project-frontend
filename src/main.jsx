@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components';
 
 import GlobalStyle from './GlobalStyle';
 import Home from './routes/Home';
+import Login from './routes/Login';
 import Root from './routes/Root';
 import theme from './theme';
 
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: '',
         element: <Home />,
+      },
+      {
+        path: '/login',
+        element: <Login />,
       },
     ],
   },
