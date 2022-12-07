@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 
-import CartaMercado from './CardInMarket';
+import DatosBasicosCarta from './DatosBasicosCarta';
 
 const BidModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -25,11 +25,11 @@ const BidModal = () => {
   };
 
   const handleLessPrice = () => {
-    setPrice(price - 100);
+    setPrice(price / 100);
   };
 
   const handleMorePrice = () => {
-    setPrice(price + 100);
+    !price ? setPrice(100) : setPrice(price * 100);
   };
 
   //  const savePrice = () => {
@@ -48,8 +48,8 @@ const BidModal = () => {
           <ModalHeader />
           <ModalCloseButton />
 
-          <ModalBody gap={2.5}>
-            <CartaMercado />
+          <ModalBody display="flex" flexDirection="column" gap={5}>
+            <DatosBasicosCarta />
             <Center gap={2.5}>
               <Button
                 bg="#C2145A"
@@ -92,5 +92,4 @@ const BidModal = () => {
     </>
   );
 };
-
 export default BidModal;
