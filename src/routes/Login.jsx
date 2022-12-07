@@ -16,12 +16,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-
-
 import { NavLink } from 'react-router-dom';
-
-import BoxFlex from '../components/UI/BoxFlex';
-
 
 const Login = () => {
   const [show, setShow] = useState(false);
