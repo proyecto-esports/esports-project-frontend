@@ -1,8 +1,10 @@
 import { AtSignIcon, UnlockIcon } from '@chakra-ui/icons';
+import { useState } from 'react';
 import {
   Box,
   Button,
   Divider,
+  FormControl,
   Image,
   Input,
   InputGroup,
@@ -11,12 +13,40 @@ import {
   Link,
   Stack,
   Text,
+  FormHelperText,
+  FormErrorMessage,
 } from '@chakra-ui/react';
-import React from 'react';
 
 const Login = () => {
-  const [show, setShow] = React.useState(false);
+  const [show, setShow] = useState(false);
+  const [gmail, setGmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const handleClick = () => setShow(!show);
+
+  const handleGmail = (e) => {
+    setGmail(e.target.value);
+  };
+
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const userBody = {
+    gmail: gmail,
+    password: password,
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    /*const res = await fetch('http://localhost:8080/api/v1/users/login', {
+      method: 'POST',
+      body: JSON.stringify(userBody),
+    }); */
+    console.log(userBody);
+  };
+
+  const isError = gmail === '' || password === '';
 
   return (
     <Box
@@ -32,43 +62,68 @@ const Login = () => {
         alt="E-Tactic"
       />
       <Stack spacing={4}>
-        <InputGroup>
-          <InputLeftElement pointerEvents="none">
-            <AtSignIcon color="gray.300" />
-          </InputLeftElement>
-          <Input type="gmail" placeholder="Gmail" />
-        </InputGroup>
-        <InputGroup size="md">
-          <InputLeftElement pointerEvents="none">
-            <UnlockIcon color="gray.300" />
-          </InputLeftElement>
-          <Input
-            pr="4.5rem"
-            type={show ? 'text' : 'password'}
-            placeholder="Enter password"
-          />
-          <InputRightElement width="4.5rem">
-            <Button h="1.75rem" size="sm" onClick={handleClick}>
-              {show ? 'Hide' : 'Show'}
-            </Button>
-          </InputRightElement>
-        </InputGroup>
+        <FormControl>
+          <InputGroup>
+            <InputLeftElement pointerEvents="none">
+              <AtSignIcon color="gray.300" />
+            </InputLeftElement>
+            <Input
+              type="gmail"
+              placeholder="Gmail"
+              value={gmail}
+              onChange={handleGmail}
+            />
+            {!isError ? (
+              <FormHelperText>Enter the email account.</FormHelperText>
+            ) : (
+              <FormErrorMessage>Email is required.</FormErrorMessage>
+            )}
+          </InputGroup>
+          <InputGroup size="md">
+            <InputLeftElement pointerEvents="none">
+              <UnlockIcon color="gray.300" />
+            </InputLeftElement>
+            <Input
+              pr="4.5rem"
+              type={show ? 'text' : 'password'}
+              placeholder="Enter password"
+              value={password}
+              onChange={handlePassword}
+            />
+            {!isError ? (
+              <FormHelperText>Please enter a password.</FormHelperText>
+            ) : (
+              <FormErrorMessage>Password is required.</FormErrorMessage>
+            )}
+            <InputRightElement width="4.5rem">
+              <Button h="1.75rem" size="sm" onClick={handleClick}>
+                {show ? 'Hide' : 'Show'}
+              </Button>
+            </InputRightElement>
+          </InputGroup>
+          <Text>
+            I’ve forgotten <Link color="teal.500">my password</Link>
+          </Text>
+          <Button
+            bg="#C2145A"
+            color="#FFFFFF"
+            variant="solid"
+            type="submit"
+            onClick={handleSubmit}
+          >
+            SING IN
+          </Button>
+        </FormControl>
+        <Button m="20px" color="#DCBEE9" variant="solid">
+          Continue with Google
+        </Button>
+        <Box display="flex" alignItems="center">
+          <Divider /> <Text>or</Text> <Divider />
+        </Box>
+        <Text>
+          Not a user? <Link color="teal.500">Register now!</Link>
+        </Text>
       </Stack>
-      <Text>
-        I’ve forgotten <Link color="teal.500">my password</Link>
-      </Text>
-      <Button bg="#C2145A" color="#FFFFFF" variant="solid">
-        SING IN
-      </Button>
-      <Button m="20px" color="#DCBEE9" variant="solid">
-        Continue with Google
-      </Button>
-      <Box display="flex" alignItems="center">
-        <Divider /> <Text>or</Text> <Divider />
-      </Box>
-      <Text>
-        Not a user? <Link color="teal.500">Register now!</Link>
-      </Text>
     </Box>
   );
 };
