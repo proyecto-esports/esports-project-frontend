@@ -16,10 +16,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-
-
 import { NavLink } from 'react-router-dom';
-
 
 const Login = () => {
   const [show, setShow] = useState(false);
