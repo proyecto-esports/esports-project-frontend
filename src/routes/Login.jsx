@@ -1,10 +1,11 @@
 import { AtSignIcon, UnlockIcon } from '@chakra-ui/icons';
-import { useState } from 'react';
 import {
   Box,
   Button,
   Divider,
   FormControl,
+  FormErrorMessage,
+  FormHelperText,
   Image,
   Input,
   InputGroup,
@@ -13,9 +14,9 @@ import {
   Link,
   Stack,
   Text,
-  FormHelperText,
-  FormErrorMessage,
 } from '@chakra-ui/react';
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -121,7 +122,10 @@ const Login = () => {
           <Divider /> <Text>or</Text> <Divider />
         </Box>
         <Text>
-          Not a user? <Link color="teal.500">Register now!</Link>
+          Not a user?{' '}
+          <NavLink to="/register">
+            <Link color={'GrayText'}>Register now!</Link>
+          </NavLink>
         </Text>
       </Stack>
     </Box>
