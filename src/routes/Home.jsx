@@ -1,10 +1,10 @@
-import BidModal from '../components/BidModal';
+import CartaMercado from '../components/CardInMarket';
 
 const Home = () => {
   return (
     <>
       <h1>Home</h1>
-      <BidModal />
+      <CartaMercado />
     </>
   );
 };

@@ -9,10 +9,11 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Text,
   useDisclosure,
 } from '@chakra-ui/react';
 import { useState } from 'react';
+
+import CartaMercado from './CardInMarket';
 
 const BidModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -38,7 +39,7 @@ const BidModal = () => {
   return (
     <>
       <Button width={20} onClick={onOpen}>
-        Pujar
+        1230123€
       </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -48,9 +49,7 @@ const BidModal = () => {
           <ModalCloseButton />
 
           <ModalBody gap={2.5}>
-            <Text fontWeight="bold" mb="1rem">
-              Hola
-            </Text>
+            <CartaMercado />
             <Center gap={2.5}>
               <Button
                 bg="#C2145A"
