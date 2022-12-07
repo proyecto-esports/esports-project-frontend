@@ -20,6 +20,8 @@ import { useState } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
+import BoxFlex from '../components/UI/BoxFlex';
+
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -53,14 +55,7 @@ const Login = () => {
   const isError = gmail === '' || password === '';
 
   return (
-    <Box
-      display="flex"
-      alignItems="center"
-      flexDirection="column"
-      bg="#272d54"
-      w="100vw"
-      h="100vh"
-    >
+    <BoxFlex>
       <Image
         src="https://res.cloudinary.com/dlqo06xcs/image/upload/v1670349592/LOGO_gbbhqo.png"
         alt="E-Tactic"
@@ -131,7 +126,7 @@ const Login = () => {
           </NavLink>
         </Text>
       </Stack>
-    </Box>
+    </BoxFlex>
   );
 };
 
