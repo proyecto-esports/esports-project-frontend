@@ -1,6 +1,5 @@
 import { AtSignIcon, UnlockIcon } from '@chakra-ui/icons';
 import {
-  Box,
   Button,
   FormControl,
   Input,
@@ -12,6 +11,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
+import BoxFlex from '../components/UI/BoxFlex.jsx';
 import { API } from '../services/API.js';
 import theme from './../theme';
 
