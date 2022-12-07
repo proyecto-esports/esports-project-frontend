@@ -1,12 +1,11 @@
 import CartaMercado from '../components/CardInMarket';
 
-const Home = () => {
+const Market = () => {
   return (
     <>
-      <h1>Home</h1>
       <CartaMercado />
     </>
   );
 };
 
-export default Home;
+export default Market;
