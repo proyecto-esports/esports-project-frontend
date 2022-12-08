@@ -46,7 +46,7 @@ const Login = () => {
       }
     });
   };
-  
+
   return (
     <BoxFlex>
       <Box
@@ -108,7 +108,6 @@ const Login = () => {
           </svg>
         </Box>
         <Stack spacing={4}>
-
           <form onSubmit={handleSubmit(submitForm)}>
             <FormControl
               display="flex"
@@ -161,10 +160,8 @@ const Login = () => {
             >
               SING IN
             </Button>
-
           </form>
           <Button m="20px" color="#DCBEE9" variant="solid">
-
             Continue with Google
           </Button>
           <Box display="flex" alignItems="center">

@@ -63,7 +63,7 @@ const BidModal = ({ player }) => {
                 border="none"
                 value={price}
                 onChange={handlePrice}
-                min={player.value}     
+                min={player.value}
               />
               <Button
                 bg="#C2145A"

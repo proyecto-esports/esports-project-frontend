@@ -9,17 +9,28 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react';
-import React from 'react';
+import { useEffect, useState } from 'react';
 
+import { API } from '../services/API';
 import BidModal from './BidModal';
-const DatosCartaMercado = ({ players }) => {
-  console.log(players);
+const DatosCartaMercado = () => {
+  const [players, setPlayers] = useState();
+
+  const getAllPlayers = async () => {
+    API.get('/competitions/6391e02c30ac54065e9c1661').then((res) => {
+      setPlayers(res.data.info.data.market);
+    });
+  };
+  useEffect(() => {
+    getAllPlayers();
+  }, []);
+
   return (
     <>
       {players ? (
         players.map((player) => (
-          // eslint-disable-next-line react/jsx-key
           <Card
+            key={player._id}
             direction={{ sm: 'row' }}
             overflow="visible"
             variant="outline"

@@ -1,11 +1,7 @@
-import CartaMercado from '../components/CardInMarket';
+import DatosCartaMercado from '../components/DatosCartaMercado';
 
 const Market = () => {
-  return (
-    <>
-      <CartaMercado />
-    </>
-  );
+  return <DatosCartaMercado />;
 };
 
 export default Market;
