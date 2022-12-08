@@ -37,6 +37,7 @@ const router = createBrowserRouter([
       {
         path: '/market',
         element: <Market />,
+
       },
       {
         path: '/create-group',

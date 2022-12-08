@@ -12,6 +12,8 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
+import BoxFlex from '../components/UI/BoxFlex.jsx';
+
 import { API } from '../services/API.js';
 import theme from './../theme';
 
@@ -38,15 +40,7 @@ const Register = () => {
   };
 
   return (
-    <Box
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      flexDirection="column"
-      bg={theme.dark.background}
-      w="100vw"
-      h="100vh"
-    >
+    <BoxFlex>
       <Box
         display="flex"
         flexDirection="column"
@@ -184,7 +178,7 @@ const Register = () => {
           </FormControl>
         </form>
       </Box>
-    </Box>
+    </BoxFlex>
   );
 };
 
