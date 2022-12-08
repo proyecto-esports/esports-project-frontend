@@ -46,7 +46,7 @@ const Login = () => {
       }
     });
   };
-  
+
   return (
     <BoxFlex>
       <Box
@@ -60,7 +60,7 @@ const Login = () => {
         <Box max-width="30rem" filter="drop-shadow(0 0 8px rgb(255 255 255 / 0.4))">
           <svg
             width="100%"
-            height="109"
+            height="100%"
             viewBox="0 0 451 109"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +108,6 @@ const Login = () => {
           </svg>
         </Box>
         <Stack spacing={4}>
-
           <form onSubmit={handleSubmit(submitForm)}>
             <FormControl
               display="flex"
@@ -126,6 +125,7 @@ const Login = () => {
                   id="gmail"
                   name="gmail"
                   {...register('gmail')}
+                  color={theme.dark.accent1}
                 />
               </InputGroup>
               <InputGroup size="md">
@@ -139,6 +139,7 @@ const Login = () => {
                   id="password"
                   name="password"
                   {...register('password')}
+                  color={theme.dark.accent1}
                 />
                 <InputRightElement width="4.5rem">
                   <Button h="1.75rem" size="sm" onClick={handleClick}>
@@ -146,25 +147,23 @@ const Login = () => {
                   </Button>
                 </InputRightElement>
               </InputGroup>
-              <Text>
+              <Text color="gray.300">
                 I’ve forgotten <Link color="teal.500">my password</Link>
               </Text>
+
+              <Button
+                type="submit"
+                bg={theme.dark.accent3}
+                color="#FFFFFF"
+                variant="solid"
+                marginTop="1rem"
+                width="max-content"
+              >
+                SING IN
+              </Button>
             </FormControl>
-
-            <Button
-              type="submit"
-              bg={theme.dark.accent3}
-              color="#FFFFFF"
-              variant="solid"
-              marginTop="1rem"
-              width="max-content"
-            >
-              SING IN
-            </Button>
-
           </form>
           <Button m="20px" color="#DCBEE9" variant="solid">
-
             Continue with Google
           </Button>
           <Box display="flex" alignItems="center">

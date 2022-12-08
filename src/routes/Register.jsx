@@ -52,7 +52,7 @@ const Register = () => {
         <Box max-width="30rem" filter="drop-shadow(0 0 8px rgb(255 255 255 / 0.4))">
           <svg
             width="100%"
-            height="109"
+            height="100%"
             viewBox="0 0 451 109"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
