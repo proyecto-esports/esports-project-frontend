@@ -4,8 +4,6 @@ import {
   Button,
   Divider,
   FormControl,
-  FormErrorMessage,
-  FormHelperText,
   Input,
   InputGroup,
   InputLeftElement,
@@ -15,42 +13,40 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useState } from 'react';
+import { useContext } from 'react';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
-import BoxFlex from '../components/UI/BoxFlex';
-import theme from '../theme';
+import BoxFlex from '../components/UI/BoxFlex.jsx';
+import { UserContext } from '../context/jwtContext.jsx';
+/* import BoxFlex from '../components/UI/BoxFlex.jsx'; */
+import { API } from '../services/API.js';
+import theme from './../theme';
 
 const Login = () => {
   const [show, setShow] = useState(false);
-  const [gmail, setGmail] = useState('');
-  const [password, setPassword] = useState('');
-
+  const { setJwt, setUser } = useContext(UserContext);
   const handleClick = () => setShow(!show);
+  const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
 
-  const handleGmail = (e) => {
-    setGmail(e.target.value);
+  const submitForm = (data) => {
+    const formData = new FormData();
+    const { gmail, password } = data;
+    formData.append('gmail', gmail);
+    formData.append('password', password);
+    API.post('users/login', formData).then((res) => {
+      localStorage.setItem('token', res.data.info.data.token);
+      localStorage.setItem('user', JSON.stringify(res.data.info.data.user));
+      setJwt(res.data.info.data.token);
+      setUser(res.data.info.data.user);
+      if (res.data.info.data.token) {
+        navigate('/register');
+      }
+    });
   };
-
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  /* const userBody = {
-    gmail: gmail,
-    password: password,
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const res = await fetch('http://localhost:8080/api/v1/users/login', {
-      method: 'POST',
-      body: JSON.stringify(userBody),
-    }); 
-    console.log(userBody);
-  }; */
-
-  const isError = gmail === '' || password === '';
-
+  
   return (
     <BoxFlex>
       <Box
@@ -112,56 +108,49 @@ const Login = () => {
           </svg>
         </Box>
         <Stack spacing={4}>
-          <FormControl
-            display="flex"
-            flexDirection="column"
-            gap="1rem"
-            alignItems="center"
-          >
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <AtSignIcon color="gray.300" />
-              </InputLeftElement>
-              <Input
-                type="gmail"
-                placeholder="Gmail"
-                color={theme.dark.accent1}
-                value={gmail}
-                onChange={handleGmail}
-                width="100%"
-              />
-              {!isError ? (
-                <FormHelperText>Enter the email account.</FormHelperText>
-              ) : (
-                <FormErrorMessage>Email is required.</FormErrorMessage>
-              )}
-            </InputGroup>
-            <InputGroup size="md">
-              <InputLeftElement pointerEvents="none">
-                <UnlockIcon color="gray.300" />
-              </InputLeftElement>
-              <Input
-                pr="4.5rem"
-                type={show ? 'text' : 'password'}
-                placeholder="Enter password"
-                value={password}
-                onChange={handlePassword}
-                color={theme.dark.accent1}
-              />
-              {!isError ? (
-                <FormHelperText>Please enter a password.</FormHelperText>
-              ) : (
-                <FormErrorMessage>Password is required.</FormErrorMessage>
-              )}
-              <InputRightElement width="4.5rem">
-                <Button h="1.75rem" size="sm" onClick={handleClick}>
-                  {show ? 'Hide' : 'Show'}
-                </Button>
-              </InputRightElement>
-            </InputGroup>
-            <Text color="gray.300">
-              I’ve forgotten <Link color="teal.500">my password</Link>
-            </Text>
+
+          <form onSubmit={handleSubmit(submitForm)}>
+            <FormControl
+              display="flex"
+              flexDirection="column"
+              gap="1rem"
+              alignItems="center"
+            >
+              <InputGroup>
+                <InputLeftElement pointerEvents="none">
+                  <AtSignIcon color="gray.300" />
+                </InputLeftElement>
+                <Input
+                  type="gmail"
+                  placeholder="Gmail"
+                  id="gmail"
+                  name="gmail"
+                  {...register('gmail')}
+                />
+              </InputGroup>
+              <InputGroup size="md">
+                <InputLeftElement pointerEvents="none">
+                  <UnlockIcon color="gray.300" />
+                </InputLeftElement>
+                <Input
+                  pr="4.5rem"
+                  type={show ? 'text' : 'password'}
+                  placeholder="Enter password"
+                  id="password"
+                  name="password"
+                  {...register('password')}
+                />
+                <InputRightElement width="4.5rem">
+                  <Button h="1.75rem" size="sm" onClick={handleClick}>
+                    {show ? 'Hide' : 'Show'}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+              <Text>
+                I’ve forgotten <Link color="teal.500">my password</Link>
+              </Text>
+            </FormControl>
+
             <Button
               type="submit"
               bg={theme.dark.accent3}
@@ -172,8 +161,10 @@ const Login = () => {
             >
               SING IN
             </Button>
-          </FormControl>
-          <Button m="20px" color={theme.dark.background} variant="solid">
+
+          </form>
+          <Button m="20px" color="#DCBEE9" variant="solid">
+
             Continue with Google
           </Button>
           <Box display="flex" alignItems="center">
