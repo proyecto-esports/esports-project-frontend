@@ -35,19 +35,19 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const userBody = {
+  /* const userBody = {
     gmail: gmail,
     password: password,
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    /*const res = await fetch('http://localhost:8080/api/v1/users/login', {
+    const res = await fetch('http://localhost:8080/api/v1/users/login', {
       method: 'POST',
       body: JSON.stringify(userBody),
-    }); */
+    }); 
     console.log(userBody);
-  };
+  }; */
 
   const isError = gmail === '' || password === '';
 
@@ -125,8 +125,10 @@ const Login = () => {
               <Input
                 type="gmail"
                 placeholder="Gmail"
+                color={theme.dark.accent1}
                 value={gmail}
                 onChange={handleGmail}
+                width="100%"
               />
               {!isError ? (
                 <FormHelperText>Enter the email account.</FormHelperText>
@@ -144,6 +146,7 @@ const Login = () => {
                 placeholder="Enter password"
                 value={password}
                 onChange={handlePassword}
+                color={theme.dark.accent1}
               />
               {!isError ? (
                 <FormHelperText>Please enter a password.</FormHelperText>
@@ -156,29 +159,37 @@ const Login = () => {
                 </Button>
               </InputRightElement>
             </InputGroup>
-            <Text>
+            <Text color="gray.300">
               I’ve forgotten <Link color="teal.500">my password</Link>
             </Text>
             <Button
-              bg="#C2145A"
+              type="submit"
+              bg={theme.dark.accent3}
               color="#FFFFFF"
               variant="solid"
-              type="submit"
-              onClick={handleSubmit}
+              marginTop="1rem"
+              width="max-content"
             >
               SING IN
             </Button>
           </FormControl>
-          <Button m="20px" color="#DCBEE9" variant="solid">
+          <Button m="20px" color={theme.dark.background} variant="solid">
             Continue with Google
           </Button>
           <Box display="flex" alignItems="center">
-            <Divider /> <Text>or</Text> <Divider />
+            <Divider color={theme.dark.accent1} />{' '}
+            <Text color={theme.dark.accent1}>or</Text>{' '}
+            <Divider color={theme.dark.accent1} />
           </Box>
-          <Text>
+          <Text
+            color="gray.300"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
             Not a user?{' '}
             <NavLink to="/register">
-              <Link color={'GrayText'}>Register now!</Link>
+              <Link color={theme.dark.accent3}>Register now!</Link>
             </NavLink>
           </Text>
         </Stack>
