@@ -1,4 +1,12 @@
-import { Box, Button, FormControl, FormLabel, Radio, RadioGroup } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Radio,
+  RadioGroup,
+  Text,
+} from '@chakra-ui/react';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
@@ -20,10 +28,20 @@ const CreateGroup = () => {
     {
       name: 'LOL',
       isDisabled: true,
+      competitions: [
+        { name: 'League', isDisabled: true },
+        { name: 'Tournament', isDisabled: true },
+        { name: 'World', isDisabled: true },
+      ],
     },
     {
       name: 'Rocket League',
       isDisabled: true,
+      competitions: [
+        { name: 'League', isDisabled: true },
+        { name: 'Tournament', isDisabled: true },
+        { name: 'World', isDisabled: true },
+      ],
     },
   ];
 
@@ -41,26 +59,47 @@ const CreateGroup = () => {
   };
 
   return (
-    <Box h="100vh" w="100%" bg={theme.dark.background} padding="1rem">
+    <Box
+      h="100vh"
+      w="100%"
+      bg={theme.dark.background}
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+      gap="3rem"
+    >
+      <Text fontSize="4xl" color={theme.dark.primary}>
+        New Competition
+      </Text>
       <form onSubmit={handleSubmit(submitForm)}>
-        <FormControl>
+        <FormControl
+          display="flex"
+          flexDirection="column"
+          maxWidth="30rem"
+          padding="1rem"
+          gap="1rem"
+        >
           <FormLabel htmlFor="game" color={theme.dark.primary}>
             Select a game:
           </FormLabel>
           <Controller
             render={() => (
               <RadioGroup
-                ref={register()}
+                {...register('game')}
                 name="game"
                 display="flex"
                 flexWrap="wrap"
                 gap="1rem"
               >
                 {games.map((game) => {
+                  console.log('game', game);
                   const { name, isDisabled } = game;
+                  console.log('game name', name);
                   const handleClick = () => setSelectedGame(game);
                   return (
                     <RadioCard
+                      id={name}
                       key={name}
                       value={name}
                       isDisabled={isDisabled}
@@ -83,11 +122,18 @@ const CreateGroup = () => {
               </FormLabel>
               <Controller
                 render={() => (
-                  <RadioGroup name="competition">
+                  <RadioGroup
+                    {...register('competition')}
+                    name="competition"
+                    display="flex"
+                    gap="1rem"
+                  >
                     {selectedGame.competitions?.map((competition) => {
+                      console.log('competition', competition);
                       const { name, isDisabled } = competition;
+                      console.log('competition name', name);
                       return (
-                        <Radio key={name} isDisabled={isDisabled}>
+                        <Radio id={name} value={name} key={name} isDisabled={isDisabled}>
                           {name}
                         </Radio>
                       );

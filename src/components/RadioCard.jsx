@@ -10,8 +10,8 @@ const RadioCard = (props) => {
     <Box as="label">
       <input {...input} />
       <Box
-        onClick={() => props.onClick()}
         {...checkbox}
+        onClick={() => props.onClick()}
         cursor="pointer"
         borderWidth="1px"
         borderRadius="md"
