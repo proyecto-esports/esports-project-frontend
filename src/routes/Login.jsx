@@ -46,6 +46,7 @@ const Login = () => {
       }
     });
   };
+  
   return (
     <BoxFlex>
       <Box
@@ -107,6 +108,7 @@ const Login = () => {
           </svg>
         </Box>
         <Stack spacing={4}>
+
           <form onSubmit={handleSubmit(submitForm)}>
             <FormControl
               display="flex"
@@ -148,26 +150,37 @@ const Login = () => {
                 I’ve forgotten <Link color="teal.500">my password</Link>
               </Text>
             </FormControl>
+
             <Button
-              bg="#C2145A"
+              type="submit"
+              bg={theme.dark.accent3}
               color="#FFFFFF"
               variant="solid"
-              type="submit"
-              onClick={handleSubmit}
+              marginTop="1rem"
+              width="max-content"
             >
               SING IN
             </Button>
+
           </form>
           <Button m="20px" color="#DCBEE9" variant="solid">
+
             Continue with Google
           </Button>
           <Box display="flex" alignItems="center">
-            <Divider /> <Text>or</Text> <Divider />
+            <Divider color={theme.dark.accent1} />{' '}
+            <Text color={theme.dark.accent1}>or</Text>{' '}
+            <Divider color={theme.dark.accent1} />
           </Box>
-          <Text>
+          <Text
+            color="gray.300"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
             Not a user?{' '}
             <NavLink to="/register">
-              <Link color={'GrayText'}>Register now!</Link>
+              <Link color={theme.dark.accent3}>Register now!</Link>
             </NavLink>
           </Text>
         </Stack>

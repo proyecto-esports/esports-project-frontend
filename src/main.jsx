@@ -6,11 +6,8 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyle from './GlobalStyle';
 import Home from './routes/Home';
 import Login from './routes/Login';
-
-import Ranking from './routes/Ranking';
-
 import Market from './routes/Market';
-
+import Ranking from './routes/Ranking';
 import Register from './routes/Register';
 import Root from './routes/Root';
 import theme from './theme';
@@ -33,14 +30,12 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-
         path: '/ranking',
         element: <Ranking />,
       },
       {
         path: '/market',
         element: <Market />,
-
       },
     ],
   },
