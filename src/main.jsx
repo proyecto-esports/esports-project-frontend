@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components';
 
 import GlobalStyle from './GlobalStyle';
 import Home from './routes/Home';
+import CardLineUp from './routes/Lineup';
 import Login from './routes/Login';
 import Register from './routes/Register';
 import Root from './routes/Root';
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register />,
+      },
+      {
+        path: '/lineup',
+        element: <CardLineUp />,
       },
     ],
   },

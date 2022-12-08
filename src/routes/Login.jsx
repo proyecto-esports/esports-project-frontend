@@ -1,10 +1,11 @@
 import { AtSignIcon, UnlockIcon } from '@chakra-ui/icons';
-import { useState } from 'react';
 import {
   Box,
   Button,
   Divider,
   FormControl,
+  FormErrorMessage,
+  FormHelperText,
   Image,
   Input,
   InputGroup,
@@ -13,9 +14,8 @@ import {
   Link,
   Stack,
   Text,
-  FormHelperText,
-  FormErrorMessage,
 } from '@chakra-ui/react';
+import { useState } from 'react';
 
 const Login = () => {
   const [show, setShow] = useState(false);
