@@ -1,20 +1,19 @@
 import { createContext, useState } from 'react';
 
-export const JwtContext = createContext();
+export const UserContext = createContext();
 
-export const JwtContextProvider = ({ children }) => {
+export const UserContextProvider = ({ children }) => {
   const [jwt, setJwt] = useState(() => {
     const savedJwt = localStorage.getItem('token');
     return savedJwt || null;
   });
 
-  const [user, setUser] = useState(() => {
-    const savedUser = localStorage.getItem('user');
-    const initialValue = JSON.parse(savedUser);
-    return initialValue || null;
-  });
+  const [user, setUser] = useState({});
 
-  const [editingGuitar, setEditingGuitar] = useState({});
+  const [players, setPlayers] = useState([]);
+  const [competition, setCompetition] = useState([]);
+  const [bids, setBids] = useState([]);
+  const [users, setUsers] = useState([]);
 
   const logout = () => {
     setUser(null);
@@ -24,18 +23,24 @@ export const JwtContextProvider = ({ children }) => {
   };
 
   return (
-    <JwtContext.Provider
+    <UserContext.Provider
       value={{
         jwt,
         setJwt,
         user,
         setUser,
+        players,
+        setPlayers,
+        competition,
+        setCompetition,
+        bids,
+        setBids,
+        users,
+        setUsers,
         logout,
-        editingGuitar,
-        setEditingGuitar,
       }}
     >
       {children}
-    </JwtContext.Provider>
+    </UserContext.Provider>
   );
 };

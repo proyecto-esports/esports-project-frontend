@@ -1,5 +1,6 @@
 import { AtSignIcon, UnlockIcon } from '@chakra-ui/icons';
 import {
+  Box,
   Button,
   FormControl,
   Input,
@@ -11,6 +12,9 @@ import {
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+
+
+import BoxFlex from '../components/UI/BoxFlex.jsx';
 
 import { API } from '../services/API.js';
 import theme from './../theme';
@@ -38,15 +42,7 @@ const Register = () => {
   };
 
   return (
-    <Box
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      flexDirection="column"
-      bg={theme.dark.background}
-      w="100vw"
-      h="100vh"
-    >
+    <BoxFlex>
       <Box
         display="flex"
         flexDirection="column"
@@ -58,7 +54,7 @@ const Register = () => {
         <Box max-width="30rem" filter="drop-shadow(0 0 8px rgb(255 255 255 / 0.4))">
           <svg
             width="100%"
-            height="109"
+            height="100%"
             viewBox="0 0 451 109"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -184,7 +180,7 @@ const Register = () => {
           </FormControl>
         </form>
       </Box>
-    </Box>
+    </BoxFlex>
   );
 };
 
