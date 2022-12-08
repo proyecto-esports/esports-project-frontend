@@ -1,6 +1,6 @@
 const theme = {
   dark: {
-    primary: '#FAFFFF',
+    primary: '#FFFFFF',
     accent1: '#57f7E0',
     accent2: '#22BBFF',
     accent3: '#C400FF',
