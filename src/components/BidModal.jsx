@@ -13,9 +13,9 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 
-import DatosBasicosCarta from './DatosBasicosCarta';
+import DatosCartaModal from './DatosCartaModal';
 
-const BidModal = () => {
+const BidModal = ({ player }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [price, setPrice] = useState(0);
@@ -32,14 +32,10 @@ const BidModal = () => {
     !price ? setPrice(100) : setPrice(price * 100);
   };
 
-  //  const savePrice = () => {
-  // Coge precio y llama a función de guardar puja
-  // };
-
   return (
     <>
       <Button width={20} onClick={onOpen}>
-        1230123€
+        {player.value} €
       </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -49,7 +45,7 @@ const BidModal = () => {
           <ModalCloseButton />
 
           <ModalBody display="flex" flexDirection="column" gap={5}>
-            <DatosBasicosCarta />
+            <DatosCartaModal player={player} />
             <Center gap={2.5}>
               <Button
                 bg="#C2145A"
@@ -63,11 +59,11 @@ const BidModal = () => {
               </Button>
               <Input
                 type="number"
-                placeholder="Price"
                 textAlign="center"
                 border="none"
                 value={price}
                 onChange={handlePrice}
+                min={player.value}     
               />
               <Button
                 bg="#C2145A"
