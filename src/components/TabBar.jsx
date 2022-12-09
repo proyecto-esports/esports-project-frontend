@@ -1,4 +1,4 @@
-import { Box, Img, Link, Tab, Tabs } from '@chakra-ui/react';
+import { Box, Img, Tab, Tabs } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
 
 import marketSVG from '../public/marketSVG.svg';
