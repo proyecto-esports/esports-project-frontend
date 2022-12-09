@@ -18,6 +18,7 @@ import { useState } from 'react';
 import { API } from '../services/API';
 import theme from '../theme';
 import DatosCartaModal from './DatosCartaModal';
+import LogoMoney from './LogoMoney';
 
 const BidModal = ({ player }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -62,7 +63,7 @@ const BidModal = ({ player }) => {
         color={theme.dark.background}
         fontWeight="bold"
       >
-        {player.value} €
+        {player.value} <LogoMoney color={theme.dark.background} />
       </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -96,7 +97,9 @@ const BidModal = ({ player }) => {
                     onChange={handlePrice}
                     min={player.value}
                   />
-                  <InputRightElement color={theme.dark.primary}>€</InputRightElement>
+                  <InputRightElement color={theme.dark.primary}>
+                    <LogoMoney color={theme.dark.primary} />
+                  </InputRightElement>
                 </InputGroup>
 
                 <Button
