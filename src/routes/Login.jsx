@@ -151,17 +151,18 @@ const Login = () => {
                 I’ve forgotten <Link color="teal.500">my password</Link>
               </Text>
 
-              <Button
-                type="submit"
-                bg={theme.dark.accent3}
-                color="#FFFFFF"
-                variant="solid"
-                marginTop="1rem"
-                width="max-content"
-              >
-                SING IN
-              </Button>
             </FormControl>
+
+            <Button
+              type="submit"
+              bg={theme.dark.accent3}
+              color="#FFFFFF"
+              variant="solid"
+              marginTop="1rem"
+              width="max-content"
+            >
+              SING IN
+            </Button>
           </form>
           <Button m="20px" color="#DCBEE9" variant="solid">
             Continue with Google
