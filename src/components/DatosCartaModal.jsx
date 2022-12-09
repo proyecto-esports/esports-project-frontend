@@ -46,7 +46,8 @@ const DatosCartaModal = ({ player }) => {
               </Text>
               <CircularProgress max={50} value={player.stats.kills} color="#5E2877">
                 <CircularProgressLabel fontWeight="bold">
-                  {player.stats.kills}%{' '}
+                  {player.stats.kills * 2}{' '}
+
                 </CircularProgressLabel>
               </CircularProgress>
             </Stack>
