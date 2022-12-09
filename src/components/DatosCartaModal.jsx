@@ -15,6 +15,7 @@ const DatosCartaModal = ({ player }) => {
   return (
     <>
       <Card
+        key={player._id}
         direction={{ sm: 'row' }}
         overflow="visible"
         variant="outline"
