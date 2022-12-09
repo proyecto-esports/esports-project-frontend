@@ -4,12 +4,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import GlobalStyle from './GlobalStyle';
-import CreateGroup from './routes/CreateGroup';
 import Home from './routes/Home';
 import CardLineUp from './routes/Lineup';
 import Login from './routes/Login';
-import Market from './routes/Market';
-import Ranking from './routes/Ranking';
 import Register from './routes/Register';
 import Root from './routes/Root';
 import theme from './theme';

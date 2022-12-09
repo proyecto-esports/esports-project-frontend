@@ -8,6 +8,7 @@ function CardModel() {
   console.log(users);
   const getAllPlayers = async () => {
     API.get('/users/6390a0b7f06b238f9dac4ec7').then((res) => {
+      console.log(res);
       setPlayers(res.data.info.data.players);
     });
   };
@@ -37,7 +38,7 @@ function CardModel() {
               w="100%"
               h="90%"
             >
-              <Image w="100%" h="90%" src={player.img} alt={player.nickname} />
+              <Image w="100%" h="90%" src={player.image} alt={player.nickname} />
               {player.nickname}
             </Button>
           </Box>

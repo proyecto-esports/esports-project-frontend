@@ -58,19 +58,6 @@ function SlideEx() {
           overflowY="scroll"
         >
           <CardModel />
-          <CardModel />
-          <CardModel />
-          <CardModel />
-          <CardModel />
-          <CardModel />
-          <CardModel />
-          <CardModel />
-          <CardModel />
-          <CardModel />
-          <CardModel />
-          <CardModel />
-          <CardModel />
-          <CardModel />
         </Box>
       </Slide>
     </>
