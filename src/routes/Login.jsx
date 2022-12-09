@@ -1,8 +1,6 @@
 import { AtSignIcon, UnlockIcon } from '@chakra-ui/icons';
 import {
-  API,
   Box,
-  BoxFlex,
   Button,
   Divider,
   FormControl,
@@ -11,17 +9,17 @@ import {
   InputLeftElement,
   InputRightElement,
   Link,
-  NavLink,
   Stack,
   Text,
-  theme,
-  useContext,
-  useForm,
-  useNavigate,
-  UserContext,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { NavLink, useNavigate } from 'react-router-dom';
 
+import BoxFlex from '../components/UI/BoxFlex';
+import { UserContext } from '../context/jwtContext';
+import { API } from '../services/API';
+import theme from '../theme';
 const Login = () => {
   const [show, setShow] = useState(false);
   const { setJwt, setUser } = useContext(UserContext);

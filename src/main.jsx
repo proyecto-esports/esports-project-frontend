@@ -7,6 +7,7 @@ import GlobalStyle from './GlobalStyle';
 import Home from './routes/Home';
 import CardLineUp from './routes/Lineup';
 import Login from './routes/Login';
+import Market from './routes/Market';
 import Register from './routes/Register';
 import Root from './routes/Root';
 import theme from './theme';
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register />,
+      },
+      {
+        path: '/market',
+        element: <Market />,
       },
       {
         path: '/lineup',
