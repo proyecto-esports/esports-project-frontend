@@ -14,7 +14,9 @@ function SlideEx() {
         flexDirection="column"
         gap="1vh"
         bg="#848484"
-        h="30vh"
+        borderRadius="5px"
+        h="30%"
+        w="45%"
         onClick={() => {
           document.body.style.height = '100vh';
           document.body.style.overflowY = 'hidden';
@@ -22,55 +24,44 @@ function SlideEx() {
         }}
       >
         <Image
-          w="40vw"
-          h="25vh"
+          w="100%"
+          h="80%"
           src="https://images.contentstack.io/v3/assets/bltad9188aa9a70543a/bltd60716848ffd2e76/620ae2d400f003242ae10cba/48621450102_6078da4c6f_o.jpg?width=3200&height=1800"
           alt="Lol"
         />
         Player Name
       </Button>
       <Slide position="fixed" direction="bottom" in={isOpen} style={{ zIndex: 10 }}>
+        <Button
+          marginTop="2vh"
+          position="absolute"
+          top="0.5rem"
+          right="0.5rem"
+          bg="transparent"
+          onClick={onClose}
+        >
+          ❌
+        </Button>
         <Box
-          p="40px"
+          p="3rem"
           color="white"
           mt="4"
           bg="#272d54"
           rounded="md"
           shadow="md"
-          h="90vh"
-          w="100vw"
-          gap="2vh"
+          h="80vh"
+          w="100%"
           display="flex"
           flexdirection="row"
           justifyContent="space-around"
           flexWrap="wrap"
+          overflowY="scroll"
         >
-          <Button
-            marginTop="1vh"
-            position="absolute"
-            top="0.5rem"
-            right="0.5rem"
-            bg="transparent"
-            onClick={onClose}
-          >
-            ❌
-          </Button>
-        </Box>
-        <Box
-          p="40px"
-          color="white"
-          mt="4"
-          bg="#272d54"
-          rounded="md"
-          shadow="md"
-          h="90vh"
-          w="100vw"
-          gap="2vh"
-          display="flex"
-          flexdirection="row"
-          justifyContent="space-around"
-          flexWrap="wrap"
-        >
+          <CardModel />
+          <CardModel />
+          <CardModel />
+          <CardModel />
+          <CardModel />
           <CardModel />
           <CardModel />
           <CardModel />

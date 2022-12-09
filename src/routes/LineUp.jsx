@@ -1,6 +1,7 @@
 import { Box } from '@chakra-ui/react';
 
 import SlideEx from '../components/Fade';
+
 const LineUp = () => {
   return (
     <Box

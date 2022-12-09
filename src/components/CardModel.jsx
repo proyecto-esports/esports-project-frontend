@@ -1,28 +1,51 @@
-import { Box, Button, Image } from '@chakra-ui/react';
+import { Box, Button, Image, Text } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 
+import { API } from '../services/Api';
 function CardModel() {
+  const [players, setPlayers] = useState();
+  const users = localStorage.getItem('user');
+  console.log(users);
+  const getAllPlayers = async () => {
+    API.get('/users/6390a0b7f06b238f9dac4ec7').then((res) => {
+      setPlayers(res.data.info.data.players);
+    });
+  };
+  useEffect(() => {
+    getAllPlayers();
+  }, []);
+
   return (
-    <Box h="25vh" bg="#848484">
-      <Button
-        display="flex"
-        alignItems="center"
-        justifyContent="space-around"
-        flexDirection="column"
-        gap="1vh"
-        marginTop="1vh"
-        bg="#848484"
-        w="35vw"
-        h="22vh"
-      >
-        <Image
-          w="40vw"
-          h="25vh"
-          src="https://images.contentstack.io/v3/assets/bltad9188aa9a70543a/bltd60716848ffd2e76/620ae2d400f003242ae10cba/48621450102_6078da4c6f_o.jpg?width=3200&height=1800"
-          alt="Lol"
-        />
-        Player Name
-      </Button>
-    </Box>
+    <>
+      {players ? (
+        players.map((player) => (
+          <Box
+            key={player._id}
+            borderRadius="5px"
+            marginTop="10%"
+            w="45%"
+            h="30%"
+            bg="#848484"
+          >
+            <Button
+              display="flex"
+              alignItems="center"
+              justifyContent="space-around"
+              flexDirection="column"
+              marginTop="1vh"
+              bg="#848484"
+              w="100%"
+              h="90%"
+            >
+              <Image w="100%" h="90%" src={player.img} alt={player.nickname} />
+              {player.nickname}
+            </Button>
+          </Box>
+        ))
+      ) : (
+        <Text>...Loading</Text>
+      )}
+    </>
   );
 }
 
