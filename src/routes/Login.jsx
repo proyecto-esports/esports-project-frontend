@@ -20,9 +20,9 @@ import { NavLink } from 'react-router-dom';
 
 import BoxFlex from '../components/UI/BoxFlex.jsx';
 import { UserContext } from '../context/jwtContext.jsx';
-/* import BoxFlex from '../components/UI/BoxFlex.jsx'; */
 import { API } from '../services/API.js';
 import theme from './../theme';
+
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -60,7 +60,7 @@ const Login = () => {
         <Box max-width="30rem" filter="drop-shadow(0 0 8px rgb(255 255 255 / 0.4))">
           <svg
             width="100%"
-            height="109"
+            height="100%"
             viewBox="0 0 451 109"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -125,6 +125,7 @@ const Login = () => {
                   id="gmail"
                   name="gmail"
                   {...register('gmail')}
+                  color={theme.dark.accent1}
                 />
               </InputGroup>
               <InputGroup size="md">
@@ -138,6 +139,7 @@ const Login = () => {
                   id="password"
                   name="password"
                   {...register('password')}
+                  color={theme.dark.accent1}
                 />
                 <InputRightElement width="4.5rem">
                   <Button h="1.75rem" size="sm" onClick={handleClick}>
@@ -145,9 +147,10 @@ const Login = () => {
                   </Button>
                 </InputRightElement>
               </InputGroup>
-              <Text>
+              <Text color="gray.300">
                 I’ve forgotten <Link color="teal.500">my password</Link>
               </Text>
+
             </FormControl>
 
             <Button

@@ -7,13 +7,15 @@ import {
   InputGroup,
   InputLeftElement,
   InputRightElement,
+  Box,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
+
 import BoxFlex from '../components/UI/BoxFlex.jsx';
-/* import BoxFlex from '../components/UI/BoxFlex.jsx'; */
+
 import { API } from '../services/API.js';
 import theme from './../theme';
 
@@ -52,7 +54,7 @@ const Register = () => {
         <Box max-width="30rem" filter="drop-shadow(0 0 8px rgb(255 255 255 / 0.4))">
           <svg
             width="100%"
-            height="109"
+            height="100%"
             viewBox="0 0 451 109"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
