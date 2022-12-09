@@ -2,6 +2,8 @@ import {
   Button,
   Center,
   Input,
+  InputGroup,
+  InputRightElement,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -14,11 +16,12 @@ import {
 import { useState } from 'react';
 
 import { API } from '../services/API';
+import theme from '../theme';
 import DatosCartaModal from './DatosCartaModal';
 
 const BidModal = ({ player }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState(player.value);
 
   const handlePrice = (e) => {
     setPrice(e.target.value);
@@ -50,45 +53,60 @@ const BidModal = ({ player }) => {
 
   return (
     <>
-      <Button width={20} onClick={onOpen}>
+      <Button
+        width={20}
+        onClick={onOpen}
+        border="2px"
+        borderColor={theme.dark.stas}
+        bg={theme.dark.bottons}
+        color={theme.dark.background}
+        fontWeight="bold"
+      >
         {player.value} €
       </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <form onSubmit={(ev) => createBid(ev)}>
           <ModalOverlay />
-          <ModalContent>
+          <ModalContent bg={theme.dark.background}>
             <ModalHeader />
-            <ModalCloseButton />
+            <ModalCloseButton color={theme.dark.primary} />
 
-            <ModalBody display="flex" flexDirection="column" gap={5}>
+            <ModalBody display="flex" flexDirection="column" gap={5} alignItems="center">
               <DatosCartaModal player={player} />
               <Center gap={2.5}>
                 <Button
-                  bg="#C2145A"
                   borderRadius={50}
-                  color="#FFFFFF"
+                  color={theme.dark.primary}
                   variant="solid"
                   type="button"
                   onClick={handleLessPrice}
+                  bg={theme.dark.stas}
+                  fontSize="xx-large"
                 >
                   -
                 </Button>
-                <Input
-                  type="number"
-                  textAlign="center"
-                  border="none"
-                  value={price}
-                  onChange={handlePrice}
-                  min={player.value}
-                />
+                <InputGroup>
+                  <Input
+                    color={theme.dark.primary}
+                    type="number"
+                    textAlign="center"
+                    border="none"
+                    value={price}
+                    onChange={handlePrice}
+                    min={player.value}
+                  />
+                  <InputRightElement color={theme.dark.primary}>€</InputRightElement>
+                </InputGroup>
+
                 <Button
-                  bg="#C2145A"
                   borderRadius={50}
-                  color="#FFFFFF"
+                  color={theme.dark.primary}
                   variant="solid"
                   type="button"
                   onClick={handleMorePrice}
+                  bg={theme.dark.stas}
+                  fontSize="xx-large"
                 >
                   +
                 </Button>
@@ -96,7 +114,13 @@ const BidModal = ({ player }) => {
             </ModalBody>
 
             <ModalFooter>
-              <Button colorScheme="blue" margin="0 auto" onClick={onClose} type="submit">
+              <Button
+                bg={theme.dark.accent3}
+                margin="0 auto"
+                onClick={onClose}
+                type="submit"
+                color={theme.dark.primary}
+              >
                 Pujar
               </Button>
             </ModalFooter>

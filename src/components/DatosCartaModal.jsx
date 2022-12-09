@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 
+import theme from '../theme';
 const DatosCartaModal = ({ player }) => {
   return (
     <>
@@ -19,8 +20,9 @@ const DatosCartaModal = ({ player }) => {
         direction={{ sm: 'row' }}
         overflow="visible"
         variant="outline"
-        bg="white"
+        bg={theme.dark.popUpBackground}
         w="90%"
+        color={theme.dark.primary}
       >
         <Image
           objectFit="cover"
@@ -45,7 +47,11 @@ const DatosCartaModal = ({ player }) => {
               <Text fontWeight="bold" fontSize="12px">
                 AC
               </Text>
-              <CircularProgress max={50} value={player.stats.kills} color="#5E2877">
+              <CircularProgress
+                max={50}
+                value={player.stats.kills}
+                color={theme.dark.stas}
+              >
                 <CircularProgressLabel fontWeight="bold">
                   {player.stats.kills * 2}{' '}
                 </CircularProgressLabel>
@@ -55,7 +61,11 @@ const DatosCartaModal = ({ player }) => {
               <Text fontWeight="bold" fontSize="12px">
                 ACS
               </Text>
-              <CircularProgress max={7000} value={player.stats.dmg} color="#5E2877">
+              <CircularProgress
+                max={7000}
+                value={player.stats.dmg}
+                color={theme.dark.stas}
+              >
                 <CircularProgressLabel fontWeight="bold">
                   {player.stats.dmg}{' '}
                 </CircularProgressLabel>

@@ -12,6 +12,7 @@ import {
 import { useEffect, useState } from 'react';
 
 import { API } from '../services/API';
+import theme from '../theme';
 import BidModal from './BidModal';
 const DatosCartaMercado = () => {
   const [players, setPlayers] = useState();
@@ -34,8 +35,10 @@ const DatosCartaMercado = () => {
             direction={{ sm: 'row' }}
             overflow="visible"
             variant="outline"
-            bg="white"
+            bg={theme.dark.popUpBackground}
             w="90%"
+            maxW="27rem"
+            color={theme.dark.primary}
           >
             <Image
               objectFit="cover"
@@ -60,7 +63,11 @@ const DatosCartaMercado = () => {
                   <Text fontWeight="bold" fontSize="12px">
                     AC
                   </Text>
-                  <CircularProgress max={50} value={player.stats.kills} color="#5E2877">
+                  <CircularProgress
+                    max={50}
+                    value={player.stats.kills}
+                    color={theme.dark.stas}
+                  >
                     <CircularProgressLabel fontWeight="bold">
                       {player.stats.kills * 2} %{' '}
                     </CircularProgressLabel>
@@ -70,7 +77,11 @@ const DatosCartaMercado = () => {
                   <Text fontWeight="bold" fontSize="12px">
                     ACS
                   </Text>
-                  <CircularProgress max={7000} value={player.stats.dmg} color="#5E2877">
+                  <CircularProgress
+                    max={7000}
+                    value={player.stats.dmg}
+                    color={theme.dark.stas}
+                  >
                     <CircularProgressLabel fontWeight="bold">
                       {player.stats.dmg}{' '}
                     </CircularProgressLabel>
