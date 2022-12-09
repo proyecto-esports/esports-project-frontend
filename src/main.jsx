@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyle from './GlobalStyle';
 import CreateGroup from './routes/CreateGroup';
 import Home from './routes/Home';
+import CardLineUp from './routes/Lineup';
 import Login from './routes/Login';
 import Market from './routes/Market';
 import Ranking from './routes/Ranking';
@@ -31,16 +32,8 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: '/ranking',
-        element: <Ranking />,
-      },
-      {
-        path: '/market',
-        element: <Market />,
-      },
-      {
-        path: '/create-group',
-        element: <CreateGroup />,
+        path: '/lineup',
+        element: <CardLineUp />,
       },
     ],
   },
