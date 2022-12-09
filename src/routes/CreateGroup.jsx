@@ -3,12 +3,14 @@ import {
   Button,
   FormControl,
   FormLabel,
+  Input,
   Radio,
   RadioGroup,
   Text,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 import RadioCard from '../components/RadioCard';
 import { API } from '../services/API.js';
@@ -47,15 +49,30 @@ const CreateGroup = () => {
 
   const [selectedGame, setSelectedGame] = useState(null);
   const { register, handleSubmit, control } = useForm();
+  const navigate = useNavigate();
 
-  const submitForm = (data) => {
-    const { game, competition } = data;
+  const submitForm = async (data) => {
+    const { game, competition, name } = data;
     const formData = new FormData();
+
+    const userJSON = localStorage.getItem('user');
+    const user = JSON.parse(userJSON);
+    console.log('user', user);
 
     formData.append('game', game);
     formData.append('competition', competition);
+    formData.append('name', name);
+    // const usersBlob = new Blob([user._id], {type: "octet/stream"});
+    // formData.append('users', usersBlob);
+    const usersArray = [user._id];
+    // This step is needed for append an array in a FormData
+    const usersStringified = JSON.stringify(usersArray);
+    formData.append('users', usersStringified);
 
-    API.post('competitions', formData).then((res) => console.log('Response', res));
+    API.post('/competitions', formData).then((res) => {
+      console.log('Response', res);
+      res && navigate('/');
+    });
   };
 
   return (
@@ -70,7 +87,7 @@ const CreateGroup = () => {
       gap="3rem"
     >
       <Text fontSize="4xl" color={theme.dark.primary}>
-        New Competition
+        Create Group
       </Text>
       <form onSubmit={handleSubmit(submitForm)}>
         <FormControl
@@ -101,6 +118,7 @@ const CreateGroup = () => {
                     <RadioCard
                       id={name}
                       key={name}
+                      name="game"
                       value={name}
                       isDisabled={isDisabled}
                       onClick={handleClick}
@@ -145,6 +163,10 @@ const CreateGroup = () => {
               />
             </>
           )}
+          <FormLabel htmlFor="name" color={theme.dark.primary}>
+            Name of the group:
+          </FormLabel>
+          <Input {...register('name')} id="name" name="name" placeholder="Name" />
           <Button
             type="submit"
             bg={theme.dark.accent3}
@@ -152,6 +174,7 @@ const CreateGroup = () => {
             variant="solid"
             marginTop="1rem"
             width="max-content"
+            alignSelf="flex-end"
           >
             Create
           </Button>
