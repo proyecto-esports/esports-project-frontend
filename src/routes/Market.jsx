@@ -14,6 +14,7 @@ const Market = () => {
       gap="1rem"
       padding="1rem 0rem"
       overflow="scroll"
+      overflowX="hidden"
     >
       <DatosCartaMercado />
     </Stack>
