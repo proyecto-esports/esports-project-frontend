@@ -7,15 +7,12 @@ import {
   InputGroup,
   InputLeftElement,
   InputRightElement,
-  Box,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-
 import BoxFlex from '../components/UI/BoxFlex.jsx';
-
 import { API } from '../services/API.js';
 import theme from './../theme';
 

@@ -1,6 +1,8 @@
 import { AtSignIcon, UnlockIcon } from '@chakra-ui/icons';
 import {
+  API,
   Box,
+  BoxFlex,
   Button,
   Divider,
   FormControl,
@@ -9,8 +11,14 @@ import {
   InputLeftElement,
   InputRightElement,
   Link,
+  NavLink,
   Stack,
   Text,
+  theme,
+  useContext,
+  useForm,
+  useNavigate,
+  UserContext,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 
@@ -140,7 +148,6 @@ const Login = () => {
               <Text color="gray.300">
                 I’ve forgotten <Link color="teal.500">my password</Link>
               </Text>
-
             </FormControl>
 
             <Button
