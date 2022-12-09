@@ -35,7 +35,7 @@ const TabBar = () => {
           height="3.5rem"
           padding="0"
         >
-          <NavLink to="/" color={theme.dark.primary}>
+          <NavLink to="/market" color={theme.dark.primary}>
             <Img src={marketSVG} alt="market" />
           </NavLink>
         </Tab>
@@ -50,9 +50,9 @@ const TabBar = () => {
           height="3.5rem"
           padding="0"
         >
-          <Link to="/" color={theme.dark.primary}>
+          <NavLink to="/lineup" color={theme.dark.primary}>
             <Img src={teamSVG} alt="lineup" />
-          </Link>
+          </NavLink>
         </Tab>
         <Tab
           _selected={{
