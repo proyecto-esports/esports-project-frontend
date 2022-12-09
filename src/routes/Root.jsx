@@ -1,12 +1,16 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import { Outlet } from 'react-router-dom';
 
+import { UserContextProvider } from '../context/jwtContext.jsx';
+
 const Root = () => {
   return (
     <>
-      <ChakraProvider>
-        <Outlet />
-      </ChakraProvider>
+      <UserContextProvider>
+        <ChakraProvider>
+          <Outlet />
+        </ChakraProvider>
+      </UserContextProvider>
     </>
   );
 };
