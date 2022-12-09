@@ -13,16 +13,6 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import { useContext } from 'react';
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
-
-import BoxFlex from '../components/UI/BoxFlex.jsx';
-import { UserContext } from '../context/jwtContext.jsx';
-import { API } from '../services/API.js';
-import theme from './../theme';
-
 
 const Login = () => {
   const [show, setShow] = useState(false);
