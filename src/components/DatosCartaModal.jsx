@@ -54,7 +54,7 @@ const DatosCartaModal = ({ player }) => {
               <Text fontWeight="bold" fontSize="12px">
                 ACS
               </Text>
-              <CircularProgress max={750} value={player.stats.dmg} color="#5E2877">
+              <CircularProgress max={7000} value={player.stats.dmg} color="#5E2877">
                 <CircularProgressLabel fontWeight="bold">
                   {player.stats.dmg}{' '}
                 </CircularProgressLabel>

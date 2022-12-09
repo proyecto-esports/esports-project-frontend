@@ -103,7 +103,7 @@ const Login = () => {
             </defs>
           </svg>
         </Box>
-        <Stack spacing={4}>
+        <Stack spacing={4} display="flex" justifyContent="center" alignItems="center">
           <form onSubmit={handleSubmit(submitForm)}>
             <FormControl
               display="flex"
@@ -146,25 +146,24 @@ const Login = () => {
               <Text color="gray.300">
                 I’ve forgotten <Link color="teal.500">my password</Link>
               </Text>
+              <Button
+                type="submit"
+                bg={theme.dark.accent3}
+                color="#FFFFFF"
+                variant="solid"
+                marginTop="1rem"
+                width="max-content"
+              >
+                SING IN
+              </Button>
             </FormControl>
-
-            <Button
-              type="submit"
-              bg={theme.dark.accent3}
-              color="#FFFFFF"
-              variant="solid"
-              marginTop="1rem"
-              width="max-content"
-            >
-              SING IN
-            </Button>
           </form>
           <Button m="20px" color="#DCBEE9" variant="solid">
             Continue with Google
           </Button>
-          <Box display="flex" alignItems="center">
-            <Divider color={theme.dark.accent1} />{' '}
-            <Text color={theme.dark.accent1}>or</Text>{' '}
+          <Box display="flex" alignItems="center" width="100%">
+            <Divider color={theme.dark.accent1} />
+            <Text color={theme.dark.accent1}>or</Text>
             <Divider color={theme.dark.accent1} />
           </Box>
           <Text
@@ -172,10 +171,11 @@ const Login = () => {
             display="flex"
             alignItems="center"
             justifyContent="center"
+            gap="1rem"
           >
-            Not a user?{' '}
+            Not a user?
             <NavLink to="/register">
-              <Link color={theme.dark.accent3}>Register now!</Link>
+              <Link color={theme.dark.accent3}> Register now!</Link>
             </NavLink>
           </Text>
         </Stack>
