@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import GlobalStyle from './GlobalStyle';
-import Home from './routes/Home';
+import CreateGroup from './routes/CreateGroup';
 import LineUp from './routes/LineUp';
 import Login from './routes/Login';
 import Market from './routes/Market';
@@ -20,11 +20,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: '',
-        element: <Home />,
+        element: <Login />,
       },
       {
-        path: '/login',
-        element: <Login />,
+        path: '/home',
+        element: <CreateGroup />,
       },
       {
         path: '/register',

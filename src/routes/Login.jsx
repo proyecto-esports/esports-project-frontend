@@ -38,7 +38,7 @@ const Login = () => {
       setJwt(res.data.info.data.token);
       setUser(res.data.info.data.user);
       if (res.data.info.data.token) {
-        navigate('/register');
+        navigate('/home');
       }
     });
   };
