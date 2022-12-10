@@ -51,7 +51,6 @@ const BidModal = ({ player }) => {
       console.log('Response', res);
     });
   };
-
   return (
     <>
       <Button

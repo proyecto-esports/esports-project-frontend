@@ -9,7 +9,9 @@ import theme from './../theme';
 const TabBar = () => {
   return (
     <Box
-      position="relative"
+      w="100vw"
+      position="fixed"
+      bottom="0"
       align="center"
       isFitted="true"
       borderRadius="1rem"

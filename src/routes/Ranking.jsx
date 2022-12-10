@@ -5,9 +5,11 @@ import BoxFlex from '../components/UI/BoxFlex';
 
 const Ranking = () => {
   return (
-    <BoxFlex>
-      <RankingBoard />
-    </BoxFlex>
+    <>
+      <BoxFlex>
+        <RankingBoard />
+      </BoxFlex>
+    </>
   );
 };
 
