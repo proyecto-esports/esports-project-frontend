@@ -17,7 +17,7 @@ import { useState } from 'react';
 
 import { API } from '../services/API';
 import theme from '../theme';
-import DatosCartaModal from './DatosCartaModal';
+import CardDataModal from './CardDataModal';
 import LogoMoney from './LogoMoney';
 
 const BidModal = ({ player }) => {
@@ -73,7 +73,7 @@ const BidModal = ({ player }) => {
             <ModalCloseButton color={theme.dark.primary} />
 
             <ModalBody display="flex" flexDirection="column" gap={5} alignItems="center">
-              <DatosCartaModal player={player} />
+              <CardDataModal player={player} />
               <Center gap={2.5}>
                 <Button
                   borderRadius={50}

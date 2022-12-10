@@ -19,7 +19,7 @@ const renewMarket = () => {
   API.patch(`competitions/${User.competition}/market`);
 };
 
-const playMachs = () => {
+const playMatchs = () => {
   API.put(`players/points`).then(API.put(`users/points/${User.competition}`));
 };
 
@@ -28,7 +28,7 @@ const AdminPanel = () => {
     renewMarket();
   };
   const newMachs = () => {
-    playMachs();
+    playMatchs();
   };
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (

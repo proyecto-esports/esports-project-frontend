@@ -12,7 +12,7 @@ import {
 import React from 'react';
 
 import theme from '../theme';
-const DatosCartaModal = ({ player }) => {
+const CardDataModal = ({ player }) => {
   return (
     <>
       <Card
@@ -78,4 +78,4 @@ const DatosCartaModal = ({ player }) => {
   );
 };
 
-export default DatosCartaModal;
+export default CardDataModal;
