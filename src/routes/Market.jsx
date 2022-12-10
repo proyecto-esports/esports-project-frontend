@@ -1,6 +1,6 @@
 import { Stack } from '@chakra-ui/react';
 
-import DatosCartaMercado from '../components/DatosCartaMercado';
+import CardDataMarket from '../components/CardDataMarket';
 import NavBar from '../components/NavBar';
 import TabBar from '../components/TabBar';
 import theme from '../theme';
@@ -20,7 +20,7 @@ const Market = () => {
         overflow="scroll"
         overflowX="hidden"
       >
-        <DatosCartaMercado />
+        <CardDataMarket />
       </Stack>
       <TabBar />
     </>

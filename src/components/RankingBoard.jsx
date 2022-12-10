@@ -3,65 +3,93 @@ import {
   TableCaption,
   TableContainer,
   Tbody,
+  Td,
   Th,
   Thead,
   Tr,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useState } from 'react';
 
-import TrCustom from './TrCustom';
+import { API } from '../services/API';
+import theme from '../theme';
 
 const RankingBoard = () => {
+  const [users, setUsers] = useState([]);
+  const currentUser = localStorage.getItem('user');
+
+  const jsonUser = JSON.parse(currentUser);
+  console.log(jsonUser);
+  const id = jsonUser.competition;
+
+  const getAllUsers = async () => {
+    API.get(`/competitions/${id}`).then((res) => {
+      return setUsers(res.data.info.data.users);
+    });
+  };
+  useEffect(() => {
+    getAllUsers();
+  }, []);
+
+  users.sort((a, b) => {
+    return b.points - a.points;
+  });
+  console.log(users);
+
+  for (let i = 0; i < users.length; i++) {
+    const element = users[i];
+    element.ranking = `${i + 1}º`;
+  }
+  /* let userPoints = [];
+  users.forEach((user) => {
+    userPoints.push(user.points);
+    return userPoints;
+  });
+
+  const sortPlayers = (a, b) => b - a;
+  userPoints.sort(sortPlayers);
+  console.log(userPoints); */
+
   return (
-    <TableContainer m="2rem" borderRadius="2rem">
-      <Table variant="simple" backgroundColor="#e0e5e4" borderRadius="2rem">
+    <TableContainer
+      m="2rem"
+      borderTopRadius="0.5rem"
+      borderRadius="0.5rem"
+      border="2px"
+      borderColor={theme.dark.accent2}
+      backgroundColor={theme.dark.background}
+    >
+      <Table variant="simple" backgroundColor="#e0e5e4">
         <TableCaption>
-          Here will be a description of how the value is calculated
+          The matches are played every Saturday at around 17-19h UTM
         </TableCaption>
-        <Thead backgroundColor="#D2D2CF">
+        <Thead backgroundColor={theme.dark.popUpBackground}>
           <Tr>
-            <Th>Nº</Th>
-            <Th>RANKING</Th>
-            <Th padding="0.6rem 1.1rem" isNumeric>
+            <Th color={theme.dark.accent1}>Nº</Th>
+            <Th color={theme.dark.accent1}>USERNAME</Th>
+            <Th isNumeric color={theme.dark.accent1}>
               POINTS
-            </Th>
-            <Th padding="0.6rem 1.1rem" isNumeric>
-              TEAM VALUE
             </Th>
           </Tr>
         </Thead>
-        <Tbody>
-          <TrCustom
-            fSize="1.9rem"
-            pos="1º"
-            color="#cefad0"
-            name="LosChurrasquis"
-            points="4651654"
-            value="8126546"
-          />
-          <TrCustom
-            fSize="1.5rem"
-            pos="2º"
-            name="LosChurrasquis"
-            points="4651654"
-            value="8126546"
-          />
-          <TrCustom
-            fSize="1.1rem"
-            pos="3º"
-            name="LosChurrasquis"
-            points="4651654"
-            value="8126546"
-          />
-          <TrCustom pos="4º" name="LosChurrasquis" points="4651654" value="8126546" />
-          <TrCustom pos="5º" name="LosChurros" points="465164" value="126546" />
-          <TrCustom
-            bBottom="hidden"
-            pos="6º"
-            name="LosChurrasquis"
-            points="4651654"
-            value="8126546"
-          />
+        <Tbody borderBottom="hidden">
+          {users.length
+            ? users.map((user) =>
+                user._id === jsonUser._id ? (
+                  <Tr key={user._id} border="2px" borderColor={theme.dark.accent1}>
+                    <Th padding="0.4rem 0.4rem 0.2rem 1.5rem"> {user.ranking} </Th>
+                    <Td padding="0.4rem 0.4rem 0.2rem 1.5rem"> {user.username} </Td>
+                    <Td isNumeric> {user.points} </Td>
+                  </Tr>
+                ) : (
+                  <Tr key={user._id}>
+                    <Th padding="0.4rem 0.4rem 0.2rem 1.5rem"> {user.ranking} </Th>
+                    <Td padding="0.4rem 0.4rem 0.2rem 1.5rem"> {user.username} </Td>
+                    <Td isNumeric> {user.points} </Td>
+                  </Tr>
+                ),
+              )
+            : 'There are no users in this competition'}
         </Tbody>
       </Table>
     </TableContainer>
