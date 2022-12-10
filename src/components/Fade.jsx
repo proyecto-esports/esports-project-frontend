@@ -1,6 +1,6 @@
 import { Box, Button, Image, Slide, useDisclosure } from '@chakra-ui/react';
 
-import CardModel from './CardModel';
+import CardModel from './AllPlayers';
 
 function SlideEx() {
   const { isOpen, onToggle, onClose } = useDisclosure();
