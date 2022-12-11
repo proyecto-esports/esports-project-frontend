@@ -1,4 +1,4 @@
-import { Box, Button, Image, Slide, useDisclosure } from '@chakra-ui/react';
+import { Box, Button, Image, Slide, Text, useDisclosure } from '@chakra-ui/react';
 import { useContext } from 'react';
 
 import { UserContext } from '../context/jwtContext';
@@ -14,10 +14,14 @@ const SlideEx = ({ player }) => {
         alignItems="center"
         justifyContent="center"
         flexDirection="column"
-        gap="1vh"
-        bg="#848484"
+        gap="0.5vh"
+        backgroundColor="transparent"
+        backgroundImage="url(https://res.cloudinary.com/dlqo06xcs/image/upload/v1670788899/Logo/backgroundCard_zw6qrv.png)"
+        backgroundRepeat="no-repeat"
+        backgroundPosition="center 0.01rem"
+        backgroundSize="130%"
         borderRadius="5px"
-        h="30%"
+        h="32%"
         w="45%"
         onClick={() => {
           setCurrentPlayer(player._id);
@@ -26,8 +30,10 @@ const SlideEx = ({ player }) => {
           onToggle();
         }}
       >
-        <Image w="100%" h="80%" src={player.image} alt={player.nickname} />
-        {player.nickname}
+        <Image w="100%" h="75%" src={player.image} alt={player.nickname} />
+        <Text color="white" fontSize="1.2rem" backgroundColor="#101221BF">
+          {player.nickname}
+        </Text>
       </Button>
       <Slide position="fixed" direction="bottom" in={isOpen} style={{ zIndex: 10 }}>
         <Button
@@ -44,7 +50,7 @@ const SlideEx = ({ player }) => {
           p="3rem"
           color="white"
           mt="4"
-          bg="#272d54"
+          bg="#101221F2"
           rounded="md"
           shadow="md"
           h="80vh"

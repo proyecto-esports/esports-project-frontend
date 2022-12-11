@@ -26,7 +26,8 @@ const LineUp = () => {
       justifyContent="space-around"
       h="100vh"
       w="100vw"
-      bg="#272d54"
+      backgroundImage="url(https://res.cloudinary.com/dlqo06xcs/image/upload/v1670793623/Logo/backgroundLineUpBl_gtdbiq.png)"
+      backgroundPosition="center"
     >
       {lineUp ? (
         lineUp.map((player) => <SlideEx key={player._id} player={player} />)

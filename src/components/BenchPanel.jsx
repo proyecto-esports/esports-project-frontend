@@ -45,8 +45,12 @@ function AllPlayers() {
             borderRadius="5px"
             marginTop="10%"
             w="45%"
-            h="30%"
-            bg="#848484"
+            h="35%"
+            backgroundColor="transparent"
+            backgroundImage="url(https://res.cloudinary.com/dlqo06xcs/image/upload/v1670788899/Logo/backgroundCard_zw6qrv.png)"
+            backgroundRepeat="no-repeat"
+            backgroundPosition="center 0.01rem"
+            backgroundSize="130%"
           >
             <Button
               display="flex"
@@ -54,9 +58,9 @@ function AllPlayers() {
               justifyContent="space-around"
               flexDirection="column"
               marginTop="1vh"
-              bg="#848484"
+              backgroundColor="transparent"
               w="100%"
-              h="90%"
+              h="80%"
               onClick={() => {
                 setNewPlayer(player._id);
                 handleOnClick(player._id);
