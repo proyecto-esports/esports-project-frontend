@@ -12,7 +12,6 @@ const LineUp = () => {
     await API.get(`/users/${idUser}`).then((res) => {
       setLineUp(res.data.info.data.lineup);
     });
-    console.log(lineUp);
     return lineUp;
   };
 
@@ -39,4 +38,3 @@ const LineUp = () => {
 };
 
 export default LineUp;
-

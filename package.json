@@ -22,7 +22,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.40.0",
     "react-icons": "^4.7.1",
-    "react-router-dom": "^6.4.4",
+    "react-router-dom": "^6.4.5",
     "reactjs-popup": "^2.0.5",
     "styled-components": "^5.3.6"
   },
@@ -39,7 +39,7 @@
     "eslint-plugin-simple-import-sort": "^8.0.0",
     "nodemon": "^2.0.20",
     "pre-commit": "^1.2.2",
-    "prettier": "^2.8.0",
+    "prettier": "^2.8.1",
     "vite": "^3.2.3"
   },
   "pre-commit": "lint",

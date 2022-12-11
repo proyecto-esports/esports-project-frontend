@@ -1,10 +1,12 @@
 import { Box, Button, Image, Slide, useDisclosure } from '@chakra-ui/react';
+import { useContext } from 'react';
 
-import CardModel from './AllPlayers';
+import { UserContext } from '../context/jwtContext';
+import CardModel from './BenchPanel';
 
-function SlideEx() {
+const SlideEx = ({ player }) => {
   const { isOpen, onToggle, onClose } = useDisclosure();
-
+  const { setCurrentPlayer } = useContext(UserContext);
   return (
     <>
       <Button
@@ -18,18 +20,14 @@ function SlideEx() {
         h="30%"
         w="45%"
         onClick={() => {
+          setCurrentPlayer(player._id);
           document.body.style.height = '100vh';
           document.body.style.overflowY = 'hidden';
           onToggle();
         }}
       >
-        <Image
-          w="100%"
-          h="80%"
-          src="https://images.contentstack.io/v3/assets/bltad9188aa9a70543a/bltd60716848ffd2e76/620ae2d400f003242ae10cba/48621450102_6078da4c6f_o.jpg?width=3200&height=1800"
-          alt="Lol"
-        />
-        Player Name
+        <Image w="100%" h="80%" src={player.image} alt={player.nickname} />
+        {player.nickname}
       </Button>
       <Slide position="fixed" direction="bottom" in={isOpen} style={{ zIndex: 10 }}>
         <Button
@@ -62,6 +60,6 @@ function SlideEx() {
       </Slide>
     </>
   );
-}
+};
 
 export default SlideEx;
