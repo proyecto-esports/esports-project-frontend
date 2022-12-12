@@ -43,6 +43,7 @@ const SlideEx = ({ player }) => {
         direction="bottom"
         in={isOpen}
         style={{ zIndex: 10 }}
+        pointerEvent="none"
         // closeOnBlur={true}
       >
         {/* <Box
@@ -71,7 +72,7 @@ const SlideEx = ({ player }) => {
           bg="#101221F2"
           rounded="md"
           shadow="md"
-          h="80vh"
+          h="100vh"
           w="100%"
           display="flex"
           flexdirection="row"
