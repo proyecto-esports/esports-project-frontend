@@ -12,6 +12,7 @@ import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
+import InviteGroupModal from '../components/InviteGroupModal';
 import RadioCard from '../components/RadioCard';
 import { API } from '../services/API.js';
 import theme from './../theme';
@@ -178,6 +179,7 @@ const CreateGroup = () => {
           >
             Create
           </Button>
+          <InviteGroupModal />
         </FormControl>
       </form>
     </Box>
