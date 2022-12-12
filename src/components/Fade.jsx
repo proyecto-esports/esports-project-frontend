@@ -44,17 +44,7 @@ const SlideEx = ({ player }) => {
         in={isOpen}
         style={{ zIndex: 10 }}
         pointerEvent="none"
-        // closeOnBlur={true}
       >
-        {/* <Box
-          height="100%"
-          width="100%"
-          onClick={(ev) => {
-            if (ev.target !== ev.currentTarget) {
-              onClose();
-            }
-          }}
-        > */}
         <Button
           marginTop="2vh"
           position="absolute"
@@ -82,7 +72,6 @@ const SlideEx = ({ player }) => {
         >
           <CardModel />
         </Box>
-        {/* </Box> */}
       </Slide>
     </>
   );
