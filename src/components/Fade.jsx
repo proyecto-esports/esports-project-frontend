@@ -1,9 +1,12 @@
-import { Box, Button, Image, Slide, useDisclosure } from '@chakra-ui/react';
+import { Box, Button, Image, Slide, Text, useDisclosure } from '@chakra-ui/react';
+import { useContext } from 'react';
 
-import CardModel from './CardModel';
+import { UserContext } from '../context/jwtContext';
+import CardModel from './BenchPanel';
 
-function SlideEx() {
+const SlideEx = ({ player }) => {
   const { isOpen, onToggle, onClose } = useDisclosure();
+  const { setCurrentPlayer } = useContext(UserContext);
 
   return (
     <>
@@ -12,26 +15,36 @@ function SlideEx() {
         alignItems="center"
         justifyContent="center"
         flexDirection="column"
-        gap="1vh"
-        bg="#848484"
+        gap="0.5vh"
+        backgroundColor="transparent"
+        backgroundImage="url(https://res.cloudinary.com/dlqo06xcs/image/upload/v1670788899/Logo/backgroundCard_zw6qrv.png)"
+        backgroundRepeat="no-repeat"
+        backgroundPosition="center 0.01rem"
+        backgroundSize="130%"
         borderRadius="5px"
-        h="30%"
+        h="32%"
         w="45%"
+        variant="unstyled"
         onClick={() => {
+          setCurrentPlayer(player._id);
           document.body.style.height = '100vh';
           document.body.style.overflowY = 'hidden';
           onToggle();
         }}
       >
-        <Image
-          w="100%"
-          h="80%"
-          src="https://images.contentstack.io/v3/assets/bltad9188aa9a70543a/bltd60716848ffd2e76/620ae2d400f003242ae10cba/48621450102_6078da4c6f_o.jpg?width=3200&height=1800"
-          alt="Lol"
-        />
-        Player Name
+        <Image maxWidth="90%" h="70%" src={player.image} alt={player.nickname} />
+        <Text color="white" fontSize="1.2rem" backgroundColor="#101221BF">
+          {player.nickname}
+        </Text>
       </Button>
-      <Slide position="fixed" direction="bottom" in={isOpen} style={{ zIndex: 10 }}>
+
+      <Slide
+        position="fixed"
+        direction="bottom"
+        in={isOpen}
+        style={{ zIndex: 10 }}
+        pointerEvent="none"
+      >
         <Button
           marginTop="2vh"
           position="absolute"
@@ -46,10 +59,10 @@ function SlideEx() {
           p="3rem"
           color="white"
           mt="4"
-          bg="#272d54"
+          bg="#101221F2"
           rounded="md"
           shadow="md"
-          h="80vh"
+          h="100vh"
           w="100%"
           display="flex"
           flexdirection="row"
@@ -62,6 +75,6 @@ function SlideEx() {
       </Slide>
     </>
   );
-}
+};
 
 export default SlideEx;

@@ -1,14 +1,29 @@
+import { Box } from '@chakra-ui/react';
 import React from 'react';
 
+import NavBar from '../components/NavBar';
 import RankingBoard from '../components/RankingBoard';
-import BoxFlex from '../components/UI/BoxFlex';
+import TabBar from '../components/TabBar';
+import theme from '../theme';
 
 const Ranking = () => {
   return (
     <>
-      <BoxFlex>
+      <NavBar />
+
+      <Box
+        display="flex"
+        alignItems="center"
+        flexDirection="column"
+        justifyContent="center"
+        bg={theme.dark.background}
+        w="100vw"
+        h="90vh"
+      >
         <RankingBoard />
-      </BoxFlex>
+      </Box>
+
+      <TabBar />
     </>
   );
 };

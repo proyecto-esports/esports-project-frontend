@@ -10,7 +10,9 @@ import {
   ModalOverlay,
   useDisclosure,
 } from '@chakra-ui/react';
+
 import { useEffect, useState } from 'react';
+
 
 import { API } from '../services/API';
 import theme from '../theme';
@@ -22,6 +24,7 @@ const JoinModal = () => {
   const handleCode = (e) => {
     setCode(e.target.value);
   };
+
 
   const joingGroup = async (ev) => {
     ev.preventDefault();
@@ -39,6 +42,7 @@ const JoinModal = () => {
   useEffect(() => {
     joingGroup();
   }, []);
+
 
   return (
     <>

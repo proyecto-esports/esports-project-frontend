@@ -14,11 +14,13 @@ import { useEffect, useState } from 'react';
 import { API } from '../services/API';
 import theme from '../theme';
 import BidModal from './BidModal';
-const DatosCartaMercado = () => {
-  const [players, setPlayers] = useState();
 
+const CardDataMarket = () => {
+  const [players, setPlayers] = useState();
+  const idStorage = localStorage.getItem('user');
+  const id = JSON.parse(idStorage).competition;
   const getAllPlayers = async () => {
-    API.get('/competitions/6391e02c30ac54065e9c1661').then((res) => {
+    API.get(`/competitions/${id}`).then((res) => {
       setPlayers(res.data.info.data.market);
     });
   };
@@ -101,4 +103,4 @@ const DatosCartaMercado = () => {
   );
 };
 
-export default DatosCartaMercado;
+export default CardDataMarket;
