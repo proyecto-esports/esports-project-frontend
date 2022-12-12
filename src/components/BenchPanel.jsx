@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 
 import { UserContext } from '../context/jwtContext';
 import { API } from '../services/Api';
+import theme from '../theme';
 
 function AllPlayers() {
   const user = localStorage.getItem('user');
@@ -25,15 +26,22 @@ function AllPlayers() {
       currentPlayer: currentPlayer,
       newPlayer: newP,
     };
-    console.log(changePlayer);
     API.put(`/users/changeLineUp/${idUser}`, changePlayer).then((res) => {
-      console.log(res);
       res && window.location.replace('')('/lineUp');
     });
   };
   const handleOnClick = (id) => {
     const newP = id;
     data(newP);
+  };
+
+  const handleSellPlayer = async (id) => {
+    const playerSell = {
+      player: id,
+    };
+    await API.put(`/users/sell/${idUser}`, playerSell).then((res) => {
+      res && window.location.replace('')('/lineUp');
+    });
   };
 
   return (
@@ -50,26 +58,51 @@ function AllPlayers() {
             backgroundImage="url(https://res.cloudinary.com/dlqo06xcs/image/upload/v1670788899/Logo/backgroundCard_zw6qrv.png)"
             backgroundRepeat="no-repeat"
             backgroundPosition="center 0.01rem"
-            backgroundSize="130%"
+            backgroundSize="133%"
           >
-            <Button
+            <Box
               display="flex"
               alignItems="center"
-              justifyContent="space-around"
               flexDirection="column"
               marginTop="1vh"
               backgroundColor="transparent"
+              gap="0.5rem"
               w="100%"
               h="80%"
               variant="unstyled"
-              onClick={() => {
-                setNewPlayer(player._id);
-                handleOnClick(player._id);
-              }}
             >
-              <Image maxWidth="90%" h="80%" src={player.image} alt={player.nickname} />
-              {player.nickname}
-            </Button>
+              <Button
+                variant="unstyled"
+                width="100%"
+                height="100%"
+                onClick={() => {
+                  setNewPlayer(player._id);
+                  handleOnClick(player._id);
+                }}
+              >
+                <Image
+                  maxWidth="90%"
+                  src={player.image}
+                  alt={player.nickname}
+                  margin="0 auto"
+                />
+              </Button>
+              <Button
+                width="3rem"
+                height="2.5rem"
+                border="2px"
+                borderColor={theme.dark.stas}
+                bg={theme.dark.bottons}
+                color={theme.dark.background}
+                fontWeight="bold"
+                onClick={() => handleSellPlayer(player._id)}
+              >
+                Sell
+              </Button>
+              <Text color="white" fontSize="1.2rem" backgroundColor="#101221BF">
+                {player.nickname}
+              </Text>
+            </Box>
           </Box>
         ))
       ) : (

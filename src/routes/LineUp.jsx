@@ -2,6 +2,8 @@ import { Box, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
 import SlideEx from '../components/Fade';
+import NavBar from '../components/NavBar';
+import TabBar from '../components/TabBar';
 import { API } from '../services/Api';
 
 const LineUp = () => {
@@ -19,22 +21,26 @@ const LineUp = () => {
     getLineUp();
   }, []);
   return (
-    <Box
-      display="flex"
-      flexWrap="wrap"
-      alignItems="center"
-      justifyContent="space-around"
-      h="100vh"
-      w="100vw"
-      backgroundImage="url(https://res.cloudinary.com/dlqo06xcs/image/upload/v1670793623/Logo/backgroundLineUpBl_gtdbiq.png)"
-      backgroundPosition="center"
-    >
-      {lineUp ? (
-        lineUp.map((player) => <SlideEx key={player._id} player={player} />)
-      ) : (
-        <Text>...Loading</Text>
-      )}
-    </Box>
+    <>
+      <NavBar />
+      <Box
+        display="flex"
+        flexWrap="wrap"
+        alignItems="center"
+        justifyContent="space-around"
+        height="85vh"
+        w="100vw"
+        backgroundImage="url(https://res.cloudinary.com/dlqo06xcs/image/upload/v1670793623/Logo/backgroundLineUpBl_gtdbiq.png)"
+        backgroundPosition="center"
+      >
+        {lineUp ? (
+          lineUp.map((player) => <SlideEx key={player._id} player={player} />)
+        ) : (
+          <Text>...Loading</Text>
+        )}
+        <TabBar />
+      </Box>
+    </>
   );
 };
 
