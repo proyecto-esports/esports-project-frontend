@@ -40,51 +40,48 @@ const SlideEx = ({ player }) => {
 
       <Slide
         position="fixed"
-        left="0"
-        bottom="80%"
         direction="bottom"
-        height="100vh"
         in={isOpen}
         style={{ zIndex: 10 }}
+        // closeOnBlur={true}
       >
-        <Box
+        {/* <Box
           height="100%"
-          border="4px solid red"
           width="100%"
           onClick={(ev) => {
             if (ev.target !== ev.currentTarget) {
               onClose();
             }
           }}
+        > */}
+        <Button
+          marginTop="2vh"
+          position="absolute"
+          top="0.5rem"
+          right="0.5rem"
+          bg="transparent"
+          onClick={onClose}
         >
-          <Button
-            marginTop="2vh"
-            position="absolute"
-            top="0.5rem"
-            right="0.5rem"
-            bg="transparent"
-            onClick={onClose}
-          >
-            ❌
-          </Button>
-          <Box
-            p="3rem"
-            color="white"
-            mt="4"
-            bg="#101221F2"
-            rounded="md"
-            shadow="md"
-            h="80%"
-            w="100%"
-            display="flex"
-            flexdirection="row"
-            justifyContent="space-around"
-            flexWrap="wrap"
-            overflowY="scroll"
-          >
-            <CardModel />
-          </Box>
+          ❌
+        </Button>
+        <Box
+          p="3rem"
+          color="white"
+          mt="4"
+          bg="#101221F2"
+          rounded="md"
+          shadow="md"
+          h="80vh"
+          w="100%"
+          display="flex"
+          flexdirection="row"
+          justifyContent="space-around"
+          flexWrap="wrap"
+          overflowY="scroll"
+        >
+          <CardModel />
         </Box>
+        {/* </Box> */}
       </Slide>
     </>
   );
