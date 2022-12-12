@@ -1,4 +1,4 @@
-import { createContext, Navigate, useMemo } from 'react';
+import { createContext, Navigate, useContext, useMemo } from 'react';
 
 import useLocalStorage from './useLocalStorage';
 
@@ -25,3 +25,5 @@ export const AuthProvider = ({ children }) => {
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
+
+export const useAuth = () => useContext(AuthContext);
