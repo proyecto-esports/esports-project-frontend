@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components';
 
 import GlobalStyle from './GlobalStyle';
 import CreateGroup from './routes/CreateGroup';
+import Home from './routes/Home';
 import LineUp from './routes/LineUp';
 import Login from './routes/Login';
 import Market from './routes/Market';
@@ -23,8 +24,12 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: '/home',
+        path: '/creategroup',
         element: <CreateGroup />,
+      },
+      {
+        path: '/home',
+        element: <Home />,
       },
       {
         path: '/register',
