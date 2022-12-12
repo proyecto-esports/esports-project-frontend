@@ -7,6 +7,7 @@ import CardModel from './BenchPanel';
 const SlideEx = ({ player }) => {
   const { isOpen, onToggle, onClose } = useDisclosure();
   const { setCurrentPlayer } = useContext(UserContext);
+
   return (
     <>
       <Button
@@ -23,6 +24,7 @@ const SlideEx = ({ player }) => {
         borderRadius="5px"
         h="32%"
         w="45%"
+        variant="unstyled"
         onClick={() => {
           setCurrentPlayer(player._id);
           document.body.style.height = '100vh';
@@ -30,38 +32,58 @@ const SlideEx = ({ player }) => {
           onToggle();
         }}
       >
-        <Image w="100%" h="75%" src={player.image} alt={player.nickname} />
+        <Image maxWidth="90%" h="70%" src={player.image} alt={player.nickname} />
         <Text color="white" fontSize="1.2rem" backgroundColor="#101221BF">
           {player.nickname}
         </Text>
       </Button>
-      <Slide position="fixed" direction="bottom" in={isOpen} style={{ zIndex: 10 }}>
-        <Button
-          marginTop="2vh"
-          position="absolute"
-          top="0.5rem"
-          right="0.5rem"
-          bg="transparent"
-          onClick={onClose}
-        >
-          ❌
-        </Button>
+
+      <Slide
+        position="fixed"
+        left="0"
+        bottom="80%"
+        direction="bottom"
+        height="100vh"
+        in={isOpen}
+        style={{ zIndex: 10 }}
+      >
         <Box
-          p="3rem"
-          color="white"
-          mt="4"
-          bg="#101221F2"
-          rounded="md"
-          shadow="md"
-          h="80vh"
-          w="100%"
-          display="flex"
-          flexdirection="row"
-          justifyContent="space-around"
-          flexWrap="wrap"
-          overflowY="scroll"
+          height="100%"
+          border="4px solid red"
+          width="100%"
+          onClick={(ev) => {
+            if (ev.target !== ev.currentTarget) {
+              onClose();
+            }
+          }}
         >
-          <CardModel />
+          <Button
+            marginTop="2vh"
+            position="absolute"
+            top="0.5rem"
+            right="0.5rem"
+            bg="transparent"
+            onClick={onClose}
+          >
+            ❌
+          </Button>
+          <Box
+            p="3rem"
+            color="white"
+            mt="4"
+            bg="#101221F2"
+            rounded="md"
+            shadow="md"
+            h="80%"
+            w="100%"
+            display="flex"
+            flexdirection="row"
+            justifyContent="space-around"
+            flexWrap="wrap"
+            overflowY="scroll"
+          >
+            <CardModel />
+          </Box>
         </Box>
       </Slide>
     </>

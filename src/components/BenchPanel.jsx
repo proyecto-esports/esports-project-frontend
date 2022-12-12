@@ -61,12 +61,13 @@ function AllPlayers() {
               backgroundColor="transparent"
               w="100%"
               h="80%"
+              variant="unstyled"
               onClick={() => {
                 setNewPlayer(player._id);
                 handleOnClick(player._id);
               }}
             >
-              <Image w="100%" h="90%" src={player.image} alt={player.nickname} />
+              <Image maxWidth="90%" h="80%" src={player.image} alt={player.nickname} />
               {player.nickname}
             </Button>
           </Box>
