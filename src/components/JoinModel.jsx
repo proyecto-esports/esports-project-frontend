@@ -10,7 +10,7 @@ import {
   ModalOverlay,
   useDisclosure,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { API } from '../services/API';
 import theme from '../theme';
@@ -23,16 +23,22 @@ const JoinModal = () => {
     setCode(e.target.value);
   };
 
-  const joingGroup = () => {
+  const joingGroup = async (ev) => {
+    ev.preventDefault();
     const user = localStorage.getItem('user');
     const userId = JSON.parse(user)._id;
+    console.log(userId);
     const bodyJoin = {
       competition: code,
     };
-    API.patch(`user/${userId}/invited`, bodyJoin).then((res) => {
-      console.log(res);
+    API.patch(`users/${userId}/invited`, bodyJoin).then((res) => {
+      return res
     });
   };
+
+  useEffect(() => {
+    joingGroup();
+  }, []);
 
   return (
     <>
