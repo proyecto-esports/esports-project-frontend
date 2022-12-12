@@ -23,8 +23,7 @@ const JoinModal = () => {
     setCode(e.target.value);
   };
 
-  const joingGroup = (ev) => {
-    ev.preventDefault();
+  const joingGroup = () => {
     const user = localStorage.getItem('user');
     const userId = JSON.parse(user)._id;
     const bodyJoin = {
