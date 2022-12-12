@@ -9,11 +9,13 @@ export const UserContextProvider = ({ children }) => {
   });
 
   const [user, setUser] = useState({});
-
+  const [currentPlayer, setCurrentPlayer] = useState('');
+  const [newPlayer, setNewPlayer] = useState('');
   const [players, setPlayers] = useState([]);
   const [competition, setCompetition] = useState([]);
   const [bids, setBids] = useState([]);
   const [users, setUsers] = useState([]);
+  const [lineup, setLineup] = useState([]);
 
   const logout = () => {
     setUser(null);
@@ -38,6 +40,12 @@ export const UserContextProvider = ({ children }) => {
         users,
         setUsers,
         logout,
+        lineup,
+        setLineup,
+        currentPlayer,
+        setCurrentPlayer,
+        newPlayer,
+        setNewPlayer,
       }}
     >
       {children}
