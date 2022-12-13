@@ -13,9 +13,11 @@ const TabBar = () => {
       position="sticky"
       bottom="0"
       align="center"
+
       isFitted="true"
       borderTopRadius="1rem"
       bg={theme.dark.popUpBackground}
+
       color={theme.dark.primary}
     >
       <Tabs
@@ -37,8 +39,10 @@ const TabBar = () => {
           padding="0"
           bg={theme.dark.primary}
         >
+
           <NavLink to="/lineup" color={theme.dark.primary}>
             <Img src={teamSVG} alt="lineup" />
+
           </NavLink>
         </Tab>
         <Tab
@@ -55,6 +59,7 @@ const TabBar = () => {
         >
           <NavLink to="/ranking" color={theme.dark.primary}>
             <Img src={rankingSVG} alt="ranking" />
+
           </NavLink>
         </Tab>
         <Tab
@@ -69,8 +74,10 @@ const TabBar = () => {
           padding="0"
           bg={theme.dark.primary}
         >
+
           <NavLink to="/market" color={theme.dark.primary}>
             <Img src={marketSVG} alt="market" />
+
           </NavLink>
         </Tab>
       </Tabs>

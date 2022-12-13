@@ -12,17 +12,18 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import { UserContext } from '../context/jwtContext';
 import logoutSVG from '../public/logoutSVG.svg';
 import logo from '../public/symbol-logo.svg';
 import userSVG from '../public/userSVG.svg';
+import { useAuth } from './../hooks/AuthContext';
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const { logout } = useContext(UserContext);
+
+  const { logout } = useAuth();
+
   return (
     <>
       <Flex
@@ -51,7 +52,7 @@ const NavBar = () => {
           </MenuButton>
           <MenuList>
             <MenuItem>
-              <NavLink to="/" onClick={() => logout()}>
+              <NavLink to="/login" onClick={() => logout()}>
                 <Flex gap="5rem">
                   <Text>LogOut</Text>
                   <Img src={logoutSVG} alt="logout" width="1.5rem" />

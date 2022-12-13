@@ -1,19 +1,16 @@
 import { Box, Button, Image, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
+import { useAuth } from '../hooks/AuthContext';
 import { API } from '../services/Api';
-function CardModel() {
-  const [players, setPlayers] = useState();
-  const users = localStorage.getItem('user');
-  console.log(users);
-  const getAllPlayers = async () => {
-    API.get('/users/6390a0b7f06b238f9dac4ec7').then((res) => {
-      console.log(res);
-      setPlayers(res.data.info.data.players);
-    });
-  };
+
+const LineupCards = () => {
+  const { user } = useAuth();
+
+  const [players, setPlayers] = useState(user.players);
+
   useEffect(() => {
-    getAllPlayers();
+    API.get(`/users/${user._id}`).then((res) => setPlayers(res.data.info.data.players));
   }, []);
 
   return (
@@ -48,6 +45,6 @@ function CardModel() {
       )}
     </>
   );
-}
+};
 
-export default CardModel;
+export default LineupCards;

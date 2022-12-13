@@ -12,46 +12,38 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react';
-import { useContext, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import { UserContext } from '../context/jwtContext';
+import BoxFlex from '../components/UI/BoxFlex';
+import { useAuth } from '../hooks/AuthContext';
 import { API } from '../services/API';
 import theme from '../theme';
+
 const Login = () => {
+  const { user, login } = useAuth();
+  const navigate = useNavigate();
+
   const [show, setShow] = useState(false);
-  const { setJwt, setUser } = useContext(UserContext);
   const handleClick = () => setShow(!show);
   const { register, handleSubmit } = useForm();
-  const navigate = useNavigate();
 
   const submitForm = (data) => {
     const formData = new FormData();
     const { gmail, password } = data;
     formData.append('gmail', gmail);
     formData.append('password', password);
-    API.post('users/login', formData).then((res) => {
-      localStorage.setItem('token', res.data.info.data.token);
-      localStorage.setItem('user', JSON.stringify(res.data.info.data.user));
-      setJwt(res.data.info.data.token);
-      setUser(res.data.info.data.user);
-      if (res.data.info.data.token) {
-        navigate('/home');
-      }
-    });
+
+    API.post('users/login', formData).then((res) => login(res.data.info.data));
   };
 
+  useEffect(() => {
+    user && navigate('/dashboard/ranking');
+  });
+
   return (
-    <Box
-      display="flex"
-      alignItems="center"
-      flexDirection="column"
-      justifyContent="center"
-      bg={theme.dark.background}
-      w="100vw"
-      h="100vh"
-    >
+    <BoxFlex>
       <Box
         display="flex"
         flexDirection="column"
@@ -181,13 +173,13 @@ const Login = () => {
             gap="1rem"
           >
             Not a user?
-            <NavLink to="/register">
-              <Link color={theme.dark.accent3}> Register now!</Link>
+            <NavLink to="/register" style={{ color: theme.dark.accent3 }}>
+              Register now!
             </NavLink>
           </Text>
         </Stack>
       </Box>
-    </Box>
+    </BoxFlex>
   );
 };
 
