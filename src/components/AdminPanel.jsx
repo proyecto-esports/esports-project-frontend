@@ -44,7 +44,7 @@ const AdminPanel = () => {
           <ModalCloseButton />
           <ModalBody flexDirection="column" display="flex" gap="2rem">
             <Button bg={theme.dark.popUpBackground} onClick={newMachs}>
-              Play Machs
+              Play Matches
             </Button>
             <Button bg={theme.dark.popUpBackground} onClick={newMarket}>
               Renew Market

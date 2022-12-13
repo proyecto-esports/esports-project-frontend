@@ -5,6 +5,7 @@ import SlideEx from '../components/Fade';
 import NavBar from '../components/NavBar';
 import TabBar from '../components/TabBar';
 import { API } from '../services/Api';
+import theme from '../theme';
 
 const LineUp = () => {
   const [lineUp, setLineUp] = useState([]);
@@ -21,7 +22,14 @@ const LineUp = () => {
     getLineUp();
   }, []);
   return (
-    <>
+    <Box
+      w="100vw"
+      h="100vh"
+      alignItems="center"
+      bg={theme.dark.background}
+      overflow="scroll"
+      overflowX="hidden"
+    >
       <NavBar />
       <Box
         display="flex"
@@ -38,9 +46,9 @@ const LineUp = () => {
         ) : (
           <Text>...Loading</Text>
         )}
-        <TabBar />
       </Box>
-    </>
+      <TabBar />
+    </Box>
   );
 };
 

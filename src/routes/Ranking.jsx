@@ -10,7 +10,14 @@ import InviteGroupModal from './../components/InviteGroupModal';
 
 const Ranking = () => {
   return (
-    <>
+    <Box
+      w="100vw"
+      h="100vh"
+      alignItems="center"
+      bg={theme.dark.background}
+      overflow="scroll"
+      overflowX="hidden"
+    >
       <NavBar />
       <Box
         display="flex"
@@ -27,7 +34,7 @@ const Ranking = () => {
       </Box>
 
       <TabBar />
-    </>
+    </Box>
   );
 };
 

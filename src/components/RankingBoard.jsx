@@ -40,15 +40,6 @@ const RankingBoard = () => {
     const element = users[i];
     element.ranking = `${i + 1}º`;
   }
-  /* let userPoints = [];
-  users.forEach((user) => {
-    userPoints.push(user.points);
-    return userPoints;
-  });
-
-  const sortPlayers = (a, b) => b - a;
-  userPoints.sort(sortPlayers);
-  console.log(userPoints); */
 
   return (
     <TableContainer
@@ -77,9 +68,26 @@ const RankingBoard = () => {
             ? users.map((user) =>
                 user._id === jsonUser._id ? (
                   <Tr key={user._id} border="2px" borderColor={theme.dark.accent1}>
-                    <Th padding="0.4rem 0.4rem 0.2rem 1.5rem"> {user.ranking} </Th>
-                    <Td padding="0.4rem 0.4rem 0.2rem 1.5rem"> {user.username} </Td>
-                    <Td isNumeric> {user.points} </Td>
+                    <Th
+                      padding="0.4rem 0.4rem 0.2rem 1.5rem"
+                      fontWeight="bolder"
+                      fontSize="1.5rem"
+                    >
+                      {' '}
+                      {user.ranking}{' '}
+                    </Th>
+                    <Td
+                      padding="0.4rem 0.4rem 0.2rem 1.5rem"
+                      fontWeight="bolder"
+                      fontSize="1.2rem"
+                    >
+                      {' '}
+                      {user.username}{' '}
+                    </Td>
+                    <Td isNumeric fontWeight="bolder" fontSize="1.2rem">
+                      {' '}
+                      {user.points}{' '}
+                    </Td>
                   </Tr>
                 ) : (
                   <Tr key={user._id}>
