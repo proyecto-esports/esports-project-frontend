@@ -12,7 +12,11 @@ import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
+
+import InviteGroupModal from '../components/InviteGroupModal';
+
 import NavBar from '../components/NavBar';
+
 import RadioCard from '../components/RadioCard';
 import { API } from '../services/API.js';
 import theme from './../theme';
@@ -171,25 +175,61 @@ const CreateGroup = () => {
                 />
               </>
             )}
-            <FormLabel htmlFor="name" color={theme.dark.primary}>
-              Name of the group:
-            </FormLabel>
-            <Input {...register('name')} id="name" name="name" placeholder="Name" />
-            <Button
-              type="submit"
-              bg={theme.dark.accent3}
-              color="#FFFFFF"
-              variant="solid"
-              marginTop="1rem"
-              width="max-content"
-              alignSelf="flex-end"
-            >
-              Create
-            </Button>
-          </FormControl>
-        </form>
-      </Box>
-    </>
+
+            name="game"
+            control={control}
+          />
+
+          {selectedGame && (
+            <>
+              <FormLabel htmlFor="competition" color={theme.dark.primary}>
+                Competition:
+              </FormLabel>
+              <Controller
+                render={() => (
+                  <RadioGroup
+                    {...register('competition')}
+                    name="competition"
+                    display="flex"
+                    gap="1rem"
+                  >
+                    {selectedGame.competitions?.map((competition) => {
+                      console.log('competition', competition);
+                      const { name, isDisabled } = competition;
+                      console.log('competition name', name);
+                      return (
+                        <Radio id={name} value={name} key={name} isDisabled={isDisabled}>
+                          {name}
+                        </Radio>
+                      );
+                    })}
+                  </RadioGroup>
+                )}
+                name="competition"
+                control={control}
+              />
+            </>
+          )}
+          <FormLabel htmlFor="name" color={theme.dark.primary}>
+            Name of the group:
+          </FormLabel>
+          <Input {...register('name')} id="name" name="name" placeholder="Name" />
+          <Button
+            type="submit"
+            bg={theme.dark.accent3}
+            color="#FFFFFF"
+            variant="solid"
+            marginTop="1rem"
+            width="max-content"
+            alignSelf="flex-end"
+          >
+            Create
+          </Button>
+          <InviteGroupModal />
+        </FormControl>
+      </form>
+    </Box>
+
   );
 };
 

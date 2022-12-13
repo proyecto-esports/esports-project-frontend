@@ -16,7 +16,6 @@ import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import BoxFlex from '../components/UI/BoxFlex';
 import { UserContext } from '../context/jwtContext';
 import { API } from '../services/API';
 import theme from '../theme';
@@ -44,7 +43,15 @@ const Login = () => {
   };
 
   return (
-    <BoxFlex>
+    <Box
+      display="flex"
+      alignItems="center"
+      flexDirection="column"
+      justifyContent="center"
+      bg={theme.dark.background}
+      w="100vw"
+      h="100vh"
+    >
       <Box
         display="flex"
         flexDirection="column"
@@ -180,7 +187,7 @@ const Login = () => {
           </Text>
         </Stack>
       </Box>
-    </BoxFlex>
+    </Box>
   );
 };
 
