@@ -22,20 +22,21 @@ const JoinModal = () => {
   const handleCode = (e) => {
     setCode(e.target.value);
   };
-
+  const user = localStorage.getItem('user');
+  const userId = JSON.parse(user)._id;
   const joingGroup = async (ev) => {
     ev.preventDefault();
-    const user = localStorage.getItem('user');
-    const userId = JSON.parse(user)._id;
+
     console.log(userId);
     const bodyJoin = {
       competition: code,
     };
     console.log(bodyJoin);
-    API.patch(`users/${userId}/invited`, bodyJoin).then((res) => {
-      return res;
+    API.patch(`users/${userId}/invited`, bodyJoin).then(() => {
+      API.put(`users/inicialplayers/${userId}`).then((res) => {
+        return res;
+      });
     });
-    API.put(`users/inicialplayers/${userId}`).then((res) => console.log(res));
   };
 
   useEffect(() => {
