@@ -153,7 +153,7 @@ const Login = () => {
                 marginTop="1rem"
                 width="max-content"
               >
-                SING IN
+                SIGN IN
               </Button>
             </FormControl>
           </form>

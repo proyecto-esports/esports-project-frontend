@@ -7,7 +7,17 @@ import AdminPanel from './../components/AdminPanel';
 
 const Ranking = () => {
   return (
-    <>
+
+    <Box
+      w="100vw"
+      h="100vh"
+      alignItems="center"
+      bg={theme.dark.background}
+      overflow="scroll"
+      overflowX="hidden"
+    >
+      <NavBar />
+
       <Box
         display="flex"
         alignItems="center"
@@ -20,7 +30,10 @@ const Ranking = () => {
         <AdminPanel />
         <RankingBoard />
       </Box>
-    </>
+
+      <TabBar />
+    </Box>
+
   );
 };
 
