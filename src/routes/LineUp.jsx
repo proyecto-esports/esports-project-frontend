@@ -1,13 +1,11 @@
 import { Box } from '@chakra-ui/react';
 
 import SlideEx from '../components/Fade';
-import NavBar from '../components/NavBar';
 import TabBar from '../components/TabBar';
 
 const LineUp = () => {
   return (
     <>
-      <NavBar />
       <Box
         display="flex"
         flexWrap="wrap"

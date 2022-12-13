@@ -174,8 +174,8 @@ const Login = () => {
             gap="1rem"
           >
             Not a user?
-            <NavLink to="/register">
-              <Link color={theme.dark.accent3}> Register now!</Link>
+            <NavLink to="/register" style={{ color: theme.dark.accent3 }}>
+              Register now!
             </NavLink>
           </Text>
         </Stack>

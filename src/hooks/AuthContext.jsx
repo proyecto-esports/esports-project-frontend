@@ -2,14 +2,14 @@ import { createContext, Navigate, useContext, useMemo } from 'react';
 
 import useLocalStorage from './useLocalStorage';
 
-export const AuthContext = createContext();
+const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useLocalStorage('user', null);
 
   const login = (data) => {
     setUser(data);
-    return <Navigate to={('/home', { replace: true })} />;
+    return <Navigate to={('/', { replace: true })} />;
   };
 
   const logout = () => {
@@ -17,11 +17,14 @@ export const AuthProvider = ({ children }) => {
     return <Navigate to="/login" />;
   };
 
-  const value = useMemo(() => ({
-    user,
-    login,
-    logout,
-  }));
+  const value = useMemo(
+    () => ({
+      user,
+      login,
+      logout,
+    }),
+    [user],
+  );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
