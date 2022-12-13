@@ -1,27 +1,37 @@
-import { createContext, Navigate, useMemo } from 'react';
+import { createContext, Navigate, useContext, useMemo } from 'react';
 
 import useLocalStorage from './useLocalStorage';
 
-export const AuthContext = createContext();
+const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useLocalStorage('user', null);
+  const [accessToken, setAccessToken] = useLocalStorage('accessToken', null);
 
   const login = (data) => {
-    setUser(data);
-    return <Navigate to={('/home', { replace: true })} />;
+    const { user, accessToken } = data;
+    setUser(user);
+    setAccessToken(accessToken);
+    return <Navigate to="/" replace={true} />;
   };
 
   const logout = () => {
     setUser(null);
+    setAccessToken(null);
     return <Navigate to="/login" />;
   };
 
-  const value = useMemo(() => ({
-    user,
-    login,
-    logout,
-  }));
+  const value = useMemo(
+    () => ({
+      user,
+      accessToken,
+      login,
+      logout,
+    }),
+    [user],
+  );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
+
+export const useAuth = () => useContext(AuthContext);

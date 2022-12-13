@@ -3,13 +3,11 @@ import { NavLink } from 'react-router-dom';
 
 import CardGroup from '../components/CardGroup';
 import JoinModal from '../components/JoinModel';
-import NavBar from '../components/NavBar';
 import theme from '../theme';
 
 const Home = () => {
   return (
     <>
-      <NavBar />
       <Box
         padding="1rem"
         h="93vh"

@@ -1,6 +1,7 @@
 import { CheckIcon } from '@chakra-ui/icons';
 import { Box, Button, Text, useToast } from '@chakra-ui/react';
 
+import theme from './../theme';
 import LogoMoney from './LogoMoney';
 
 const BidToast = ({ price, nickname, children }) => {
@@ -16,7 +17,7 @@ const BidToast = ({ price, nickname, children }) => {
             <Box
               color="black"
               padding="2rem"
-              bg="white"
+              bg={theme.dark.primary}
               display="flex"
               flexDirection="column"
               alignItems="center"

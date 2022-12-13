@@ -2,7 +2,8 @@ import { Box, Button, Image, Slide, Text, useDisclosure } from '@chakra-ui/react
 import { useContext } from 'react';
 
 import { UserContext } from '../context/jwtContext';
-import CardModel from './BenchPanel';
+import theme from './../theme';
+import LineupCards from './BenchPanel';
 
 const SlideEx = ({ player }) => {
   const { isOpen, onToggle, onClose } = useDisclosure();
@@ -33,7 +34,7 @@ const SlideEx = ({ player }) => {
         }}
       >
         <Image maxWidth="90%" h="70%" src={player.image} alt={player.nickname} />
-        <Text color="white" fontSize="1.2rem" backgroundColor="#101221BF">
+        <Text color={theme.dark.primary} fontSize="1.2rem" backgroundColor="#101221BF">
           {player.nickname}
         </Text>
       </Button>
@@ -57,7 +58,7 @@ const SlideEx = ({ player }) => {
         </Button>
         <Box
           p="3rem"
-          color="white"
+          color={theme.dark.primary}
           mt="4"
           bg="#101221F2"
           rounded="md"
@@ -70,7 +71,7 @@ const SlideEx = ({ player }) => {
           flexWrap="wrap"
           overflowY="scroll"
         >
-          <CardModel />
+          <LineupCards />
         </Box>
       </Slide>
     </>

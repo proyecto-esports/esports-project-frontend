@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 
 import { UserContext } from '../context/jwtContext';
 import { API } from '../services/Api';
-import theme from '../theme';
+import theme from './../theme';
 
 function AllPlayers() {
   const user = localStorage.getItem('user');
@@ -99,7 +99,11 @@ function AllPlayers() {
               >
                 Sell
               </Button>
-              <Text color="white" fontSize="1.2rem" backgroundColor="#101221BF">
+              <Text
+                color={theme.dark.primary}
+                fontSize="1.2rem"
+                backgroundColor="#101221BF"
+              >
                 {player.nickname}
               </Text>
             </Box>

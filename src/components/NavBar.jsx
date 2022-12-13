@@ -12,25 +12,29 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import { UserContext } from '../context/jwtContext';
 import logoutSVG from '../public/logoutSVG.svg';
 import logo from '../public/symbol-logo.svg';
 import userSVG from '../public/userSVG.svg';
+import { useAuth } from './../hooks/AuthContext';
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const { logout } = useContext(UserContext);
+
+  const { logout } = useAuth();
+
   return (
     <>
       <Flex
         bg={useColorModeValue('gray.100', 'gray.900')}
         px={8}
-        h={14}
+        h={16}
+        w="100%"
         alignItems={'center'}
         justifyContent={'space-between'}
+        position="fixed"
+        top="0"
       >
         <Button onClick={() => navigate(-1)}>
           <ArrowLeftIcon />

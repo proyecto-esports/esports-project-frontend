@@ -2,7 +2,7 @@ import { Box, Button, Image, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
 import { API } from '../services/Api';
-function CardModel() {
+function LineupCards() {
   const [players, setPlayers] = useState();
   const users = localStorage.getItem('user');
   console.log(users);
@@ -50,4 +50,4 @@ function CardModel() {
   );
 }
 
-export default CardModel;
+export default LineupCards;
