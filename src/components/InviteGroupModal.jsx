@@ -35,7 +35,6 @@ const InviteGroupModal = () => {
         variant="solid"
         marginTop="1rem"
         width="max-content"
-        alignSelf="flex-end"
       >
         Invite Friends
       </Button>

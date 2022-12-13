@@ -5,12 +5,13 @@ import NavBar from '../components/NavBar';
 import RankingBoard from '../components/RankingBoard';
 import TabBar from '../components/TabBar';
 import theme from '../theme';
+import AdminPanel from './../components/AdminPanel';
+import InviteGroupModal from './../components/InviteGroupModal';
 
 const Ranking = () => {
   return (
     <>
       <NavBar />
-
       <Box
         display="flex"
         alignItems="center"
@@ -20,6 +21,8 @@ const Ranking = () => {
         w="100vw"
         h="90vh"
       >
+        <AdminPanel />
+        <InviteGroupModal />
         <RankingBoard />
       </Box>
 
