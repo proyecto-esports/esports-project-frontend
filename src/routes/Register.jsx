@@ -8,35 +8,35 @@ import {
   InputLeftElement,
   InputRightElement,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import BoxFlex from '../components/UI/BoxFlex.jsx';
+import { useAuth } from '../hooks/AuthContext';
 import { API } from '../services/API.js';
 import theme from './../theme';
 
 const Register = () => {
+  const { user, login } = useAuth();
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
   const { register, handleSubmit } = useForm();
-  const navigate = useNavigate();
 
   const submitForm = (data) => {
     const formData = new FormData();
-
-    console.log('data', data);
     const { username, gmail, password, image } = data;
+
     formData.append('username', username);
     formData.append('gmail', gmail);
     formData.append('password', password);
     if (image.length !== 0) formData.append('image', image[0]);
-    console.log(image[0]);
-    console.log('formData', Object.entries(formData));
-    API.post('users/register', formData).then((res) => {
-      console.log('Response', res);
-      res && navigate('/login');
-    });
+
+    API.post('users/register', formData).then((res) => login(res.data.info.data));
   };
+
+  useEffect(() => user && navigate('/dashboard/ranking'));
 
   return (
     <BoxFlex>

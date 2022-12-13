@@ -1,6 +1,6 @@
 import { Box, Button, Image, Slide, useDisclosure } from '@chakra-ui/react';
 
-import CardModel from './CardModel';
+import LineupCards from './LineupCards';
 
 function SlideEx() {
   const { isOpen, onToggle, onClose } = useDisclosure();
@@ -57,7 +57,7 @@ function SlideEx() {
           flexWrap="wrap"
           overflowY="scroll"
         >
-          <CardModel />
+          <LineupCards />
         </Box>
       </Slide>
     </>

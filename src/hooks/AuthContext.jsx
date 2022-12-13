@@ -6,20 +6,25 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useLocalStorage('user', null);
+  const [accessToken, setAccessToken] = useLocalStorage('accessToken', null);
 
   const login = (data) => {
-    setUser(data);
-    return <Navigate to={('/', { replace: true })} />;
+    const { user, accessToken } = data;
+    setUser(user);
+    setAccessToken(accessToken);
+    return <Navigate to="/" replace={true} />;
   };
 
   const logout = () => {
     setUser(null);
+    setAccessToken(null);
     return <Navigate to="/login" />;
   };
 
   const value = useMemo(
     () => ({
       user,
+      accessToken,
       login,
       logout,
     }),

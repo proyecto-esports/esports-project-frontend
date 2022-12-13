@@ -62,8 +62,6 @@ const CreateGroup = () => {
     formData.append('game', game);
     formData.append('competition', competition);
     formData.append('name', name);
-    // const usersBlob = new Blob([user._id], {type: "octet/stream"});
-    // formData.append('users', usersBlob);
     const usersArray = [user._id];
     // This step is needed for append an array in a FormData
     const usersStringified = JSON.stringify(usersArray);

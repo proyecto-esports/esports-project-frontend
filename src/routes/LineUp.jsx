@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react';
 
-import SlideEx from '../components/Fade';
+import SlideEx from '../components/SlideEx';
 import TabBar from '../components/TabBar';
 
 const LineUp = () => {
