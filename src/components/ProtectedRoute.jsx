@@ -7,8 +7,9 @@ import TabBar from './TabBar';
 
 const ProtectedRoute = () => {
   const { user } = useAuth();
+  const navigate = useNavigate()
 
-  if (!user) return <Navigate to="login" />;
+  if (!user) return <Navigate to="/login" />;
   // useEffect(() => !user && navigate('/login'));
 
   return (

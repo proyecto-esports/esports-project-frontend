@@ -13,7 +13,7 @@ const TabBar = () => {
       position="fixed"
       bottom="0"
       align="center"
-      isFitted="true"
+      isfitted="true"
       borderRadius="1rem"
       bg={theme.dark.accent2}
       color={theme.dark.primary}
