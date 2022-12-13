@@ -12,7 +12,11 @@ import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
+
 import InviteGroupModal from '../components/InviteGroupModal';
+
+import NavBar from '../components/NavBar';
+
 import RadioCard from '../components/RadioCard';
 import { API } from '../services/API.js';
 import theme from './../theme';
@@ -77,59 +81,101 @@ const CreateGroup = () => {
   };
 
   return (
-    <Box
-      h="100vh"
-      w="100%"
-      bg={theme.dark.background}
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-      gap="3rem"
-    >
-      <Text fontSize="4xl" color={theme.dark.primary}>
-        Create Group
-      </Text>
-      <form onSubmit={handleSubmit(submitForm)}>
-        <FormControl
-          display="flex"
-          flexDirection="column"
-          maxWidth="30rem"
-          padding="1rem"
-          gap="1rem"
-        >
-          <FormLabel htmlFor="game" color={theme.dark.primary}>
-            Select a game:
-          </FormLabel>
-          <Controller
-            render={() => (
-              <RadioGroup
-                {...register('game')}
-                name="game"
-                display="flex"
-                flexWrap="wrap"
-                gap="1rem"
-              >
-                {games.map((game) => {
-                  console.log('game', game);
-                  const { name, isDisabled } = game;
-                  console.log('game name', name);
-                  const handleClick = () => setSelectedGame(game);
-                  return (
-                    <RadioCard
-                      id={name}
-                      key={name}
-                      name="game"
-                      value={name}
-                      isDisabled={isDisabled}
-                      onClick={handleClick}
+    <>
+      <NavBar />
+      <Box
+        h="93vh"
+        w="100%"
+        bg={theme.dark.background}
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        gap="3rem"
+      >
+        <Text fontSize="4xl" color={theme.dark.primary}>
+          Create Group
+        </Text>
+        <form onSubmit={handleSubmit(submitForm)}>
+          <FormControl
+            display="flex"
+            flexDirection="column"
+            maxWidth="30rem"
+            padding="1rem"
+            gap="1rem"
+          >
+            <FormLabel htmlFor="game" color={theme.dark.primary}>
+              Select a game:
+            </FormLabel>
+            <Controller
+              render={() => (
+                <RadioGroup
+                  {...register('game')}
+                  name="game"
+                  display="flex"
+                  flexWrap="wrap"
+                  gap="1rem"
+                >
+                  {games.map((game) => {
+                    console.log('game', game);
+                    const { name, isDisabled } = game;
+                    console.log('game name', name);
+                    const handleClick = () => setSelectedGame(game);
+                    return (
+                      <RadioCard
+                        id={name}
+                        key={name}
+                        name="game"
+                        value={name}
+                        isDisabled={isDisabled}
+                        onClick={handleClick}
+                      >
+                        {name}
+                      </RadioCard>
+                    );
+                  })}
+                </RadioGroup>
+              )}
+              name="game"
+              control={control}
+            />
+
+            {selectedGame && (
+              <>
+                <FormLabel htmlFor="competition" color={theme.dark.primary}>
+                  Competition:
+                </FormLabel>
+                <Controller
+                  render={() => (
+                    <RadioGroup
+                      {...register('competition')}
+                      name="competition"
+                      display="flex"
+                      gap="1rem"
                     >
-                      {name}
-                    </RadioCard>
-                  );
-                })}
-              </RadioGroup>
+                      {selectedGame.competitions?.map((competition) => {
+                        console.log('competition', competition);
+                        const { name, isDisabled } = competition;
+                        console.log('competition name', name);
+                        return (
+                          <Radio
+                            id={name}
+                            value={name}
+                            key={name}
+                            isDisabled={isDisabled}
+                          >
+                            {name}
+                          </Radio>
+                        );
+                      })}
+                    </RadioGroup>
+                  )}
+                  name="competition"
+                  control={control}
+                />
+              </>
             )}
+
             name="game"
             control={control}
           />
@@ -183,6 +229,7 @@ const CreateGroup = () => {
         </FormControl>
       </form>
     </Box>
+
   );
 };
 
