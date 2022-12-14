@@ -1,8 +1,9 @@
 import { Box, ChakraProvider } from '@chakra-ui/react';
+import { Box, ChakraProvider } from '@chakra-ui/react';
 import { Outlet } from 'react-router-dom';
 
-import { UserContextProvider } from '../context/jwtContext';
 import { AuthProvider } from './../hooks/AuthContext';
+import theme from './../theme';
 import theme from './../theme';
 
 const Root = () => {
