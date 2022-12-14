@@ -38,7 +38,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    user && navigate('/dashboard/ranking');
+    user && navigate('/dashboard');
   }, [user]);
 
   return (

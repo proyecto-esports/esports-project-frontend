@@ -1,6 +1,7 @@
 import { Box, ChakraProvider } from '@chakra-ui/react';
 import { Outlet } from 'react-router-dom';
 
+import { UserContextProvider } from '../context/UserContext';
 import { AuthProvider } from './../hooks/AuthContext';
 import theme from './../theme';
 
@@ -8,21 +9,23 @@ const Root = () => {
   return (
     <>
       <AuthProvider>
-        <ChakraProvider>
-          <Box
-            backgroundColor={theme.dark.background}
-            width="100%"
-            minHeight="100vh"
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
-            paddingTop="4rem"
-            paddingBottom="4rem"
-          >
-            <Outlet />
-          </Box>
-        </ChakraProvider>
+        <UserContextProvider>
+          <ChakraProvider>
+            <Box
+              backgroundColor={theme.dark.background}
+              width="100%"
+              minHeight="100vh"
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              justifyContent="center"
+              paddingTop="4rem"
+              paddingBottom="4rem"
+            >
+              <Outlet />
+            </Box>
+          </ChakraProvider>
+        </UserContextProvider>
       </AuthProvider>
     </>
   );
