@@ -3,9 +3,12 @@ import { NavLink } from 'react-router-dom';
 
 import CardGroup from '../components/CardGroup';
 import JoinModal from '../components/JoinModal';
+import { useAuth } from '../hooks/AuthContext';
 import theme from '../theme';
 
 const Home = () => {
+  const { user } = useAuth();
+
   return (
     <>
       <Box
@@ -27,7 +30,7 @@ const Home = () => {
         >
           Your Groups
         </Text>
-        <CardGroup />
+        <CardGroup user={user} />
         <Box
           display="flex"
           flexDirection="row"

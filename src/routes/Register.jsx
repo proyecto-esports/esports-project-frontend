@@ -17,13 +17,13 @@ import { API } from '../services/API.js';
 import theme from './../theme';
 
 const Register = () => {
-  const { user, login } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
   const { register, handleSubmit } = useForm();
 
-  const submitForm = (data) => {
+  const submitForm = async (data) => {
     const formData = new FormData();
     const { username, gmail, password, image } = data;
     formData.append('username', username);
@@ -31,12 +31,13 @@ const Register = () => {
     formData.append('password', password);
     if (image.length !== 0) formData.append('image', image[0]);
 
-    API.post('users/register', formData).then((res) => login(res.data.info.data));
+    await API.post('users/register', formData);
+    navigate('/');
   };
 
   useEffect(() => {
-    user && navigate('/dashboard/ranking');
-  }, []);
+    user && navigate('/dashboard');
+  }, [user]);
 
   return (
     <Box
