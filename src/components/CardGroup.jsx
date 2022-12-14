@@ -22,7 +22,7 @@ const CardGroup = () => {
   }, []);
   console.log(groups);
   return (
-    <NavLink to="/ranking">
+    <NavLink to="/dashboard/lineup">
       <Card bg={theme.dark.popUpBackground} w="100%">
         <CardBody
           display="flex"
