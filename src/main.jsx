@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import ProtectedRoute from './components/ProtectedRoute';
 import GlobalStyle from './GlobalStyle';
 import CreateGroup from './routes/CreateGroup';
+import Home from './routes/Home';
 import LineUp from './routes/LineUp';
 import Login from './routes/Login';
 import Market from './routes/Market';
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
         path: 'dashboard',
         element: <ProtectedRoute />,
         children: [
+          {
+            path: '',
+            element: <Home />,
+          },
           {
             path: 'create-group',
             element: <CreateGroup />,

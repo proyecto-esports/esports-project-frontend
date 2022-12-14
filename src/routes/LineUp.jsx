@@ -1,43 +1,43 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 
 import SlideEx from '../components/SlideEx';
-import TabBar from '../components/TabBar';
-
 import { API } from '../services/Api';
-import theme from '../theme';
-
 
 const LineUp = () => {
+  const [lineUp, setLineUp] = useState([]);
+  const user = localStorage.getItem('user');
+  const idUser = JSON.parse(user)._id;
+
+  const getLineUp = async () => {
+    await API.get(`/users/${idUser}`).then((res) => {
+      setLineUp(res.data.info.data.lineup);
+    });
+    return lineUp;
+  };
+
+  useEffect(() => {
+    getLineUp();
+  }, []);
   return (
-
     <Box
-      w="100vw"
-      h="100vh"
+      display="flex"
+      flexWrap="wrap"
       alignItems="center"
-      bg={theme.dark.background}
-      overflow="scroll"
-      overflowX="hidden"
+      justifyContent="space-around"
+      height="calc(100vh - 4rem)"
+      w="100%"
+      backgroundImage="url(https://res.cloudinary.com/dlqo06xcs/image/upload/v1670793623/Logo/backgroundLineUpBl_gtdbiq.png)"
+      backgroundSize="cover"
+      backgroundPosition="center"
+      marginBottom="-4rem"
     >
-      <NavBar />
-
-      <Box
-        display="flex"
-        flexWrap="wrap"
-        alignItems="center"
-        justifyContent="space-around"
-        h="100vh"
-        w="100vw"
-        bg="#272d54"
-      >
-        {lineUp ? (
-          lineUp.map((player) => <SlideEx key={player._id} player={player} />)
-        ) : (
-          <Text>...Loading</Text>
-        )}
-      </Box>
-      <TabBar />
+      {lineUp ? (
+        lineUp.map((player) => <SlideEx key={player._id} player={player} />)
+      ) : (
+        <Text>...Loading</Text>
+      )}
     </Box>
-
   );
 };
 

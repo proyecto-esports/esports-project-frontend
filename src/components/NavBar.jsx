@@ -29,9 +29,12 @@ const NavBar = () => {
       <Flex
         bg={useColorModeValue('gray.100', 'gray.900')}
         px={8}
-        h={14}
+        h={16}
+        w="100%"
         alignItems={'center'}
         justifyContent={'space-between'}
+        position="fixed"
+        top="0"
       >
         <Button onClick={() => navigate(-1)}>
           <ArrowLeftIcon />

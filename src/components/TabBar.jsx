@@ -9,15 +9,14 @@ import theme from './../theme';
 const TabBar = () => {
   return (
     <Box
-      w="100vw"
-      position="sticky"
+      w="100%"
+      h="4rem"
+      position="fixed"
       bottom="0"
       align="center"
-
-      isFitted="true"
+      isfitted="true"
       borderTopRadius="1rem"
       bg={theme.dark.popUpBackground}
-
       color={theme.dark.primary}
     >
       <Tabs
@@ -39,10 +38,8 @@ const TabBar = () => {
           padding="0"
           bg={theme.dark.primary}
         >
-
-          <NavLink to="/lineup" color={theme.dark.primary}>
+          <NavLink to="/dashboard/lineup" color={theme.dark.primary}>
             <Img src={teamSVG} alt="lineup" />
-
           </NavLink>
         </Tab>
         <Tab
@@ -57,9 +54,8 @@ const TabBar = () => {
           padding="0"
           bg={theme.dark.primary}
         >
-          <NavLink to="/ranking" color={theme.dark.primary}>
+          <NavLink to="/dashboard/ranking" color={theme.dark.primary}>
             <Img src={rankingSVG} alt="ranking" />
-
           </NavLink>
         </Tab>
         <Tab
@@ -74,10 +70,8 @@ const TabBar = () => {
           padding="0"
           bg={theme.dark.primary}
         >
-
-          <NavLink to="/market" color={theme.dark.primary}>
+          <NavLink to="/dashboard/market" color={theme.dark.primary}>
             <Img src={marketSVG} alt="market" />
-
           </NavLink>
         </Tab>
       </Tabs>
