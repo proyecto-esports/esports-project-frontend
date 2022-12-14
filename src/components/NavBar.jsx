@@ -55,7 +55,7 @@ const NavBar = () => {
           </MenuButton>
           <MenuList>
             <MenuItem>
-              <NavLink to="/" onClick={() => logout()}>
+              <NavLink to="/login" onClick={() => logout()}>
                 <Flex gap="5rem">
                   <Text>LogOut</Text>
                   <Img src={logoutSVG} alt="logout" width="1.5rem" />

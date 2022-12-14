@@ -8,6 +8,7 @@ const LineUp = () => {
   const [lineUp, setLineUp] = useState([]);
   const user = localStorage.getItem('user');
   const idUser = JSON.parse(user)._id;
+
   const getLineUp = async () => {
     await API.get(`/users/${idUser}`).then((res) => {
       setLineUp(res.data.info.data.lineup);
@@ -18,7 +19,6 @@ const LineUp = () => {
   useEffect(() => {
     getLineUp();
   }, []);
-
   return (
     <Box
       display="flex"

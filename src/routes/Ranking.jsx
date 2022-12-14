@@ -4,7 +4,6 @@ import React from 'react';
 import RankingBoard from '../components/RankingBoard';
 import theme from '../theme';
 import AdminPanel from './../components/AdminPanel';
-import InviteGroupModal from './../components/InviteGroupModal';
 
 const Ranking = () => {
   return (
@@ -19,7 +18,6 @@ const Ranking = () => {
         h="100%"
       >
         <AdminPanel />
-        <InviteGroupModal />
         <RankingBoard />
       </Box>
     </Box>
