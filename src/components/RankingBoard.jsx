@@ -19,7 +19,6 @@ const RankingBoard = () => {
   const currentUser = localStorage.getItem('user');
 
   const jsonUser = JSON.parse(currentUser);
-  console.log(jsonUser);
   const id = jsonUser.competition;
 
   const getAllUsers = async () => {
@@ -34,7 +33,6 @@ const RankingBoard = () => {
   users.sort((a, b) => {
     return b.points - a.points;
   });
-  console.log(users);
 
   for (let i = 0; i < users.length; i++) {
     const element = users[i];
@@ -64,40 +62,47 @@ const RankingBoard = () => {
           </Tr>
         </Thead>
         <Tbody borderBottom="hidden">
-          {users.length
-            ? users.map((user) =>
-                user._id === jsonUser._id ? (
-                  <Tr key={user._id} border="2px" borderColor={theme.dark.accent1}>
-                    <Th
-                      padding="0.4rem 0.4rem 0.2rem 1.5rem"
-                      fontWeight="bolder"
-                      fontSize="1.5rem"
-                    >
-                      {' '}
-                      {user.ranking}{' '}
-                    </Th>
-                    <Td
-                      padding="0.4rem 0.4rem 0.2rem 1.5rem"
-                      fontWeight="bolder"
-                      fontSize="1.2rem"
-                    >
-                      {' '}
-                      {user.username}{' '}
-                    </Td>
-                    <Td isNumeric fontWeight="bolder" fontSize="1.2rem">
-                      {' '}
-                      {user.points}{' '}
-                    </Td>
-                  </Tr>
-                ) : (
-                  <Tr key={user._id}>
-                    <Th padding="0.4rem 0.4rem 0.2rem 1.5rem"> {user.ranking} </Th>
-                    <Td padding="0.4rem 0.4rem 0.2rem 1.5rem"> {user.username} </Td>
-                    <Td isNumeric> {user.points} </Td>
-                  </Tr>
-                ),
-              )
-            : 'There are no users in this competition'}
+          {users.length ? (
+            users.map((user) =>
+              user._id === jsonUser._id ? (
+                <Tr key={user._id} border="2px" borderColor={theme.dark.accent1}>
+                  <Th
+                    padding="0.4rem 0.4rem 0.2rem 1.5rem"
+                    fontWeight="bolder"
+                    fontSize="1.5rem"
+                  >
+                    {user.ranking}
+                  </Th>
+                  <Td
+                    padding="0.4rem 0.4rem 0.2rem 1.5rem"
+                    fontWeight="bolder"
+                    fontSize="1.2rem"
+                  >
+                    {user.username}
+                  </Td>
+                  <Td isNumeric fontWeight="bolder" fontSize="1.2rem">
+                    {user.points}
+                  </Td>
+                </Tr>
+              ) : (
+                <Tr key={user._id}>
+                  <Th padding="0.4rem 0.4rem 0.2rem 1.5rem">{user.ranking}</Th>
+                  <Td padding="0.4rem 0.4rem 0.2rem 1.5rem">{user.username}</Td>
+                  <Td isNumeric>{user.points}</Td>
+                </Tr>
+              ),
+            )
+          ) : (
+            <Tr border="2px" borderColor={theme.dark.accent1}>
+              <Th
+                padding="0.4rem 0.4rem 0.2rem 1.5rem"
+                fontWeight="bolder"
+                fontSize="1.5rem"
+              >
+                There are no users in this competition
+              </Th>
+            </Tr>
+          )}
         </Tbody>
       </Table>
     </TableContainer>

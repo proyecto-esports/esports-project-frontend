@@ -10,7 +10,6 @@ import {
   MenuItem,
   MenuList,
   Text,
-  useColorModeValue,
 } from '@chakra-ui/react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
@@ -18,6 +17,7 @@ import logoutSVG from '../public/logoutSVG.svg';
 import logo from '../public/symbol-logo.svg';
 import userSVG from '../public/userSVG.svg';
 import { useAuth } from './../hooks/AuthContext';
+import theme from './../theme';
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const NavBar = () => {
   return (
     <>
       <Flex
-        bg={useColorModeValue('gray.100', 'gray.900')}
+        backgroundColor={theme.dark.primary}
         px={8}
         h={16}
         w="100%"
@@ -35,6 +35,7 @@ const NavBar = () => {
         justifyContent={'space-between'}
         position="fixed"
         top="0"
+        zIndex="10"
       >
         <Button onClick={() => navigate(-1)}>
           <ArrowLeftIcon />
@@ -55,7 +56,7 @@ const NavBar = () => {
           </MenuButton>
           <MenuList>
             <MenuItem>
-              <NavLink to="/login" onClick={() => logout()}>
+              <NavLink to="/" onClick={() => logout()}>
                 <Flex gap="5rem">
                   <Text>LogOut</Text>
                   <Img src={logoutSVG} alt="logout" width="1.5rem" />
