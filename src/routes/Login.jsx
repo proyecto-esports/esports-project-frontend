@@ -28,11 +28,13 @@ const Login = () => {
   const handleClick = () => setShow(!show);
   const { register, handleSubmit } = useForm();
 
+
   const submitForm = (data) => {
     const formData = new FormData();
     const { gmail, password } = data;
     formData.append('gmail', gmail);
     formData.append('password', password);
+
 
     API.post('users/login', formData).then((res) => login(res.data.info.data));
   };

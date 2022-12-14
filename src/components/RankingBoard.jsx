@@ -103,6 +103,7 @@ const RankingBoard = () => {
               </Th>
             </Tr>
           )}
+
         </Tbody>
       </Table>
     </TableContainer>

@@ -26,7 +26,6 @@ const Register = () => {
   const submitForm = (data) => {
     const formData = new FormData();
     const { username, gmail, password, image } = data;
-
     formData.append('username', username);
     formData.append('gmail', gmail);
     formData.append('password', password);

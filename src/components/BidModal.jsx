@@ -15,6 +15,7 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 
+
 import { API } from '../services/API';
 import theme from '../theme';
 import CardDataModal from './CardDataModal';
@@ -23,6 +24,7 @@ import LogoMoney from './LogoMoney';
 const BidModal = ({ player }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [price, setPrice] = useState(player.value);
+
 
   const handlePrice = (e) => {
     setPrice(e.target.value);
@@ -35,6 +37,7 @@ const BidModal = ({ player }) => {
   const handleMorePrice = () => {
     !price ? setPrice(100) : setPrice(price * 100);
   };
+
 
   const createBid = (ev) => {
     ev.preventDefault();
@@ -128,6 +131,7 @@ const BidModal = ({ player }) => {
             </ModalFooter>
           </ModalContent>
         </form>
+
       </Modal>
     </>
   );

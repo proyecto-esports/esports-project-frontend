@@ -54,6 +54,26 @@ const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: '/login',
+        element: <Login />,
+      },
+      {
+        path: '/register',
+        element: <Register />,
+      },
+      {
+        path: '/market',
+        element: <Market />,
+      },
+      {
+        path: '/lineup',
+        element: <LineUp />,
+      },
+      {
+        path: '/ranking',
+        element: <Ranking />,
+      },
     ],
   },
 ]);

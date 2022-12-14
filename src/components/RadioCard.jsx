@@ -1,6 +1,8 @@
 import { Box, useRadio } from '@chakra-ui/react';
 
+
 import theme from './../theme';
+
 
 const RadioCard = (props) => {
   const { getInputProps, getCheckboxProps } = useRadio(props);
@@ -13,7 +15,9 @@ const RadioCard = (props) => {
       <input {...input} />
       <Box
         {...checkbox}
+
         onClick={() => props.onClick()}
+
         cursor="pointer"
         borderWidth="1px"
         borderRadius="md"
@@ -21,6 +25,7 @@ const RadioCard = (props) => {
         _checked={{
           bg: 'teal.600',
           color: theme.dark.primary,
+
           borderColor: 'teal.600',
         }}
         _focus={{
