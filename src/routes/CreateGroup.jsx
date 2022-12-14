@@ -13,6 +13,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import RadioCard from '../components/RadioCard';
+import { useAuth } from '../hooks/AuthContext';
 import { API } from '../services/API.js';
 import theme from './../theme';
 
@@ -55,9 +56,7 @@ const CreateGroup = () => {
     const { game, competition, name } = data;
     const formData = new FormData();
 
-    const userJSON = localStorage.getItem('user');
-    const user = JSON.parse(userJSON);
-    console.log('user', user);
+    const { user } = useAuth();
 
     formData.append('game', game);
     formData.append('competition', competition);

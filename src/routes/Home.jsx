@@ -1,16 +1,11 @@
-
 import { Box, Button, Text } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
 
 import CardGroup from '../components/CardGroup';
-import JoinModal from '../components/JoinModel';
-import { useAuth } from '../hooks/AuthContext';
+import JoinModal from '../components/JoinModal';
 import theme from '../theme';
 
-
 const Home = () => {
-  const { user } = useAuth();
-  console.log('user', user);
   return (
     <>
       <Box
@@ -46,7 +41,6 @@ const Home = () => {
           </NavLink>
         </Box>
       </Box>
-
     </>
   );
 };
