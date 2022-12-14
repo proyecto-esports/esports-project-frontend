@@ -39,7 +39,7 @@ const Home = () => {
           gap="3rem"
         >
           <JoinModal />
-          <NavLink to="/creategroup">
+          <NavLink to="/dashboard/create-group">
             <Button>Create Group</Button>
           </NavLink>
         </Box>
