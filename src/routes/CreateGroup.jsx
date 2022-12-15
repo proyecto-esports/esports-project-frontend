@@ -67,7 +67,8 @@ const CreateGroup = () => {
 
     API.post('/competitions', formData).then((res) => {
       console.log('Response', res);
-      const competition = res.data.info.data.competition._id;
+      const competition = res.data.info.data.competition;
+      login({ user: { ...user, competition: competition } });
       res && navigate('/');
       API.put(`users/inicialplayers/${user._id.toString()}`).then((res) => {
         const user = res.data.info.data;
