@@ -37,8 +37,8 @@ const SlideEx = ({ player }) => {
           backgroundSize="105%"
           height="100%"
           width="100%"
-          maxW="15rem"
-          maxWidth="15rem"
+          maxW="10rem"
+          maxWidth="10rem"
           variant="unstyled"
           onClick={() => {
             setCurrentPlayer(player._id);
