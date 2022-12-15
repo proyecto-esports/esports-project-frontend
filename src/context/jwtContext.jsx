@@ -10,11 +10,9 @@ export const UserContextProvider = ({ children }) => {
   const [bids, setBids] = useState([]);
   const [users, setUsers] = useState([]);
 
-
   return (
     <UserContext.Provider
       value={{
-
         players,
         setPlayers,
         competition,
