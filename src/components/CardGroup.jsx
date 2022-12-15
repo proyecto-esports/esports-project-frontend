@@ -11,9 +11,11 @@ const CardGroup = ({ user }) => {
   const [groups, setGroups] = useState();
 
   useEffect(() => {
-    API.get(`/competitions/${user.competition._id}`).then((res) => {
-      setGroups(res.data.info.data.name);
-    });
+    const id = user.competition?._id;
+    id &&
+      API.get(`/competitions/${user.competition._id}`).then((res) => {
+        setGroups(res.data.info.data.name);
+      });
   }, [user]);
 
   if (user.competition) {

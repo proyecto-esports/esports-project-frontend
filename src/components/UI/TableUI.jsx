@@ -4,43 +4,51 @@ import styled from '@emotion/styled';
 export const TableProps = ({
   tableLayout,
   padding,
+  margin,
   fontSize,
   fontWeight,
   border,
+  borderRadius,
   borderCollapse,
+  color,
+  backgroundColor,
 }) => css`
-  table-layout: ${tableLayout}
+  table-layout: ${tableLayout};
   padding: ${padding};
+  margin: ${margin};
   font-size: ${fontSize};
   font-weight: ${fontWeight};
   border: ${border};
+  border-radius: ${borderRadius};
   border-collapse: ${borderCollapse};
+  color: ${color};
+  background-color: ${backgroundColor};
 `;
 
 export const TableUI = styled.table`
-  ${() => TableProps}
+  ${(props) => TableProps(props)}
 `;
 
 export const THead = styled.thead`
-  ${() => TableProps}
+  ${(props) => TableProps(props)}
 `;
 
 export const TBody = styled.tbody`
-  ${() => TableProps}
+  ${(props) => TableProps(props)}
 `;
 
 export const TH = styled.th`
-  ${() => TableProps}
+  ${(props) => TableProps(props)}
 `;
 
 export const TR = styled.tr`
-  ${() => TableProps}
+  ${(props) => TableProps(props)}
 `;
 
 export const TD = styled.td`
-  ${() => TableProps}
+  ${(props) => TableProps(props)}
 `;
 
 export const Caption = styled.caption`
-  ${() => TableProps}
+  ${(props) => TableProps(props)}
 `;
