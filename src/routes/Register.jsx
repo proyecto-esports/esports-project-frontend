@@ -182,7 +182,7 @@ const Register = () => {
             <Button
               type="submit"
               bg={theme.dark.accent3}
-              color={theme.dark.primary}
+              color="#FFFFFF"
               variant="solid"
               marginTop="1rem"
               width="max-content"
