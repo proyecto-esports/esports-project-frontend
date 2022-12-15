@@ -38,10 +38,10 @@ const AdminPanel = () => {
           <ModalHeader>Admin Panel</ModalHeader>
           <ModalCloseButton />
           <ModalBody flexDirection="column" display="flex" gap="2rem">
-            <Button bg={theme.dark.popUpBackground} onClick={() => playMatches}>
+            <Button bg={theme.dark.popUpBackground} onClick={() => playMatches()}>
               Play Matches
             </Button>
-            <Button bg={theme.dark.popUpBackground} onClick={() => renewMarket}>
+            <Button bg={theme.dark.popUpBackground} onClick={() => renewMarket()}>
               Renew Market
             </Button>
           </ModalBody>
