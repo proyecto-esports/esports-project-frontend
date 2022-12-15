@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Center,
   Input,
@@ -11,10 +12,12 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Text,
   useDisclosure,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 
+import { useAuth } from '../hooks/AuthContext';
 import { API } from '../services/API';
 import theme from '../theme';
 import CardDataModal from './CardDataModal';
@@ -36,12 +39,12 @@ const BidModal = ({ player }) => {
     !price ? setPrice(100) : setPrice(price * 100);
   };
 
+  const { user } = useAuth();
+
   const createBid = (ev) => {
     ev.preventDefault();
-    const user = localStorage.getItem('user');
-    const userId = JSON.parse(user);
     const bodyBid = {
-      userId: userId._id,
+      userId: user._id,
       playerId: player._id,
       money: Number(price),
     };
@@ -70,8 +73,33 @@ const BidModal = ({ player }) => {
           <ModalOverlay />
           <ModalContent bg={theme.dark.background}>
             <ModalHeader />
+            <Box
+              display="flex"
+              flexDirection="row"
+              gap="0.3rem"
+              color={theme.dark.primary}
+              alignContent="center"
+              justifyContent="center"
+              flexWrap="wrap"
+            >
+              <Box
+                display="flex"
+                alignContent="center"
+                justifyContent="center"
+                flexWrap="wrap"
+              >
+                Funds:{' '}
+              </Box>
+              <Text
+                border="2px"
+                borderColor={theme.dark.primary}
+                padding="0.2rem"
+                borderRadius="2xl"
+              >
+                {user.money} <LogoMoney color={theme.dark.primary} />
+              </Text>
+            </Box>
             <ModalCloseButton color={theme.dark.primary} />
-
             <ModalBody display="flex" flexDirection="column" gap={5} alignItems="center">
               <CardDataModal player={player} />
               <Center gap={2.5}>
@@ -100,7 +128,6 @@ const BidModal = ({ player }) => {
                     <LogoMoney color={theme.dark.primary} />
                   </InputRightElement>
                 </InputGroup>
-
                 <Button
                   borderRadius={50}
                   color={theme.dark.primary}
@@ -114,8 +141,7 @@ const BidModal = ({ player }) => {
                 </Button>
               </Center>
             </ModalBody>
-
-            <ModalFooter>
+            <ModalFooter display="flex" flexDirection="row" gap="1rem">
               <Button
                 bg={theme.dark.accent3}
                 margin="0 auto"

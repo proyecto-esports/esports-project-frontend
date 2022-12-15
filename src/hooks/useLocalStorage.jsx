@@ -6,7 +6,6 @@ const useLocalStorage = (key, defaultValue) => {
       const currentValue = JSON.parse(localStorage.getItem(key));
       return currentValue || defaultValue;
     } catch (error) {
-      console.log(error);
       return defaultValue;
     }
   });

@@ -22,22 +22,28 @@ const LineUp = () => {
 
   return (
     <Box
-      display="flex"
-      flexWrap="wrap"
-      alignItems="center"
-      justifyContent="space-around"
       height="calc(100vh - 4rem)"
       w="100%"
       backgroundImage="url(https://res.cloudinary.com/dlqo06xcs/image/upload/v1670793623/Logo/backgroundLineUpBl_gtdbiq.png)"
       backgroundSize="cover"
       backgroundPosition="center"
       marginBottom="-4rem"
+      overflowY="hidden"
     >
-      {lineUp ? (
-        lineUp.map((player) => <SlideEx key={player._id} player={player} />)
-      ) : (
-        <Text>...Loading</Text>
-      )}
+      <Box
+        w="100%"
+        display="flex"
+        flexWrap="wrap"
+        alignItems="center"
+        justifyContent="space-around"
+        height="calc(100vh - 8rem)"
+      >
+        {lineUp ? (
+          lineUp.map((player) => <SlideEx key={player._id} player={player} />)
+        ) : (
+          <Text>...Loading</Text>
+        )}
+      </Box>
     </Box>
   );
 };

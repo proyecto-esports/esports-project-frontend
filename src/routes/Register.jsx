@@ -17,13 +17,13 @@ import { API } from '../services/API.js';
 import theme from './../theme';
 
 const Register = () => {
-  const { user, login } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
   const { register, handleSubmit } = useForm();
 
-  const submitForm = (data) => {
+  const submitForm = async (data) => {
     const formData = new FormData();
     const { username, gmail, password, image } = data;
     formData.append('username', username);
@@ -31,12 +31,16 @@ const Register = () => {
     formData.append('password', password);
     if (image.length !== 0) formData.append('image', image[0]);
 
-    API.post('users/register', formData).then((res) => login(res.data.info.data));
+    await API.post('users/register', formData);
+    navigate('/');
+  };
+  const handleClick = () => {
+    navigate('/');
   };
 
   useEffect(() => {
-    user && navigate('/dashboard/ranking');
-  }, []);
+    user && navigate('/dashboard');
+  }, [user]);
 
   return (
     <Box
@@ -158,16 +162,34 @@ const Register = () => {
               color={theme.dark.accent1}
             />
           </InputGroup>
-          <Button
-            type="submit"
-            bg={theme.dark.accent3}
-            color="#FFFFFF"
-            variant="solid"
-            marginTop="1rem"
-            width="max-content"
+          <Box
+            display="flex"
+            width="100%"
+            justifyContent="space-around"
+            alignItems="center"
           >
-            SUBMIT
-          </Button>
+            <Button
+              type="button"
+              bg={theme.dark.accent2}
+              color={theme.dark.background}
+              variant="solid"
+              marginTop="1rem"
+              width="max-content"
+              onClick={handleClick}
+            >
+              Back
+            </Button>
+            <Button
+              type="submit"
+              bg={theme.dark.accent3}
+              color="#FFFFFF"
+              variant="solid"
+              marginTop="1rem"
+              width="max-content"
+            >
+              SUBMIT
+            </Button>
+          </Box>
         </FormControl>
       </form>
     </Box>
