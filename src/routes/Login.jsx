@@ -40,7 +40,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    user && navigate('/dashboard');
+    user && navigate('/dashboard/home');
   }, [user]);
 
   return (

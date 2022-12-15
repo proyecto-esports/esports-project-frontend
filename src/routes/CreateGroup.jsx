@@ -55,7 +55,6 @@ const CreateGroup = () => {
   const submitForm = async (data) => {
     const { game, competition, name } = data;
     const formData = new FormData();
-
     const { user } = useAuth();
 
     formData.append('game', game);
