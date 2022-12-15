@@ -10,14 +10,10 @@ import LogoMoney from './LogoMoney';
 const CardGroup = ({ user }) => {
   const [groups, setGroups] = useState();
 
-  const getGroup = async () => {
-    await API.get(`/competitions/${user.competition}`).then((res) => {
+  useEffect(() => {
+    API.get(`/competitions/${user.competition._id}`).then((res) => {
       setGroups(res.data.info.data.name);
     });
-  };
-
-  useEffect(() => {
-    getGroup();
   }, [user]);
 
   if (user.competition) {

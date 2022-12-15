@@ -14,12 +14,10 @@ const RankingBoard = () => {
   const [rows, setRows] = useState(null);
 
   useEffect(() => {
-    API.get(`/competitions/${user.competition}`).then((res) => {
-      console.log('res', res);
-      console.log('competition', res.data.info.data);
-      setUsers(res.data.info.data.users);
-    });
-    console.log('users', users);
+    API.get(`/competitions/${user.competition._id}`).then((res) =>
+      setUsers(res.data.info.data.users),
+    );
+
     users.sort((a, b) => {
       return b.points - a.points;
     });
