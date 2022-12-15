@@ -10,33 +10,48 @@ import LogoMoney from './LogoMoney';
 const CardGroup = ({ user }) => {
   const [groups, setGroups] = useState();
 
-  const getGroup = async () => {
-    await API.get(`/competitions/${user.competition}`).then((res) => {
-      setGroups(res.data.info.data.name);
-    });
-  };
-
   useEffect(() => {
-    getGroup();
+    const id = user.competition?._id;
+    id &&
+      API.get(`/competitions/${user.competition._id}`).then((res) => {
+        setGroups(res.data.info.data.name);
+      });
   }, [user]);
 
-  return (
-    <NavLink to="/dashboard/lineup">
-      <Card bg={theme.dark.popUpBackground} w="100%">
-        <CardBody
-          display="flex"
-          alignContent="space-between"
-          gap="4rem"
-          justifyContent="space-between"
-        >
-          <Text color={theme.dark.primary}>{groups}</Text>
-          <Text color={theme.dark.primary}>
-            {user.money} <LogoMoney color={theme.dark.primary} />
-          </Text>
-        </CardBody>
-      </Card>
-    </NavLink>
-  );
+  if (user.competition) {
+    return (
+      <NavLink to="/dashboard/lineup">
+        <Card bg={theme.dark.popUpBackground} w="100%">
+          <CardBody
+            display="flex"
+            alignContent="space-between"
+            gap="4rem"
+            justifyContent="space-between"
+          >
+            <Text color={theme.dark.primary}>{groups}</Text>
+            <Text color={theme.dark.primary}>
+              {user.money} <LogoMoney color={theme.dark.primary} />
+            </Text>
+          </CardBody>
+        </Card>
+      </NavLink>
+    );
+  } else {
+    return (
+      <>
+        <Card bg={theme.dark.popUpBackground} w="100%">
+          <CardBody
+            display="flex"
+            alignContent="space-between"
+            gap="4rem"
+            justifyContent="space-between"
+          >
+            <Text color={theme.dark.primary}>No Groups</Text>;
+          </CardBody>
+        </Card>
+      </>
+    );
+  }
 };
 
 export default CardGroup;

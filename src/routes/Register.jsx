@@ -34,6 +34,9 @@ const Register = () => {
     await API.post('users/register', formData);
     navigate('/');
   };
+  const handleClick = () => {
+    navigate('/');
+  };
 
   useEffect(() => {
     user && navigate('/dashboard');
@@ -159,16 +162,34 @@ const Register = () => {
               color={theme.dark.accent1}
             />
           </InputGroup>
-          <Button
-            type="submit"
-            bg={theme.dark.accent3}
-            color="#FFFFFF"
-            variant="solid"
-            marginTop="1rem"
-            width="max-content"
+          <Box
+            display="flex"
+            width="100%"
+            justifyContent="space-around"
+            alignItems="center"
           >
-            SUBMIT
-          </Button>
+            <Button
+              type="button"
+              bg={theme.dark.accent2}
+              color={theme.dark.background}
+              variant="solid"
+              marginTop="1rem"
+              width="max-content"
+              onClick={handleClick}
+            >
+              Back
+            </Button>
+            <Button
+              type="submit"
+              bg={theme.dark.accent3}
+              color="#FFFFFF"
+              variant="solid"
+              marginTop="1rem"
+              width="max-content"
+            >
+              SUBMIT
+            </Button>
+          </Box>
         </FormControl>
       </form>
     </Box>

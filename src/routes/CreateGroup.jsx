@@ -51,11 +51,11 @@ const CreateGroup = () => {
   const [selectedGame, setSelectedGame] = useState(null);
   const { register, handleSubmit, control } = useForm();
   const navigate = useNavigate();
+  const { user, login } = useAuth();
 
   const submitForm = async (data) => {
     const { game, competition, name } = data;
     const formData = new FormData();
-    const { user } = useAuth();
 
     formData.append('game', game);
     formData.append('competition', competition);
@@ -67,7 +67,14 @@ const CreateGroup = () => {
 
     API.post('/competitions', formData).then((res) => {
       console.log('Response', res);
+      const competition = res.data.info.data.competition;
+      login({ user: { ...user, competition: competition } });
       res && navigate('/');
+      API.put(`users/inicialplayers/${user._id.toString()}`).then((res) => {
+        const user = res.data.info.data;
+        login({ user: { ...user, competition } });
+        API.patch(`competitions/${user.competition}/market`);
+      });
     });
   };
 
@@ -106,9 +113,7 @@ const CreateGroup = () => {
                 gap="1rem"
               >
                 {games.map((game) => {
-                  console.log('game', game);
                   const { name, isDisabled } = game;
-                  console.log('game name', name);
                   const handleClick = () => setSelectedGame(game);
                   return (
                     <RadioCard
@@ -143,9 +148,7 @@ const CreateGroup = () => {
                     gap="1rem"
                   >
                     {selectedGame.competitions?.map((competition) => {
-                      console.log('competition', competition);
                       const { name, isDisabled } = competition;
-                      console.log('competition name', name);
                       return (
                         <Radio id={name} value={name} key={name} isDisabled={isDisabled}>
                           {name}
