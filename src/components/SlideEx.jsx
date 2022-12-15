@@ -26,19 +26,19 @@ const SlideEx = ({ player }) => {
       >
         <Button
           display="flex"
-          alignItems="center"
-          justifyContent="center"
           flexDirection="column"
           gap="1rem"
-          paddingBottom="2rem"
           backgroundColor="transparent"
+          justifyContent="flex-start"
           backgroundImage="url(https://res.cloudinary.com/dlqo06xcs/image/upload/v1670788899/Logo/backgroundCard_zw6qrv.png)"
           backgroundRepeat="no-repeat"
+          overflow="visible"
           backgroundPosition="center 0.01rem"
           backgroundSize="105%"
           height="100%"
           width="100%"
-          maxWidth="15rem"
+          maxW="10rem"
+          maxWidth="10rem"
           variant="unstyled"
           onClick={() => {
             setCurrentPlayer(player._id);
@@ -46,8 +46,20 @@ const SlideEx = ({ player }) => {
             onToggle(scrollBlocked == true ? blocked : unBlocked);
           }}
         >
-          <Image maxWidth="10rem" width="77%" src={player.image} alt={player.nickname} />
-          <Text color={theme.dark.primary} fontSize="1.2rem" backgroundColor="#101221BF">
+          <Image
+            maxWidth="10rem"
+            width="77%"
+            src={player.image}
+            alt={player.nickname}
+            paddingTop="2.1rem"
+            borderBottomRadius="1.8rem"
+          />
+          <Text
+            color={theme.dark.primary}
+            fontSize="1.2rem"
+            backgroundColor="#101221BF"
+            position="relative"
+          >
             {player.nickname}
           </Text>
         </Button>

@@ -19,6 +19,7 @@ import userSVG from '../public/userSVG.svg';
 import { useAuth } from './../hooks/AuthContext';
 import theme from './../theme';
 import LogoMoney from './LogoMoney';
+import RulesModal from './RulesModal';
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -75,6 +76,9 @@ const NavBar = () => {
                   <Img src={logoutSVG} alt="logout" width="1.5rem" />
                 </Flex>
               </NavLink>
+            </MenuItem>
+            <MenuItem>
+              <RulesModal />
             </MenuItem>
           </MenuList>
         </Menu>
