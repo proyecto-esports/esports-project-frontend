@@ -19,7 +19,6 @@ const Market = () => {
       </Stack>
     </Box>
   );
-
 };
 
 export default Market;
