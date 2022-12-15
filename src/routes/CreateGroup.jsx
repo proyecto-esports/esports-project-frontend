@@ -70,6 +70,11 @@ const CreateGroup = () => {
       const competition = res.data.info.data.competition;
       login({ user: { ...user, competition: competition } });
       res && navigate('/');
+      API.put(`users/inicialplayers/${user._id.toString()}`).then((res) => {
+        const user = res.data.info.data;
+        login({ user: { ...user, competition } });
+        API.patch(`competitions/${user.competition}/market`);
+      });
     });
   };
 
