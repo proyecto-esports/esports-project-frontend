@@ -16,6 +16,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { NavLink, useNavigate } from 'react-router-dom';
 
+import ForgotPassword from '../components/ForgotPassword';
 import { useAuth } from '../hooks/AuthContext';
 import { API } from '../services/API';
 import theme from '../theme';
@@ -176,6 +177,7 @@ const Login = () => {
           </NavLink>
         </Text>
       </Stack>
+      <ForgotPassword />
     </Box>
   );
 };
