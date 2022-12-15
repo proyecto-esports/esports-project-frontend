@@ -3,6 +3,7 @@ import * as ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
+import ChildenProtected from './components/ChildenProtected';
 import ProtectedRoute from './components/ProtectedRoute';
 import GlobalStyle from './GlobalStyle';
 import CreateGroup from './routes/CreateGroup';
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
         element: <ProtectedRoute />,
         children: [
           {
-            path: '',
+            path: 'home',
             element: <Home />,
           },
           {
@@ -41,38 +42,24 @@ const router = createBrowserRouter([
             element: <CreateGroup />,
           },
           {
-            path: 'ranking',
-            element: <Ranking />,
-          },
-          {
-            path: 'lineup',
-            element: <LineUp />,
-          },
-          {
-            path: 'market',
-            element: <Market />,
+            path: '',
+            element: <ChildenProtected />,
+            children: [
+              {
+                path: 'ranking',
+                element: <Ranking />,
+              },
+              {
+                path: 'lineup',
+                element: <LineUp />,
+              },
+              {
+                path: 'market',
+                element: <Market />,
+              },
+            ],
           },
         ],
-      },
-      {
-        path: '/login',
-        element: <Login />,
-      },
-      {
-        path: '/register',
-        element: <Register />,
-      },
-      {
-        path: '/market',
-        element: <Market />,
-      },
-      {
-        path: '/lineup',
-        element: <LineUp />,
-      },
-      {
-        path: '/ranking',
-        element: <Ranking />,
       },
     ],
   },
