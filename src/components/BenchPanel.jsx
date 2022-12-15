@@ -48,27 +48,20 @@ function AllPlayers() {
     <>
       {bench ? (
         bench.map((player) => (
-          <Box
-            key={player._id}
-            borderRadius="5px"
-            marginTop="10%"
-            w="45%"
-            h="35%"
-            backgroundColor="transparent"
-            backgroundImage="url(https://res.cloudinary.com/dlqo06xcs/image/upload/v1670788899/Logo/backgroundCard_zw6qrv.png)"
-            backgroundRepeat="no-repeat"
-            backgroundPosition="center 0.01rem"
-            backgroundSize="133%"
-          >
+          <Box key={player._id} marginTop="10%" maxWidth="45%" h="35%">
             <Box
               display="flex"
               alignItems="center"
               flexDirection="column"
               marginTop="1vh"
               backgroundColor="transparent"
+              backgroundImage="url(https://res.cloudinary.com/dlqo06xcs/image/upload/v1670788899/Logo/backgroundCard_zw6qrv.png)"
+              backgroundRepeat="no-repeat"
+              backgroundPosition="center 0.01rem"
+              backgroundSize="115%"
               gap="0.5rem"
               w="100%"
-              h="80%"
+              h="100%%"
               variant="unstyled"
             >
               <Button
@@ -89,7 +82,7 @@ function AllPlayers() {
               </Button>
               <Button
                 width="3rem"
-                height="2.5rem"
+                height="2rem"
                 border="2px"
                 borderColor={theme.dark.stas}
                 bg={theme.dark.bottons}
