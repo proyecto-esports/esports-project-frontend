@@ -1,14 +1,15 @@
 import {
   Box,
+  Button,
   Input,
   Modal,
-  ModalOverlay,
   ModalContent,
+  ModalOverlay,
   Text,
   useDisclosure,
-  Button,
 } from '@chakra-ui/react';
 import { useState } from 'react';
+
 import theme from '../theme';
 
 const ForgotPassword = () => {
