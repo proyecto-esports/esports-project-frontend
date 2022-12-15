@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 
+import { useAuth } from '../hooks/AuthContext';
 import { API } from '../services/API';
 import theme from '../theme';
 
@@ -23,17 +24,18 @@ const JoinModal = () => {
     setCode(e.target.value);
   };
 
-  const user = localStorage.getItem('user');
-  const userId = JSON.parse(user)._id;
+  const { user, login } = useAuth();
 
   const joinGroup = () => {
     const bodyJoin = {
       competition: code,
     };
 
-    API.patch(`users/${userId}/invited`, bodyJoin).then(() => {
-      API.put(`users/inicialplayers/${userId}`).then((res) => {
-        return res;
+    API.patch(`users/${user._id}/invited`, bodyJoin).then(() => {
+      API.put(`users/inicialplayers/${user._id.toString()}`).then((res) => {
+        const user = res.data.info.data;
+        onClose();
+        login({ user: user });
       });
     });
   };
@@ -46,16 +48,17 @@ const JoinModal = () => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent bg={theme.dark.background} color={theme.dark.primary}>
-          <form onSubmit={(ev) => joinGroup(ev)}>
+          <form
+            onSubmit={(ev) => {
+              ev.preventDefault();
+              joinGroup();
+            }}
+          >
             <ModalHeader>Join Group</ModalHeader>
             <ModalCloseButton />
             <ModalBody flexDirection="column" display="flex" gap="2rem">
               <Input placeholder="Invitation Code" onChange={handleCode} />
-              <Button
-                onClick={() => joinGroup}
-                bg={theme.dark.popUpBackground}
-                type="submit"
-              >
+              <Button bg={theme.dark.popUpBackground} type="submit">
                 Joing
               </Button>
             </ModalBody>

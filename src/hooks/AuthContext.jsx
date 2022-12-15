@@ -8,8 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useLocalStorage('user', null);
   const [accessToken, setAccessToken] = useLocalStorage('accessToken', null);
 
-  const login = (data) => {
-    const { user, accessToken } = data;
+  const login = ({ user, accessToken }) => {
     setUser(user);
     setAccessToken(accessToken);
   };
