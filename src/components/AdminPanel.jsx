@@ -24,7 +24,7 @@ const AdminPanel = () => {
   };
 
   const playMatches = () => {
-    API.put(`players/points`).then(API.put(`users/points/${user.competition}`));
+    API.put(`users/points/${user.competition}`);
   };
 
   return (
@@ -39,7 +39,7 @@ const AdminPanel = () => {
           <ModalCloseButton />
           <ModalBody flexDirection="column" display="flex" gap="2rem">
             <Button bg={theme.dark.popUpBackground} onClick={() => playMatches()}>
-              Play Matches
+              Update Points
             </Button>
             <Button bg={theme.dark.popUpBackground} onClick={() => renewMarket()}>
               Renew Market
