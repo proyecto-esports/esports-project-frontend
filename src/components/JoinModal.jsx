@@ -25,7 +25,6 @@ const JoinModal = () => {
   };
 
   const { user, login } = useAuth();
-
   const joinGroup = () => {
     const bodyJoin = {
       competition: code,
