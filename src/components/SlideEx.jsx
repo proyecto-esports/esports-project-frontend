@@ -16,32 +16,42 @@ const SlideEx = ({ player }) => {
     ((document.body.style.height = ''), (document.body.style.overflowY = ''));
   return (
     <>
-      <Button
+      <Box
+        width="45%"
         display="flex"
         alignItems="center"
         justifyContent="center"
         flexDirection="column"
-        gap="0.5vh"
-        backgroundColor="transparent"
-        backgroundImage="url(https://res.cloudinary.com/dlqo06xcs/image/upload/v1670788899/Logo/backgroundCard_zw6qrv.png)"
-        backgroundRepeat="no-repeat"
-        backgroundPosition="center 0.01rem"
-        backgroundSize="130%"
-        borderRadius="5px"
-        h="32%"
-        w="45%"
-        variant="unstyled"
-        onClick={() => {
-          setCurrentPlayer(player._id);
-          setScrollBlocked(true);
-          onToggle(scrollBlocked == true ? blocked : unBlocked);
-        }}
+        h="33%"
       >
-        <Image maxWidth="90%" h="70%" src={player.image} alt={player.nickname} />
-        <Text color={theme.dark.primary} fontSize="1.2rem" backgroundColor="#101221BF">
-          {player.nickname}
-        </Text>
-      </Button>
+        <Button
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          flexDirection="column"
+          gap="1rem"
+          paddingBottom="2rem"
+          backgroundColor="transparent"
+          backgroundImage="url(https://res.cloudinary.com/dlqo06xcs/image/upload/v1670788899/Logo/backgroundCard_zw6qrv.png)"
+          backgroundRepeat="no-repeat"
+          backgroundPosition="center 0.01rem"
+          backgroundSize="105%"
+          height="100%"
+          width="100%"
+          maxWidth="15rem"
+          variant="unstyled"
+          onClick={() => {
+            setCurrentPlayer(player._id);
+            setScrollBlocked(true);
+            onToggle(scrollBlocked == true ? blocked : unBlocked);
+          }}
+        >
+          <Image maxWidth="10rem" width="77%" src={player.image} alt={player.nickname} />
+          <Text color={theme.dark.primary} fontSize="1.2rem" backgroundColor="#101221BF">
+            {player.nickname}
+          </Text>
+        </Button>
+      </Box>
 
       <Slide
         position="fixed"
