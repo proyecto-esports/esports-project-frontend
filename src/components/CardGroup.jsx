@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 import { API } from '../services/API';
 import theme from '../theme';
+import thousandsSeparator from './../utils/thousandsSeparator';
 import LogoMoney from './LogoMoney';
 
 const CardGroup = ({ user }) => {
@@ -30,7 +31,8 @@ const CardGroup = ({ user }) => {
           >
             <Text color={theme.dark.primary}>{groups}</Text>
             <Text color={theme.dark.primary}>
-              {user.money} <LogoMoney color={theme.dark.primary} />
+              {thousandsSeparator(user.money, '.')}{' '}
+              <LogoMoney color={theme.dark.primary} />
             </Text>
           </CardBody>
         </Card>
