@@ -19,6 +19,7 @@ import userSVG from '../public/userSVG.svg';
 import { useAuth } from './../hooks/AuthContext';
 import theme from './../theme';
 import thousandsSeparator from './../utils/thousandsSeparator';
+import ChangePasswordModal from './ChangePasswordModal';
 import LogoMoney from './LogoMoney';
 import RulesModal from './RulesModal';
 
@@ -71,15 +72,23 @@ const NavBar = () => {
               </Flex>
             </MenuItem>
             <MenuItem>
-              <NavLink to="/" onClick={() => logout()}>
-                <Flex gap="5rem">
-                  <Text>LogOut</Text>
-                  <Img src={logoutSVG} alt="logout" width="1.5rem" />
-                </Flex>
-              </NavLink>
+              <RulesModal />
             </MenuItem>
             <MenuItem>
-              <RulesModal />
+              <ChangePasswordModal />
+            </MenuItem>
+
+            <MenuItem>
+              <Flex gap="5rem" w="100%">
+                <Box display="flex" justifyContent="space-between" w="100%">
+                  <NavLink to="/" onClick={() => logout()}>
+                    <Text>LogOut</Text>
+                  </NavLink>
+                  <NavLink to="/" onClick={() => logout()}>
+                    <Img src={logoutSVG} alt="logout" width="1.5rem" />
+                  </NavLink>
+                </Box>
+              </Flex>
             </MenuItem>
           </MenuList>
         </Menu>

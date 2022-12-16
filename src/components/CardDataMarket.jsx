@@ -18,7 +18,7 @@ import BidModal from './BidModal';
 const CardDataMarket = () => {
   const [players, setPlayers] = useState();
   const idStorage = localStorage.getItem('user');
-  const id = JSON.parse(idStorage).competition;
+  const id = JSON.parse(idStorage).competition._id;
   const getAllPlayers = async () => {
     API.get(`/competitions/${id}`).then((res) => {
       setPlayers(res.data.info.data.market);

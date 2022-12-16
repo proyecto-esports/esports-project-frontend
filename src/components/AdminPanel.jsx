@@ -20,11 +20,11 @@ const AdminPanel = () => {
   const { user } = useAuth();
 
   const renewMarket = () => {
-    API.patch(`competitions/${user.competition}/market`);
+    API.patch(`competitions/${user.competition._id}/market`);
   };
 
   const playMatches = () => {
-    API.put(`users/points/${user.competition}`);
+    API.put(`users/points/${user.competition._id}`);
   };
 
   return (
