@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Flex,
   Img,
@@ -18,14 +19,15 @@ const RulesModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Flex gap="5rem" onClick={onOpen}>
-        <Text>Manual</Text>
-        <Img
-          src="https://res.cloudinary.com/dlqo06xcs/image/upload/v1671133738/utils/readme-svgrepo-com_ike9rn.svg"
-          alt="logout"
-          width="1.5rem"
-        />
-        ;
+      <Flex gap="5rem" w="100%" onClick={onOpen}>
+        <Box display="flex" justifyContent="space-between" w="100%">
+          <Text>Manual</Text>
+          <Img
+            src="https://res.cloudinary.com/dlqo06xcs/image/upload/v1671133738/utils/readme-svgrepo-com_ike9rn.svg"
+            alt="rules icon"
+            width="1.5rem"
+          />
+        </Box>
       </Flex>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
