@@ -66,12 +66,12 @@ const CardDataMarket = () => {
                     AC
                   </Text>
                   <CircularProgress
-                    max={50}
+                    max={40}
                     value={player.stats.kills}
                     color={theme.dark.stas}
                   >
                     <CircularProgressLabel fontWeight="bold">
-                      {player.stats.kills * 2} %{' '}
+                      {player.stats.kills * 2.5} %{' '}
                     </CircularProgressLabel>
                   </CircularProgress>
                 </Stack>
@@ -80,7 +80,7 @@ const CardDataMarket = () => {
                     ACS
                   </Text>
                   <CircularProgress
-                    max={7000}
+                    max={6000}
                     value={player.stats.dmg}
                     color={theme.dark.stas}
                   >
