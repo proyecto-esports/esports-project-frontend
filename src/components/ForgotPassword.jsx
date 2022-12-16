@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 
+import { API } from '../services/API';
 import theme from '../theme';
 
 const ForgotPassword = () => {
@@ -17,8 +18,11 @@ const ForgotPassword = () => {
 
   const [gmail, setGmail] = useState('');
 
+  const data = {
+    gmail: gmail,
+  };
   const handleOnClick = () => {
-    console.log(gmail);
+    API.patch(`users/retrive/${gmail}`, data).then((res) => console.log(res));
   };
 
   return (
