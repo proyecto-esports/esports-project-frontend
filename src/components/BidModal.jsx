@@ -1,3 +1,4 @@
+import { CheckIcon } from '@chakra-ui/icons';
 import {
   Box,
   Button,
@@ -14,6 +15,7 @@ import {
   ModalOverlay,
   Text,
   useDisclosure,
+  useToast,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 
@@ -22,8 +24,8 @@ import { API } from '../services/API';
 import theme from '../theme';
 import CardDataModal from './CardDataModal';
 import LogoMoney from './LogoMoney';
-
 const BidModal = ({ player }) => {
+  const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [price, setPrice] = useState(player.value);
 
@@ -145,7 +147,43 @@ const BidModal = ({ player }) => {
               <Button
                 bg={theme.dark.accent3}
                 margin="0 auto"
-                onClick={onClose}
+                onClick={() => {
+                  onClose();
+                  toast({
+                    duration: 3000,
+                    render: () => (
+                      <Box
+                        color="black"
+                        padding="2rem"
+                        bg={theme.dark.primary}
+                        display="flex"
+                        flexDirection="column"
+                        alignItems="center"
+                        boxShadow="outline"
+                        justifyContent="center"
+                        gap="1rem"
+                        width="max-content"
+                        borderRadius="1rem"
+                        position="fixed"
+                        left="50%"
+                        top="50%"
+                        transform="translate(-50%, -50%)"
+                      >
+                        <CheckIcon height="3rem" width="3rem" />
+                        <Text>
+                          You have bid{' '}
+                          <Text fontWeight="600" display="inline">
+                            {price}
+                          </Text>
+                          <LogoMoney color="black" /> for{' '}
+                          <Text fontWeight="600" display="inline">
+                            {player.nickname}
+                          </Text>
+                        </Text>
+                      </Box>
+                    ),
+                  });
+                }}
                 type="submit"
                 color={theme.dark.primary}
               >

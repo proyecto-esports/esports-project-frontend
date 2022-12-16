@@ -2,7 +2,6 @@ import { Box, Stack } from '@chakra-ui/react';
 
 import CardDataMarket from '../components/CardDataMarket';
 import theme from '../theme';
-
 const Market = () => {
   return (
     <Box w="100%" h="100%" alignItems="center" bg={theme.dark.background}>
