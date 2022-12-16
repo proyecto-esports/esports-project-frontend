@@ -18,6 +18,7 @@ import logo from '../public/symbol-logo.svg';
 import userSVG from '../public/userSVG.svg';
 import { useAuth } from './../hooks/AuthContext';
 import theme from './../theme';
+import thousandsSeparator from './../utils/thousandsSeparator';
 import ChangePasswordModal from './ChangePasswordModal';
 import LogoMoney from './LogoMoney';
 import RulesModal from './RulesModal';
@@ -65,7 +66,7 @@ const NavBar = () => {
                   <Text>Funds:</Text>
 
                   <Text>
-                    {userId.money} <LogoMoney color="black" />
+                    {thousandsSeparator(userId.money, '.')} <LogoMoney color="black" />
                   </Text>
                 </Box>
               </Flex>
