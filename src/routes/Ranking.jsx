@@ -23,7 +23,7 @@ const Ranking = () => {
 
       setRows(
         users.map((user, i) => {
-          return [`${i + 1}º`, user.username, user.points];
+          return [`${i + 1}º`, user.username, user.money];
         }),
       );
     });

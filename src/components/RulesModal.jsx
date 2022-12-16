@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Flex,
   Img,
@@ -22,6 +23,7 @@ const RulesModal = () => {
   const btnRef = React.useRef(null);
   return (
     <>
+
       <Flex gap="5rem" onClick={onOpen} mt={3} ref={btnRef}>
         <Text>Manual</Text>
         <Img
@@ -29,7 +31,7 @@ const RulesModal = () => {
           alt="logout"
           width="1.5rem"
         />
-        ;
+
       </Flex>
       <Modal
         isOpen={isOpen}

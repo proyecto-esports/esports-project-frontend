@@ -22,7 +22,10 @@ const ForgotPassword = () => {
     gmail: gmail,
   };
   const handleOnClick = () => {
-    API.patch(`users/retrive/${gmail}`, data).then((res) => console.log(res));
+    API.patch(`users/retrive/${gmail}`, data).then((res) => {
+      console.log(res);
+      onClose();
+    });
   };
 
   return (
