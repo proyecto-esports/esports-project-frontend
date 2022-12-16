@@ -23,15 +23,15 @@ const RulesModal = () => {
   const btnRef = React.useRef(null);
   return (
     <>
-
-      <Flex gap="5rem" onClick={onOpen} mt={3} ref={btnRef}>
-        <Text>Manual</Text>
-        <Img
-          src="https://res.cloudinary.com/dlqo06xcs/image/upload/v1671133738/utils/readme-svgrepo-com_ike9rn.svg"
-          alt="logout"
-          width="1.5rem"
-        />
-
+      <Flex gap="5rem" onClick={onOpen} mt={3} ref={btnRef} w="100%">
+        <Box display="flex" justifyContent="space-between" w="100%">
+          <Text>Manual</Text>
+          <Img
+            src="https://res.cloudinary.com/dlqo06xcs/image/upload/v1671133738/utils/readme-svgrepo-com_ike9rn.svg"
+            alt="logout"
+            width="1.5rem"
+          />
+        </Box>
       </Flex>
       <Modal
         isOpen={isOpen}
