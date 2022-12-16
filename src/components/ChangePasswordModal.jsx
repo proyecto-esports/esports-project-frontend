@@ -26,7 +26,11 @@ const ChangePasswordModal = () => {
   const { user } = useAuth();
   const handleOnClick = () => {
     if (newPassword === repeatPassword) {
-      API.patch(`/users/${user._id}`).then((res) => {
+      const data = {
+        password: newPassword,
+      };
+      console.log(user._id);
+      API.patch(`/users/${user._id}`, data).then((res) => {
         console.log(res);
         onClose();
       });

@@ -1,4 +1,5 @@
 import {
+  Box,
   Card,
   CardBody,
   CardFooter,
@@ -10,6 +11,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
+import SkewLoader from 'react-spinners/SkewLoader';
 
 import { API } from '../services/API';
 import theme from '../theme';
@@ -97,7 +99,17 @@ const CardDataMarket = () => {
           </Card>
         ))
       ) : (
-        <Text>...Loading</Text>
+        <Box
+          w="100%"
+          h="100%"
+          color={theme.dark.primary}
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <SkewLoader size="3rem" color={theme.dark.stas} />
+        </Box>
       )}
     </>
   );

@@ -23,6 +23,7 @@
     "react-hook-form": "^7.40.0",
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.4.5",
+    "react-spinners": "^0.13.7",
     "reactjs-popup": "^2.0.5",
     "styled-components": "^5.3.6"
   },

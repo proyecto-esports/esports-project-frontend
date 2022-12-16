@@ -10,22 +10,12 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 
-import { useAuth } from '../hooks/AuthContext';
-import { API } from '../services/API';
 import theme from '../theme';
+import SpinnerModal from './SpinnerMarket';
+import SpinnerModalPoints from './SpinnerPoints';
 
 const AdminPanel = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const { user } = useAuth();
-
-  const renewMarket = () => {
-    API.patch(`competitions/${user.competition._id}/market`);
-  };
-
-  const playMatches = () => {
-    API.put(`users/points/${user.competition._id}`);
-  };
 
   return (
     <>
@@ -38,12 +28,8 @@ const AdminPanel = () => {
           <ModalHeader>Admin Panel</ModalHeader>
           <ModalCloseButton />
           <ModalBody flexDirection="column" display="flex" gap="2rem">
-            <Button bg={theme.dark.popUpBackground} onClick={() => playMatches()}>
-              Update Points
-            </Button>
-            <Button bg={theme.dark.popUpBackground} onClick={() => renewMarket()}>
-              Renew Market
-            </Button>
+            <SpinnerModalPoints />
+            <SpinnerModal size="110px" text="" />
           </ModalBody>
           <ModalFooter>
             <Button bg={theme.dark.stas} mr={3} onClick={onClose}>
