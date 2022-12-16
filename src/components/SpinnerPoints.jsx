@@ -18,7 +18,36 @@ const SpinnerModalPoints = () => {
   const { user } = useAuth();
 
   const updatePoints = () => {
-    API.put(`users/points/${user.competition._id}`);
+    const first = { money: 100000 };
+    const secon = { money: 75000 };
+    const thirb = { money: 50000 };
+    const rest = { money: 20000 };
+    API.put(`users/points/${user.competition._id}`).then(
+      API.get(`/competitions/${user.competition._id.toString()}`).then((res) => {
+        const { users } = res.data.info.data;
+        console.log(users);
+        users.sort((a, b) => {
+          return b.points - a.points;
+        });
+        for (let i = 0; i < users.length; i++) {
+          if (users[i] == users[0]) {
+            console.log('Hola');
+            API.patch(`/users/money/${users[0]._id}`, first);
+          }
+          if (users[i] == users[1]) {
+            API.patch(`/users/money/${users[1]._id}`, secon);
+          }
+          if (users[i] == users[2]) {
+            API.patch(`/users/money/${users[2]._id}`, thirb);
+          }
+          if (users[i] != users[0] && users[i] != users[1] && users[i] != users[2]) {
+            console.log('adios');
+            API.patch(`/users/money/${users[i]._id}`, rest);
+          }
+        }
+        console.log(users);
+      }),
+    );
     setTimeout(() => {
       onClose();
     }, 3500);
