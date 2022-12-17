@@ -72,12 +72,14 @@ const NavBar = () => {
               </Flex>
             </MenuItem>
             <MenuItem>
+              <NavLink to="/dashboard/current-bids">Current Bids</NavLink>
+            </MenuItem>
+            <MenuItem>
               <RulesModal />
             </MenuItem>
             <MenuItem>
               <ChangePasswordModal />
             </MenuItem>
-
             <MenuItem>
               <Flex gap="5rem" w="100%">
                 <Box display="flex" justifyContent="space-between" w="100%">

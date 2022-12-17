@@ -7,6 +7,7 @@ import ChildenProtected from './components/ChildenProtected';
 import ProtectedRoute from './components/ProtectedRoute';
 import GlobalStyle from './GlobalStyle';
 import CreateGroup from './routes/CreateGroup';
+import CurrentBids from './routes/CurrentBids';
 import Home from './routes/Home';
 import LineUp from './routes/LineUp';
 import Login from './routes/Login';
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
               {
                 path: 'market',
                 element: <Market />,
+              },
+              {
+                path: 'current-bids',
+                element: <CurrentBids />,
               },
             ],
           },
