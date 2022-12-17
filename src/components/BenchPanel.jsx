@@ -18,7 +18,6 @@ function AllPlayers() {
       setBench(res.data.info.data);
       API.get(`/users/${user._id}`).then((res) => {
         let renewMoney = { money: res.data.info.data.money };
-        console.log(res);
         login({ user: { ...user, ...renewMoney } });
       });
     });
