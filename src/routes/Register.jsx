@@ -25,11 +25,10 @@ const Register = () => {
 
   const submitForm = async (data) => {
     const formData = new FormData();
-    const { username, gmail, password, image } = data;
+    const { username, gmail, password } = data;
     formData.append('username', username);
     formData.append('gmail', gmail);
     formData.append('password', password);
-    if (image.length !== 0) formData.append('image', image[0]);
 
     await API.post('users/register', formData);
     navigate('/');
@@ -148,19 +147,6 @@ const Register = () => {
                 {showPassword ? 'Hide' : 'Show'}
               </Button>
             </InputRightElement>
-          </InputGroup>
-          <InputGroup>
-            <InputLeftElement pointerEvents="none">
-              <AtSignIcon color="gray.300" />
-            </InputLeftElement>
-            <Input
-              type="file"
-              id="image"
-              name="image"
-              {...register('image')}
-              placeholder="Avatar image"
-              color={theme.dark.accent1}
-            />
           </InputGroup>
           <Box
             display="flex"

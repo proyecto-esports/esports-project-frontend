@@ -123,6 +123,8 @@ const CreateGroup = () => {
                       value={name}
                       isDisabled={isDisabled}
                       onClick={handleClick}
+                      border="2px"
+                      borderColor={theme.dark.accent2}
                     >
                       {name}
                     </RadioCard>
@@ -146,6 +148,7 @@ const CreateGroup = () => {
                     name="competition"
                     display="flex"
                     gap="1rem"
+                    color={theme.dark.accent1}
                   >
                     {selectedGame.competitions?.map((competition) => {
                       const { name, isDisabled } = competition;
@@ -165,7 +168,13 @@ const CreateGroup = () => {
           <FormLabel htmlFor="name" color={theme.dark.primary}>
             Name of the group:
           </FormLabel>
-          <Input {...register('name')} id="name" name="name" placeholder="Name" />
+          <Input
+            {...register('name')}
+            id="name"
+            name="name"
+            placeholder="Name"
+            color={theme.dark.accent1}
+          />
           <Button
             type="submit"
             bg={theme.dark.accent3}

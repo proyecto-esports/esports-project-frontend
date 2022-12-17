@@ -75,7 +75,7 @@ const BidModal = ({ player }) => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <form onSubmit={(ev) => createBid(ev)}>
           <ModalOverlay />
-          <ModalContent bg={theme.dark.background}>
+          <ModalContent bg={theme.dark.background} alignSelf="center">
             <ModalHeader />
             <Box
               display="flex"
