@@ -54,7 +54,6 @@ const BidModal = ({ player }) => {
     API.post('bids', bodyBid).then(() => {
       API.get(`/users/${user._id}`).then((res) => {
         let renewMoney = { money: res.data.info.data.money };
-        console.log(res);
         login({ user: { ...user, ...renewMoney } });
       });
     });
