@@ -41,7 +41,7 @@ const BidModal = ({ player }) => {
     !price ? setPrice(100) : setPrice(price * 100);
   };
 
-  const { user } = useAuth();
+  const { user, login } = useAuth();
 
   const createBid = (ev) => {
     ev.preventDefault();
@@ -51,9 +51,11 @@ const BidModal = ({ player }) => {
       money: Number(price),
     };
     console.log(bodyBid);
-    API.post('bids', bodyBid).then((res) => {
-      console.log(bodyBid);
-      console.log('Response', res);
+    API.post('bids', bodyBid).then(() => {
+      API.get(`/users/${user._id}`).then((res) => {
+        let renewMoney = { money: res.data.info.data.money };
+        login({ user: { ...user, ...renewMoney } });
+      });
     });
   };
   return (
