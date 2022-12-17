@@ -9,7 +9,6 @@ import Table from './../components/Table';
 
 const Ranking = () => {
   const { user } = useAuth();
-
   const headers = ['Nº', 'USERNAME', 'POINTS'];
   const [rows, setRows] = useState();
 
@@ -23,11 +22,11 @@ const Ranking = () => {
 
       setRows(
         users.map((user, i) => {
-          return [`${i + 1}º`, user.username, user.money];
+          return [`${i + 1}º`, user.username, user.points];
         }),
       );
     });
-  }, []);
+  }, [user]);
 
   return (
     <Box w="100%" h="100%" alignItems="center" bg={theme.dark.background}>

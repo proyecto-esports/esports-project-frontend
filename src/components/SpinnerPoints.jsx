@@ -15,13 +15,15 @@ import theme from '../theme';
 
 const SpinnerModalPoints = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { user } = useAuth();
+  const { user, login } = useAuth();
 
   const updatePoints = () => {
     const first = { money: 100000 };
     const secon = { money: 75000 };
     const thirb = { money: 50000 };
     const rest = { money: 20000 };
+    let renewRank = {};
+    let renewUser = {};
     API.put(`users/points/${user.competition._id}`).then(
       API.get(`/competitions/${user.competition._id.toString()}`).then((res) => {
         const { users } = res.data.info.data;
@@ -45,10 +47,15 @@ const SpinnerModalPoints = () => {
             API.patch(`/users/money/${users[i]._id}`, rest);
           }
         }
-        console.log(users);
+        API.get(`/users/${user._id}`).then((res) => {
+          console.log(res);
+          renewUser = res.data.info.data;
+        });
+        renewRank = { competition: res.data.info.data };
       }),
     );
     setTimeout(() => {
+      login({ user: { ...renewUser, renewRank } });
       onClose();
     }, 3500);
   };
