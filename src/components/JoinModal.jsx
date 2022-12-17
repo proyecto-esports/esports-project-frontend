@@ -35,6 +35,10 @@ const JoinModal = () => {
         const user = res.data.info.data;
         onClose();
         login({ user: user });
+        API.get(`/competitions/${user.competition}`).then((res) => {
+          const competi = res.data.info.data;
+          login({ user: { ...user, competition: { ...competi } } });
+        });
       });
     });
   };
