@@ -1,5 +1,6 @@
 import { AtSignIcon, UnlockIcon } from '@chakra-ui/icons';
 import {
+  Avatar,
   Box,
   Button,
   FormControl,
@@ -104,7 +105,7 @@ const Register = () => {
         <FormControl display="flex" flexDirection="column" gap="1rem" alignItems="center">
           <InputGroup>
             <InputLeftElement pointerEvents="none">
-              <AtSignIcon color="gray.300" />
+              <Avatar color="gray.300" width="1.1rem" height="1.1rem" />
             </InputLeftElement>
             <Input
               type="text"
@@ -163,7 +164,7 @@ const Register = () => {
               width="max-content"
               onClick={handleClick}
             >
-              Back
+              BACK
             </Button>
             <Button
               type="submit"
