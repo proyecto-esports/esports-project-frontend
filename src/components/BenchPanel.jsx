@@ -64,7 +64,7 @@ function AllPlayers() {
               backgroundImage="url(https://res.cloudinary.com/dlqo06xcs/image/upload/v1670788899/Logo/backgroundCard_zw6qrv.png)"
               backgroundRepeat="no-repeat"
               backgroundPosition="center 0.01rem"
-              backgroundSize="115%"
+              backgroundSize="130%"
               gap="0.5rem"
               w="100%"
               h="100%%"
@@ -80,10 +80,11 @@ function AllPlayers() {
                 }}
               >
                 <Image
-                  maxWidth="90%"
+                  maxWidth="8rem"
                   src={player.image}
                   alt={player.nickname}
                   margin="0 auto"
+                  borderRadius="5px"
                 />
               </Button>
               <Button

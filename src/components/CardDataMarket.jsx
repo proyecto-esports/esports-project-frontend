@@ -46,7 +46,7 @@ const CardDataMarket = () => {
           >
             <Image
               objectFit="cover"
-              w="100px"
+              w="6.25rem"
               padding="1rem 0rem 0rem 0rem"
               src={player.image}
               alt={player.nickname}
