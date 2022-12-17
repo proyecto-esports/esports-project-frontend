@@ -1,8 +1,5 @@
 import {
   Button,
-  /* Editable,
-  EditableInput,
-  EditablePreview, */
   Flex,
   Input,
   Modal,
@@ -69,10 +66,6 @@ const InviteGroupModal = () => {
               />
               <Button onClick={onCopy}>{hasCopied ? 'Copied!' : 'Copy'}</Button>
             </Flex>
-            {/* <Editable placeholder="Paste here">
-              <EditablePreview width="100%" />
-              <EditableInput />
-            </Editable> */}
           </ModalBody>
 
           <ModalFooter>
