@@ -2,18 +2,25 @@ import { Box, Button, Image, Text } from '@chakra-ui/react';
 import { useContext, useEffect, useState } from 'react';
 
 import { UserContext } from '../context/jwtContext';
+import { useAuth } from '../hooks/AuthContext';
 import { API } from '../services/Api';
 import theme from './../theme';
 
 function AllPlayers() {
-  const user = localStorage.getItem('user');
+  const { user, login } = useAuth();
+  const userI = localStorage.getItem('user');
   const { currentPlayer, setNewPlayer } = useContext(UserContext);
   const [bench, setBench] = useState([]);
-  const idUser = JSON.parse(user)._id;
+  const idUserI = JSON.parse(userI)._id;
 
   const getBench = async () => {
-    await API.get(`users/benchPlayers/${idUser}`).then((res) => {
+    await API.get(`users/benchPlayers/${idUserI}`).then((res) => {
       setBench(res.data.info.data);
+      API.get(`/users/${user._id}`).then((res) => {
+        let renewMoney = { money: res.data.info.data.money };
+        console.log(res);
+        login({ user: { ...user, ...renewMoney } });
+      });
     });
   };
 
@@ -26,7 +33,7 @@ function AllPlayers() {
       currentPlayer: currentPlayer,
       newPlayer: newP,
     };
-    API.put(`/users/changeLineUp/${idUser}`, changePlayer).then((res) => {
+    API.put(`/users/changeLineUp/${idUserI}`, changePlayer).then((res) => {
       res && window.location.replace('')('/lineUp');
     });
   };
@@ -39,7 +46,7 @@ function AllPlayers() {
     const playerSell = {
       player: id,
     };
-    await API.put(`/users/sell/${idUser}`, playerSell).then((res) => {
+    await API.put(`/users/sell/${idUserI}`, playerSell).then((res) => {
       res && window.location.replace('')('/lineUp');
     });
   };
