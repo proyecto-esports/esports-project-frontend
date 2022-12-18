@@ -1,21 +1,21 @@
 import { Box, Stack } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SkewLoader from 'react-spinners/SkewLoader';
 
-import CardDataMarket from '../components/CardDataMarket';
 import { useAuth } from '../hooks/AuthContext';
 import { API } from '../services/Api.js';
-import theme from '../theme';
+import CardDataMarket from './../components/CardDataMarket';
+import theme from './../theme';
 
-const Market = () => {
+const CurrentBids = () => {
   const { user } = useAuth();
-  const id = user.competition._id.toString();
-  const [market, setMarket] = useState();
+  const [currentBids, setCurrentBids] = useState();
 
   useEffect(() => {
-    API.get(`/competitions/${id}`).then((res) => {
-      const { market } = res.data.info.data;
-      setMarket(market);
+    API.get('/bids').then((res) => {
+      const { data } = res.data.info;
+      const bids = data.filter((bid) => bid.user.toString() === user._id.toString());
+      setCurrentBids(bids);
     });
   }, []);
 
@@ -30,8 +30,8 @@ const Market = () => {
         gap="1rem"
         padding="1rem 0rem"
       >
-        {market ? (
-          market.map((player) => (
+        {currentBids ? (
+          currentBids.map(({ player }) => (
             <CardDataMarket key={player._id.toString()} player={player} />
           ))
         ) : (
@@ -52,4 +52,4 @@ const Market = () => {
   );
 };
 
-export default Market;
+export default CurrentBids;
