@@ -18,17 +18,20 @@ import { useEffect } from 'react';
 import { useAuth } from '../hooks/AuthContext';
 import { API } from '../services/Api';
 import theme from '../theme';
+
 const InviteGroupModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { onCopy, value, setValue, hasCopied } = useClipboard('');
   const { user } = useAuth();
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
+
   let group = { competition: user.competition._id };
-  console.log(user._id);
+
   useEffect(() => {
-    API.get(`users/generateinvite/${user._id}`, group).then((res) => {
-      console.log(res);
+    API.post(`users/generateinvite/${user._id}`, group).then((res) => {
+      const code = res.data.info.data;
+      setValue(code);
     });
   }, [isOpen]);
 
