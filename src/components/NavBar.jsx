@@ -64,7 +64,6 @@ const NavBar = () => {
               <Flex gap="5rem" w="100%">
                 <Box display="flex" justifyContent="space-between" w="100%">
                   <Text>Funds:</Text>
-
                   <Text>
                     {thousandsSeparator(userId.money, '.')} <LogoMoney color="black" />
                   </Text>
