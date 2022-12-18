@@ -11,12 +11,10 @@ const Market = () => {
   const { user } = useAuth();
   const id = user.competition._id.toString();
   const [market, setMarket] = useState();
-  console.log('MARKET', market);
 
   useEffect(() => {
     API.get(`/competitions/${id}`).then((res) => {
       const { market } = res.data.info.data;
-      console.log('RES', res);
       setMarket(market);
     });
   }, []);
