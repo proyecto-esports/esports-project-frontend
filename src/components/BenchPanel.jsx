@@ -2,18 +2,24 @@ import { Box, Button, Image, Text } from '@chakra-ui/react';
 import { useContext, useEffect, useState } from 'react';
 
 import { UserContext } from '../context/jwtContext';
+import { useAuth } from '../hooks/AuthContext';
 import { API } from '../services/Api';
 import theme from './../theme';
 
 function AllPlayers() {
-  const user = localStorage.getItem('user');
+  const { user, login } = useAuth();
+  const userI = localStorage.getItem('user');
   const { currentPlayer, setNewPlayer } = useContext(UserContext);
   const [bench, setBench] = useState([]);
-  const idUser = JSON.parse(user)._id;
+  const idUserI = JSON.parse(userI)._id;
 
   const getBench = async () => {
-    await API.get(`users/benchPlayers/${idUser}`).then((res) => {
+    await API.get(`users/benchPlayers/${idUserI}`).then((res) => {
       setBench(res.data.info.data);
+      API.get(`/users/${user._id}`).then((res) => {
+        let renewMoney = { money: res.data.info.data.money };
+        login({ user: { ...user, ...renewMoney } });
+      });
     });
   };
 
@@ -26,7 +32,7 @@ function AllPlayers() {
       currentPlayer: currentPlayer,
       newPlayer: newP,
     };
-    API.put(`/users/changeLineUp/${idUser}`, changePlayer).then((res) => {
+    API.put(`/users/changeLineUp/${idUserI}`, changePlayer).then((res) => {
       res && window.location.replace('')('/lineUp');
     });
   };
@@ -39,7 +45,7 @@ function AllPlayers() {
     const playerSell = {
       player: id,
     };
-    await API.put(`/users/sell/${idUser}`, playerSell).then((res) => {
+    await API.put(`/users/sell/${idUserI}`, playerSell).then((res) => {
       res && window.location.replace('')('/lineUp');
     });
   };
@@ -48,27 +54,20 @@ function AllPlayers() {
     <>
       {bench ? (
         bench.map((player) => (
-          <Box
-            key={player._id}
-            borderRadius="5px"
-            marginTop="10%"
-            w="45%"
-            h="35%"
-            backgroundColor="transparent"
-            backgroundImage="url(https://res.cloudinary.com/dlqo06xcs/image/upload/v1670788899/Logo/backgroundCard_zw6qrv.png)"
-            backgroundRepeat="no-repeat"
-            backgroundPosition="center 0.01rem"
-            backgroundSize="133%"
-          >
+          <Box key={player._id} marginTop="10%" maxWidth="45%" h="35%">
             <Box
               display="flex"
               alignItems="center"
               flexDirection="column"
               marginTop="1vh"
               backgroundColor="transparent"
+              backgroundImage="url(https://res.cloudinary.com/dlqo06xcs/image/upload/v1670788899/Logo/backgroundCard_zw6qrv.png)"
+              backgroundRepeat="no-repeat"
+              backgroundPosition="center 0.01rem"
+              backgroundSize="130%"
               gap="0.5rem"
               w="100%"
-              h="80%"
+              h="100%%"
               variant="unstyled"
             >
               <Button
@@ -81,15 +80,16 @@ function AllPlayers() {
                 }}
               >
                 <Image
-                  maxWidth="90%"
+                  maxWidth="8rem"
                   src={player.image}
                   alt={player.nickname}
                   margin="0 auto"
+                  borderRadius="5px"
                 />
               </Button>
               <Button
                 width="3rem"
-                height="2.5rem"
+                height="2rem"
                 border="2px"
                 borderColor={theme.dark.stas}
                 bg={theme.dark.bottons}

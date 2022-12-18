@@ -2,8 +2,9 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 import { useAuth } from '../hooks/AuthContext';
 import NavBar from './NavBar';
+import TabBar from './TabBar';
 
-const ProtectedRoute = () => {
+const ChildenProtected = () => {
   const { user } = useAuth();
 
   if (!user) return <Navigate to="/" />;
@@ -12,8 +13,9 @@ const ProtectedRoute = () => {
     <>
       <NavBar />
       <Outlet />
+      <TabBar />
     </>
   );
 };
 
-export default ProtectedRoute;
+export default ChildenProtected;

@@ -9,7 +9,6 @@ import theme from './../theme';
 const TabBar = () => {
   return (
     <Box
-
       w="100%"
       h="4rem"
       position="fixed"
@@ -25,7 +24,6 @@ const TabBar = () => {
         flexDirection="row"
         defaultIndex={1}
         padding="0.5rem"
-
         justifyContent="space-around"
       >
         <Tab
@@ -42,7 +40,6 @@ const TabBar = () => {
         >
           <NavLink to="/dashboard/lineup" color={theme.dark.primary}>
             <Img src={teamSVG} alt="lineup" />
-
           </NavLink>
         </Tab>
         <Tab

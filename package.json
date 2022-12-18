@@ -17,16 +17,13 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "axios": "^1.2.1",
-
     "framer-motion": "^7.8.0",
-
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.40.0",
     "react-icons": "^4.7.1",
-
     "react-router-dom": "^6.4.5",
-
+    "react-spinners": "^0.13.7",
     "reactjs-popup": "^2.0.5",
     "styled-components": "^5.3.6"
   },
@@ -34,7 +31,7 @@
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
     "@vitejs/plugin-react": "^2.2.0",
-    "eslint": "^8.29.0",
+    "eslint": "^8.30.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",

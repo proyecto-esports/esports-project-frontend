@@ -8,7 +8,6 @@ import {
   InputGroup,
   InputLeftElement,
   InputRightElement,
-  Link,
   Stack,
   Text,
 } from '@chakra-ui/react';
@@ -16,6 +15,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { NavLink, useNavigate } from 'react-router-dom';
 
+import ForgotPassword from '../components/ForgotPassword';
 import { useAuth } from '../hooks/AuthContext';
 import { API } from '../services/API';
 import theme from '../theme';
@@ -28,19 +28,17 @@ const Login = () => {
   const handleClick = () => setShow(!show);
   const { register, handleSubmit } = useForm();
 
-
   const submitForm = (data) => {
     const formData = new FormData();
     const { gmail, password } = data;
     formData.append('gmail', gmail);
     formData.append('password', password);
 
-
     API.post('users/login', formData).then((res) => login(res.data.info.data));
   };
 
   useEffect(() => {
-    user && navigate('/dashboard');
+    user && navigate('/dashboard/home');
   }, [user]);
 
   return (
@@ -142,9 +140,11 @@ const Login = () => {
                 </Button>
               </InputRightElement>
             </InputGroup>
-            <Text color="gray.300">
-              I’ve forgotten <Link color="teal.500">my password</Link>
-            </Text>
+            <Box display="flex" flexWrap="wrap" flexDirection="row" gap="0.3rem">
+              <Text color="gray.300">I’ve forgotten </Text>
+              {` `}
+              <ForgotPassword />
+            </Box>
             <Button
               type="submit"
               bg={theme.dark.accent3}

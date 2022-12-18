@@ -1,4 +1,6 @@
+import { CheckIcon } from '@chakra-ui/icons';
 import {
+  Box,
   Button,
   Center,
   Input,
@@ -11,20 +13,21 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Text,
   useDisclosure,
+  useToast,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 
-
+import { useAuth } from '../hooks/AuthContext';
 import { API } from '../services/API';
 import theme from '../theme';
 import CardDataModal from './CardDataModal';
 import LogoMoney from './LogoMoney';
-
 const BidModal = ({ player }) => {
+  const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [price, setPrice] = useState(player.value);
-
 
   const handlePrice = (e) => {
     setPrice(e.target.value);
@@ -38,20 +41,21 @@ const BidModal = ({ player }) => {
     !price ? setPrice(100) : setPrice(price * 100);
   };
 
+  const { user, login } = useAuth();
 
   const createBid = (ev) => {
     ev.preventDefault();
-    const user = localStorage.getItem('user');
-    const userId = JSON.parse(user);
     const bodyBid = {
-      userId: userId._id,
+      userId: user._id,
       playerId: player._id,
       money: Number(price),
     };
     console.log(bodyBid);
-    API.post('bids', bodyBid).then((res) => {
-      console.log(bodyBid);
-      console.log('Response', res);
+    API.post('bids', bodyBid).then(() => {
+      API.get(`/users/${user._id}`).then((res) => {
+        let renewMoney = { money: res.data.info.data.money };
+        login({ user: { ...user, ...renewMoney } });
+      });
     });
   };
   return (
@@ -71,10 +75,35 @@ const BidModal = ({ player }) => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <form onSubmit={(ev) => createBid(ev)}>
           <ModalOverlay />
-          <ModalContent bg={theme.dark.background}>
+          <ModalContent bg={theme.dark.background} alignSelf="center">
             <ModalHeader />
+            <Box
+              display="flex"
+              flexDirection="row"
+              gap="0.3rem"
+              color={theme.dark.primary}
+              alignContent="center"
+              justifyContent="center"
+              flexWrap="wrap"
+            >
+              <Box
+                display="flex"
+                alignContent="center"
+                justifyContent="center"
+                flexWrap="wrap"
+              >
+                Funds:{' '}
+              </Box>
+              <Text
+                border="2px"
+                borderColor={theme.dark.primary}
+                padding="0.2rem"
+                borderRadius="2xl"
+              >
+                {user.money} <LogoMoney color={theme.dark.primary} />
+              </Text>
+            </Box>
             <ModalCloseButton color={theme.dark.primary} />
-
             <ModalBody display="flex" flexDirection="column" gap={5} alignItems="center">
               <CardDataModal player={player} />
               <Center gap={2.5}>
@@ -103,7 +132,6 @@ const BidModal = ({ player }) => {
                     <LogoMoney color={theme.dark.primary} />
                   </InputRightElement>
                 </InputGroup>
-
                 <Button
                   borderRadius={50}
                   color={theme.dark.primary}
@@ -117,12 +145,47 @@ const BidModal = ({ player }) => {
                 </Button>
               </Center>
             </ModalBody>
-
-            <ModalFooter>
+            <ModalFooter display="flex" flexDirection="row" gap="1rem">
               <Button
                 bg={theme.dark.accent3}
                 margin="0 auto"
-                onClick={onClose}
+                onClick={() => {
+                  onClose();
+                  toast({
+                    duration: 3000,
+                    render: () => (
+                      <Box
+                        color="black"
+                        padding="2rem"
+                        bg={theme.dark.primary}
+                        display="flex"
+                        flexDirection="column"
+                        alignItems="center"
+                        boxShadow="outline"
+                        justifyContent="center"
+                        gap="1rem"
+                        width="max-content"
+                        borderRadius="1rem"
+                        position="fixed"
+                        left="50%"
+                        top="50%"
+                        transform="translate(-50%, -50%)"
+                      >
+                        <CheckIcon height="3rem" width="3rem" />
+                        <Text>
+                          You have bid{' '}
+                          <Text fontWeight="600" display="inline">
+                            {price}
+                          </Text>
+                          <LogoMoney color="black" /> for{' '}
+                          <Text fontWeight="600" display="inline">
+                            {player.nickname}
+                          </Text>
+                        </Text>
+                      </Box>
+                    ),
+                  });
+                }}
                 type="submit"
                 color={theme.dark.primary}
               >
@@ -131,7 +194,6 @@ const BidModal = ({ player }) => {
             </ModalFooter>
           </ModalContent>
         </form>
-
       </Modal>
     </>
   );

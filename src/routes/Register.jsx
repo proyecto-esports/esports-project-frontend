@@ -1,5 +1,6 @@
 import { AtSignIcon, UnlockIcon } from '@chakra-ui/icons';
 import {
+  Avatar,
   Box,
   Button,
   FormControl,
@@ -17,26 +18,29 @@ import { API } from '../services/API.js';
 import theme from './../theme';
 
 const Register = () => {
-  const { user, login } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
   const { register, handleSubmit } = useForm();
 
-  const submitForm = (data) => {
+  const submitForm = async (data) => {
     const formData = new FormData();
-    const { username, gmail, password, image } = data;
+    const { username, gmail, password } = data;
     formData.append('username', username);
     formData.append('gmail', gmail);
     formData.append('password', password);
-    if (image.length !== 0) formData.append('image', image[0]);
 
-    API.post('users/register', formData).then((res) => login(res.data.info.data));
+    await API.post('users/register', formData);
+    navigate('/');
+  };
+  const handleClick = () => {
+    navigate('/');
   };
 
   useEffect(() => {
-    user && navigate('/dashboard/ranking');
-  }, []);
+    user && navigate('/dashboard');
+  }, [user]);
 
   return (
     <Box
@@ -101,7 +105,7 @@ const Register = () => {
         <FormControl display="flex" flexDirection="column" gap="1rem" alignItems="center">
           <InputGroup>
             <InputLeftElement pointerEvents="none">
-              <AtSignIcon color="gray.300" />
+              <Avatar color="gray.300" width="1.1rem" height="1.1rem" />
             </InputLeftElement>
             <Input
               type="text"
@@ -145,29 +149,34 @@ const Register = () => {
               </Button>
             </InputRightElement>
           </InputGroup>
-          <InputGroup>
-            <InputLeftElement pointerEvents="none">
-              <AtSignIcon color="gray.300" />
-            </InputLeftElement>
-            <Input
-              type="file"
-              id="image"
-              name="image"
-              {...register('image')}
-              placeholder="Avatar image"
-              color={theme.dark.accent1}
-            />
-          </InputGroup>
-          <Button
-            type="submit"
-            bg={theme.dark.accent3}
-            color="#FFFFFF"
-            variant="solid"
-            marginTop="1rem"
-            width="max-content"
+          <Box
+            display="flex"
+            width="100%"
+            justifyContent="space-around"
+            alignItems="center"
           >
-            SUBMIT
-          </Button>
+            <Button
+              type="button"
+              bg={theme.dark.accent2}
+              color={theme.dark.background}
+              variant="solid"
+              marginTop="1rem"
+              width="max-content"
+              onClick={handleClick}
+            >
+              BACK
+            </Button>
+            <Button
+              type="submit"
+              bg={theme.dark.accent3}
+              color="#FFFFFF"
+              variant="solid"
+              marginTop="1rem"
+              width="max-content"
+            >
+              SUBMIT
+            </Button>
+          </Box>
         </FormControl>
       </form>
     </Box>

@@ -13,6 +13,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import RadioCard from '../components/RadioCard';
+import { useAuth } from '../hooks/AuthContext';
 import { API } from '../services/API.js';
 import theme from './../theme';
 
@@ -50,14 +51,11 @@ const CreateGroup = () => {
   const [selectedGame, setSelectedGame] = useState(null);
   const { register, handleSubmit, control } = useForm();
   const navigate = useNavigate();
+  const { user, login } = useAuth();
 
   const submitForm = async (data) => {
     const { game, competition, name } = data;
     const formData = new FormData();
-
-    const userJSON = localStorage.getItem('user');
-    const user = JSON.parse(userJSON);
-    console.log('user', user);
 
     formData.append('game', game);
     formData.append('competition', competition);
@@ -69,7 +67,14 @@ const CreateGroup = () => {
 
     API.post('/competitions', formData).then((res) => {
       console.log('Response', res);
+      const competition = res.data.info.data.competition;
+      login({ user: { ...user, competition: competition } });
       res && navigate('/');
+      API.put(`users/inicialplayers/${user._id.toString()}`).then((res) => {
+        const user = res.data.info.data;
+        login({ user: { ...user, competition } });
+        API.patch(`competitions/${user.competition}/market`);
+      });
     });
   };
 
@@ -108,9 +113,7 @@ const CreateGroup = () => {
                 gap="1rem"
               >
                 {games.map((game) => {
-                  console.log('game', game);
                   const { name, isDisabled } = game;
-                  console.log('game name', name);
                   const handleClick = () => setSelectedGame(game);
                   return (
                     <RadioCard
@@ -120,6 +123,8 @@ const CreateGroup = () => {
                       value={name}
                       isDisabled={isDisabled}
                       onClick={handleClick}
+                      border="2px"
+                      borderColor={theme.dark.accent2}
                     >
                       {name}
                     </RadioCard>
@@ -143,11 +148,10 @@ const CreateGroup = () => {
                     name="competition"
                     display="flex"
                     gap="1rem"
+                    color={theme.dark.accent1}
                   >
                     {selectedGame.competitions?.map((competition) => {
-                      console.log('competition', competition);
                       const { name, isDisabled } = competition;
-                      console.log('competition name', name);
                       return (
                         <Radio id={name} value={name} key={name} isDisabled={isDisabled}>
                           {name}
@@ -164,7 +168,13 @@ const CreateGroup = () => {
           <FormLabel htmlFor="name" color={theme.dark.primary}>
             Name of the group:
           </FormLabel>
-          <Input {...register('name')} id="name" name="name" placeholder="Name" />
+          <Input
+            {...register('name')}
+            id="name"
+            name="name"
+            placeholder="Name"
+            color={theme.dark.accent1}
+          />
           <Button
             type="submit"
             bg={theme.dark.accent3}
