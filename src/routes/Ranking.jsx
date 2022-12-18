@@ -1,6 +1,7 @@
 import { Box } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 
+import InviteGroupModal from '../components/InviteGroupModal';
 import { useAuth } from '../hooks/AuthContext';
 import { API } from '../services/Api.js';
 import theme from '../theme';
@@ -39,6 +40,7 @@ const Ranking = () => {
         w="100%"
         h="100%"
       >
+        <InviteGroupModal />
         <AdminPanel />
         {rows && (
           <Table headers={headers} rows={rows} caption="The top 3 players get rewards" />

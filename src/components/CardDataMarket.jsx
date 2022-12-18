@@ -32,7 +32,6 @@ const CardDataMarket = ({ player }) => {
         src={player.image}
         alt={player.nickname}
       />
-
       <Stack w="100%" padding="2% 0%">
         <CardBody padding="2%">
           <Heading size="md">{player.nickname}</Heading>

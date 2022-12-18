@@ -31,7 +31,7 @@ const ForgotPassword = () => {
   return (
     <>
       <Text style={{ color: theme.dark.accent3 }} onClick={onOpen}>
-        Forgot password
+        my password
       </Text>
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay backdropFilter="blur(10px) hue-rotate(10deg)" />

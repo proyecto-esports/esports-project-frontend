@@ -8,7 +8,6 @@ import {
   InputGroup,
   InputLeftElement,
   InputRightElement,
-  Link,
   Stack,
   Text,
 } from '@chakra-ui/react';
@@ -141,9 +140,11 @@ const Login = () => {
                 </Button>
               </InputRightElement>
             </InputGroup>
-            <Text color="gray.300">
-              I’ve forgotten <Link color="teal.500">my password</Link>
-            </Text>
+            <Box display="flex" flexWrap="wrap" flexDirection="row" gap="0.3rem">
+              <Text color="gray.300">I’ve forgotten </Text>
+              {` `}
+              <ForgotPassword />
+            </Box>
             <Button
               type="submit"
               bg={theme.dark.accent3}
@@ -177,7 +178,6 @@ const Login = () => {
           </NavLink>
         </Text>
       </Stack>
-      <ForgotPassword />
     </Box>
   );
 };
