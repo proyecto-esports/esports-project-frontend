@@ -30,9 +30,10 @@ const Ranking = () => {
   }, [user]);
 
   return (
-    <Box w="100%" h="100%" alignItems="center" bg={theme.dark.background}>
+    <Box w="100%" h="100%" alignItems="center" margin="auto 0" bg={theme.dark.background}>
       <Box
         display="flex"
+        gap="2rem"
         alignItems="center"
         flexDirection="column"
         justifyContent="center"
@@ -40,8 +41,10 @@ const Ranking = () => {
         w="100%"
         h="100%"
       >
-        <InviteGroupModal />
-        <AdminPanel />
+        <Box display="flex" gap="1rem">
+          <InviteGroupModal />
+          {user.role === 'admin' && <AdminPanel />}
+        </Box>
         {rows && (
           <Table headers={headers} rows={rows} caption="The top 3 players get rewards" />
         )}

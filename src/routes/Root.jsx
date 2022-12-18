@@ -18,8 +18,7 @@ const Root = () => {
               display="flex"
               flexDirection="column"
               alignItems="center"
-              justifyContent="center"
-              paddingTop="4rem"
+              paddingTop="6rem"
               paddingBottom="4rem"
             >
               <Outlet />

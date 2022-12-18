@@ -62,7 +62,7 @@ const JoinModal = () => {
             <ModalBody flexDirection="column" display="flex" gap="2rem">
               <Input placeholder="Invitation Code" onChange={handleCode} />
               <Button bg={theme.dark.popUpBackground} type="submit">
-                Joing
+                Join
               </Button>
             </ModalBody>
           </form>

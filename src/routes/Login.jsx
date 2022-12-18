@@ -157,7 +157,7 @@ const Login = () => {
             </Button>
           </FormControl>
         </form>
-        <Button m="20px" color="#DCBEE9" variant="solid">
+        <Button m="1rem" color="#DCBEE9" variant="solid">
           Continue with Google
         </Button>
         <Box display="flex" alignItems="center" width="100%">

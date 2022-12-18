@@ -20,7 +20,7 @@ const CurrentBids = () => {
   }, []);
 
   return (
-    <Box w="100%" h="100%" alignItems="center" bg={theme.dark.background}>
+    <Box justifySelf="start" w="100%" h="100%" bg={theme.dark.background}>
       <Stack
         w="100%"
         h="100%"

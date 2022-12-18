@@ -42,7 +42,6 @@ const InviteGroupModal = () => {
         bg={theme.dark.accent3}
         color="#FFFFFF"
         variant="solid"
-        marginTop="1rem"
         width="max-content"
       >
         Invite Friends

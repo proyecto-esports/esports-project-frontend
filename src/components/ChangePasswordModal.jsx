@@ -24,6 +24,7 @@ const ChangePasswordModal = () => {
   const [newPassword, setNewPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const { user } = useAuth();
+
   const handleOnClick = () => {
     if (newPassword === repeatPassword) {
       const data = {
@@ -58,9 +59,9 @@ const ChangePasswordModal = () => {
           <ModalCloseButton />
           <ModalBody display="flex" flexDirection="column" gap="1.5rem" padding="1.5rem">
             <Text>Enter a new password</Text>
-            <Input onChange={(e) => setNewPassword(e.target.value)} />
+            <Input type="password" onChange={(e) => setNewPassword(e.target.value)} />
             <Text>Repeat new password</Text>
-            <Input onChange={(e) => setRepeatPassword(e.target.value)} />
+            <Input type="password" onChange={(e) => setRepeatPassword(e.target.value)} />
             <Button
               type="button"
               bg={theme.dark.accent2}
