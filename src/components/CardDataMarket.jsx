@@ -14,7 +14,6 @@ import theme from '../theme';
 import BidModal from './BidModal';
 
 const CardDataMarket = ({ player }) => {
-  console.log('PLAYER', player);
   return (
     <Card
       key={player._id}
