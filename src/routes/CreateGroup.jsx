@@ -66,14 +66,14 @@ const CreateGroup = () => {
     formData.append('users', usersStringified);
 
     API.post('/competitions', formData).then((res) => {
-      console.log('Response', res);
       const competition = res.data.info.data.competition;
-      login({ user: { ...user, competition: competition } });
+      login({ user: { ...user, ...competition } });
       res && navigate('/');
       API.put(`users/inicialplayers/${user._id.toString()}`).then((res) => {
-        const user = res.data.info.data;
-        login({ user: { ...user } });
-        API.patch(`competitions/${user.competition}/market`);
+        const userP = res.data.info.data.players
+        const userL = res.data.info.data.lineup
+        login({ user: { ...user, players: userP, lineup: userL } });
+        API.patch(`competitions/${user.competition._id}/market`);
       });
     });
   };
