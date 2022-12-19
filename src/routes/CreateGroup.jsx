@@ -67,13 +67,10 @@ const CreateGroup = () => {
 
     API.post('/competitions', formData).then((res) => {
       const competition = res.data.info.data.competition;
-      login({ user: { ...user, ...competition } });
+      login({ user: { ...user, competition } });
       res && navigate('/');
-      API.put(`users/inicialplayers/${user._id.toString()}`).then((res) => {
-        const userP = res.data.info.data.players
-        const userL = res.data.info.data.lineup
-        login({ user: { ...user, players: userP, lineup: userL } });
-        API.patch(`competitions/${user.competition._id}/market`);
+      API.put(`users/inicialplayers/${user._id.toString()}`).then(() => {
+        API.patch(`competitions/${competition._id}/market`);
       });
     });
   };
