@@ -162,7 +162,7 @@ const BidModal = ({ player }) => {
                           <Box
                             color="black"
                             padding="2rem"
-                            bg={theme.dark.true}
+                            bg={theme.dark.success}
                             display="flex"
                             flexDirection="column"
                             alignItems="center"
