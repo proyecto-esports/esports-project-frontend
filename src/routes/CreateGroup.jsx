@@ -67,7 +67,9 @@ const CreateGroup = () => {
 
     API.post('/competitions', formData).then((res) => {
       const competition = res.data.info.data.competition;
-      login({ user: { ...user, competition } });
+      const role = res.data.info.data.user.role;
+      console.log(role);
+      login({ user: { ...user, competition: competition, role: role } });
       res && navigate('/');
       API.put(`users/inicialplayers/${user._id.toString()}`).then(() => {
         API.patch(`competitions/${competition._id}/market`);
