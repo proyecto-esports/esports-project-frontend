@@ -6,6 +6,7 @@ const theme = {
     accent3: '#C400FF',
     stas: '#FF3B4B',
     bottons: '#EBE8E0',
+    success: '#71c55b',
     background: '#101221',
     popUpBackground: 'rgba(6, 44, 68, 0.66)',
   },
