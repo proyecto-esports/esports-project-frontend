@@ -25,7 +25,7 @@ const Table = ({ headers, rows, caption }) => {
         {rows.map((row, i) => (
           <TR
             key={`row${i}`}
-            border={row[1] === user.username && `0.2rem solid ${theme.dark.accent1}`}
+            border={row[1] === user.username && `0.3rem solid ${theme.dark.accent1}`}
           >
             {row.map((data, i) => (
               <TD key={`data${i}`} padding="1rem">

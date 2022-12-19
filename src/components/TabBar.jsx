@@ -7,6 +7,16 @@ import teamSVG from '../public/team.svg';
 import theme from './../theme';
 
 const TabBar = () => {
+  let indexMark = 0;
+  if (window.location.pathname == '/dashboard/market') {
+    indexMark = 2;
+  }
+  if (window.location.pathname == '/dashboard/ranking') {
+    indexMark = 1;
+  }
+  if (window.location.pathname == '/dashboard/lineup') {
+    indexMark = 0;
+  }
   return (
     <Box
       w="100%"
@@ -15,16 +25,15 @@ const TabBar = () => {
       bottom="0"
       align="center"
       isfitted="true"
-      borderTopRadius="1rem"
       bg={theme.dark.popUpBackground}
       color={theme.dark.primary}
     >
       <Tabs
         display="flex"
         flexDirection="row"
-        defaultIndex={1}
         padding="0.5rem"
         justifyContent="space-around"
+        defaultIndex={indexMark}
       >
         <Tab
           _selected={{
