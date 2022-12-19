@@ -48,7 +48,6 @@ const NavBar = () => {
         <Box>
           <Img src={logo} alt="logo" width="1.6rem" />
         </Box>
-
         <Menu>
           <MenuButton
             as={Button}
@@ -70,27 +69,25 @@ const NavBar = () => {
                 </Box>
               </Flex>
             </MenuItem>
-            <MenuItem>
-              <NavLink to="/dashboard/current-bids">Current Bids</NavLink>
-            </MenuItem>
+            <NavLink to="/dashboard/current-bids">
+              <MenuItem>Current Bids</MenuItem>
+            </NavLink>
             <MenuItem>
               <RulesModal />
             </MenuItem>
             <MenuItem>
               <ChangePasswordModal />
             </MenuItem>
-            <MenuItem>
-              <Flex gap="5rem" w="100%">
-                <Box display="flex" justifyContent="space-between" w="100%">
-                  <NavLink to="/" onClick={() => logout()}>
+            <NavLink to="/" onClick={() => logout()}>
+              <MenuItem>
+                <Flex gap="5rem" w="100%">
+                  <Box display="flex" justifyContent="space-between" w="100%">
                     <Text>LogOut</Text>
-                  </NavLink>
-                  <NavLink to="/" onClick={() => logout()}>
                     <Img src={logoutSVG} alt="logout" width="1.5rem" />
-                  </NavLink>
-                </Box>
-              </Flex>
-            </MenuItem>
+                  </Box>
+                </Flex>
+              </MenuItem>
+            </NavLink>
           </MenuList>
         </Menu>
       </Flex>

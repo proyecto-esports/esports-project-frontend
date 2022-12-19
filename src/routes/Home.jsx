@@ -13,13 +13,16 @@ const Home = () => {
     <>
       <Box
         padding="1rem"
-        h="93vh"
+        h="calc(100vh - 4rem)"
+        paddingTop="2rem"
+        marginBottom="-4rem"
         w="100%"
         bg={theme.dark.background}
         display="flex"
         flexDirection="column"
         gap="2rem"
         alignItems="center"
+        maxWidth="50rem"
       >
         <Text
           fontSize="3xl"

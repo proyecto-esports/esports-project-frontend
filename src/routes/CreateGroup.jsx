@@ -72,7 +72,7 @@ const CreateGroup = () => {
       res && navigate('/');
       API.put(`users/inicialplayers/${user._id.toString()}`).then((res) => {
         const user = res.data.info.data;
-        login({ user: { ...user, competition } });
+        login({ user: { ...user } });
         API.patch(`competitions/${user.competition}/market`);
       });
     });
@@ -80,7 +80,9 @@ const CreateGroup = () => {
 
   return (
     <Box
-      h="100vh"
+      h="calc(100vh - 4rem)"
+      paddingTop="2rem"
+      marginBottom="-4rem"
       w="100%"
       bg={theme.dark.background}
       display="flex"

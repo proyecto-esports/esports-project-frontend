@@ -23,6 +23,7 @@ const LineUp = () => {
   return (
     <Box
       height="calc(100vh - 4rem)"
+      marginTop="-2rem"
       w="100%"
       backgroundImage="url(https://res.cloudinary.com/dlqo06xcs/image/upload/v1670793623/Logo/backgroundLineUpBl_gtdbiq.png)"
       backgroundSize="cover"
@@ -36,7 +37,7 @@ const LineUp = () => {
         flexWrap="wrap"
         alignItems="center"
         justifyContent="space-around"
-        height="calc(100vh - 8rem)"
+        height="calc(100vh - 10rem)"
       >
         {lineUp ? (
           lineUp.map((player) => <SlideEx key={player._id} player={player} />)

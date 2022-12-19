@@ -50,14 +50,14 @@ const BidModal = ({ player }) => {
       playerId: player._id,
       money: Number(price),
     };
-    console.log(bodyBid);
     API.post('bids', bodyBid).then(() => {
-      API.get(`/users/${user._id}`).then((res) => {
-        let renewMoney = { money: res.data.info.data.money };
-        login({ user: { ...user, ...renewMoney } });
+      API.patch(`/users/${user._id}`, { money: user.money - price }).then((res) => {
+        const updatedUser = res.data.info.data;
+        login({ user: updatedUser });
       });
     });
   };
+
   return (
     <>
       <Button

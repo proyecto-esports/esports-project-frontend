@@ -23,7 +23,7 @@ const RulesModal = () => {
   const btnRef = React.useRef(null);
   return (
     <>
-      <Flex gap="5rem" onClick={onOpen} mt={3} ref={btnRef} w="100%">
+      <Flex gap="5rem" onClick={onOpen} ref={btnRef} w="100%">
         <Box display="flex" justifyContent="space-between" w="100%">
           <Text>Manual</Text>
           <Img

@@ -9,16 +9,16 @@ import theme from '../theme';
 
 const Market = () => {
   const { user } = useAuth();
-  const id = user.competition._id.toString();
+  console.log('USER', user);
   const [market, setMarket] = useState();
 
   useEffect(() => {
-    API.get(`/competitions/${id}`).then((res) => {
+    API.get(`/competitions/${user.competition._id}`).then((res) => {
       const { market } = res.data.info.data;
       setMarket(market);
     });
   }, []);
-
+  console.log('MARKET', market);
   return (
     <Box w="100%" h="100%" alignItems="center" bg={theme.dark.background}>
       <Stack
@@ -31,9 +31,7 @@ const Market = () => {
         padding="1rem 0rem"
       >
         {market ? (
-          market.map((player) => (
-            <CardDataMarket key={player._id.toString()} player={player} />
-          ))
+          market.map((player) => <CardDataMarket key={player._id} player={player} />)
         ) : (
           <Box
             w="100%"
