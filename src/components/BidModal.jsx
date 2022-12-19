@@ -42,7 +42,7 @@ const BidModal = ({ player }) => {
   };
 
   const { user, login } = useAuth();
-
+  let resp;
   const createBid = (ev) => {
     ev.preventDefault();
     const bodyBid = {
@@ -50,8 +50,10 @@ const BidModal = ({ player }) => {
       playerId: player._id,
       money: Number(price),
     };
+
     API.post('bids', bodyBid).then(() => {
       API.patch(`/users/${user._id}`, { money: user.money - price }).then((res) => {
+        resp = res;
         const updatedUser = res.data.info.data.money;
         login({ user: { ...user, money: updatedUser } });
       });
@@ -151,40 +153,44 @@ const BidModal = ({ player }) => {
                 margin="0 auto"
                 onClick={() => {
                   onClose();
-                  toast({
-                    duration: 3000,
-                    render: () => (
-                      <Box
-                        color="black"
-                        padding="2rem"
-                        bg={theme.dark.primary}
-                        display="flex"
-                        flexDirection="column"
-                        alignItems="center"
-                        boxShadow="outline"
-                        justifyContent="center"
-                        gap="1rem"
-                        width="max-content"
-                        borderRadius="1rem"
-                        position="fixed"
-                        left="50%"
-                        top="50%"
-                        transform="translate(-50%, -50%)"
-                      >
-                        <CheckIcon height="3rem" width="3rem" />
-                        <Text>
-                          You have bid{' '}
-                          <Text fontWeight="600" display="inline">
-                            {price}
-                          </Text>
-                          <LogoMoney color="black" /> for{' '}
-                          <Text fontWeight="600" display="inline">
-                            {player.nickname}
-                          </Text>
-                        </Text>
-                      </Box>
-                    ),
-                  });
+                  {
+                    if (resp) {
+                      toast({
+                        duration: 3000,
+                        render: () => (
+                          <Box
+                            color="black"
+                            padding="2rem"
+                            bg={theme.dark.primary}
+                            display="flex"
+                            flexDirection="column"
+                            alignItems="center"
+                            boxShadow="outline"
+                            justifyContent="center"
+                            gap="1rem"
+                            width="max-content"
+                            borderRadius="1rem"
+                            position="fixed"
+                            left="50%"
+                            top="50%"
+                            transform="translate(-50%, -50%)"
+                          >
+                            <CheckIcon height="3rem" width="3rem" />
+                            <Text>
+                              You have bid{' '}
+                              <Text fontWeight="600" display="inline">
+                                {price}
+                              </Text>
+                              <LogoMoney color="black" /> for{' '}
+                              <Text fontWeight="600" display="inline">
+                                {player.nickname}
+                              </Text>
+                            </Text>
+                          </Box>
+                        ),
+                      });
+                    }
+                  }
                 }}
                 type="submit"
                 color={theme.dark.primary}
