@@ -28,7 +28,6 @@ const NavBar = () => {
   const user = localStorage.getItem('user');
   const userId = JSON.parse(user);
   const { logout } = useAuth();
-
   return (
     <>
       <Flex
@@ -59,6 +58,15 @@ const NavBar = () => {
             <Avatar padding="0.2rem" src={userSVG} marginRight="0.3rem" />
           </MenuButton>
           <MenuList>
+            <MenuItem>
+              <Flex gap="5rem" w="100%">
+                <Box display="flex" justifyContent="space-between" w="100%">
+                  <Text fontWeight="bold" fontSize="large">
+                    {userId.username}
+                  </Text>
+                </Box>
+              </Flex>
+            </MenuItem>
             <MenuItem>
               <Flex gap="5rem" w="100%">
                 <Box display="flex" justifyContent="space-between" w="100%">

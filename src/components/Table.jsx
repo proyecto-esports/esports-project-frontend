@@ -15,7 +15,7 @@ const Table = ({ headers, rows, caption }) => {
       <THead>
         <TR>
           {headers.map((header, i) => (
-            <TH key={`header${i}`} padding="1rem" fontWeight="600">
+            <TH key={`header${i}`} padding="1rem" fontWeight="600" >
               {header}
             </TH>
           ))}
