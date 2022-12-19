@@ -71,7 +71,7 @@ const CreateGroup = () => {
       console.log(role);
       login({ user: { ...user, competition: competition, role: role } });
       res && navigate('/');
-      API.put(`users/inicialplayers/${user._id.toString()}`).then(() => {
+      API.put(`users/inicialplayers/${user._id}`).then(() => {
         API.patch(`competitions/${competition._id}/market`);
       });
     });
