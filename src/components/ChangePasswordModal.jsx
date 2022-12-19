@@ -27,18 +27,51 @@ const ChangePasswordModal = () => {
   const [repeatPassword, setRepeatPassword] = useState('');
   const { user } = useAuth();
 
-  let pass = false;
   const handleOnClick = () => {
-    console.log(newPassword);
     if (newPassword !== '' && newPassword === repeatPassword) {
       const data = {
         password: newPassword,
       };
+
       API.patch(`/users/${user._id}`, data).then((res) => {
-        if (res.data.status === 'Success') {
-          pass = true;
-          // onClose();
-        }
+        let pass = false;
+
+        res.data.status === 'Success' && (pass = true);
+
+        toast({
+          duration: 2000,
+          render: () => (
+            <Box
+              color="black"
+              padding="2rem"
+              bg={theme.dark.primary}
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              boxShadow="outline"
+              justifyContent="center"
+              gap="1rem"
+              width="max-content"
+              borderRadius="1rem"
+              position="fixed"
+              left="50%"
+              top="50%"
+              transform="translate(-50%, -50%)"
+            >
+              {pass ? (
+                <>
+                  <CheckIcon height="3rem" width="3rem" color={theme.dark.success} />
+                  <Text>Password changed</Text>
+                </>
+              ) : (
+                <>
+                  <CloseIcon height="3rem" width="3rem" color={theme.dark.stas} />
+                  <Text>Password not changed</Text>
+                </>
+              )}
+            </Box>
+          ),
+        });
       });
     }
   };
@@ -72,65 +105,7 @@ const ChangePasswordModal = () => {
               variant="solid"
               marginTop="1rem"
               width="max-content"
-              onClick={async () => {
-                await handleOnClick();
-                console.log(pass);
-                pass
-                  ? toast({
-                      duration: 2000,
-                      render: () => (
-                        <Box
-                          color="black"
-                          padding="2rem"
-                          bg={theme.dark.primary}
-                          display="flex"
-                          flexDirection="column"
-                          alignItems="center"
-                          boxShadow="outline"
-                          justifyContent="center"
-                          gap="1rem"
-                          width="max-content"
-                          borderRadius="1rem"
-                          position="fixed"
-                          left="50%"
-                          top="50%"
-                          transform="translate(-50%, -50%)"
-                        >
-                          <CheckIcon
-                            height="3rem"
-                            width="3rem"
-                            color={theme.dark.success}
-                          />
-                          <Text>Password Change</Text>
-                        </Box>
-                      ),
-                    })
-                  : toast({
-                      duration: 2000,
-                      render: () => (
-                        <Box
-                          color="black"
-                          padding="2rem"
-                          bg={theme.dark.primary}
-                          display="flex"
-                          flexDirection="column"
-                          alignItems="center"
-                          boxShadow="outline"
-                          justifyContent="center"
-                          gap="1rem"
-                          width="max-content"
-                          borderRadius="1rem"
-                          position="fixed"
-                          left="50%"
-                          top="50%"
-                          transform="translate(-50%, -50%)"
-                        >
-                          <CloseIcon height="3rem" width="3rem" color={theme.dark.stas} />
-                          <Text>Password doesn`t change.</Text>
-                        </Box>
-                      ),
-                    });
-              }}
+              onClick={handleOnClick}
             >
               CHANGE
             </Button>
