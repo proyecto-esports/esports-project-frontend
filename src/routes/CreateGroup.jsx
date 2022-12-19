@@ -69,7 +69,7 @@ const CreateGroup = () => {
       const competition = res.data.info.data.competition;
       login({ user: { ...user, competition } });
       res && navigate('/');
-      API.put(`users/inicialplayers/${user._id.toString()}`).then(() => {
+      API.put(`users/inicialplayers/${user._id}`).then(() => {
         API.patch(`competitions/${competition._id}/market`);
       });
     });

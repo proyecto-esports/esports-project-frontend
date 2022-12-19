@@ -31,7 +31,7 @@ const JoinModal = () => {
     };
 
     API.patch(`users/${user._id}/invited`, bodyJoin).then(() => {
-      API.put(`users/inicialplayers/${user._id.toString()}`).then((res) => {
+      API.put(`users/inicialplayers/${user._id}`).then((res) => {
         const user = res.data.info.data;
         onClose();
         login({ user: user });
