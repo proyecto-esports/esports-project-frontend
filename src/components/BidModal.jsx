@@ -52,8 +52,8 @@ const BidModal = ({ player }) => {
     };
     API.post('bids', bodyBid).then(() => {
       API.patch(`/users/${user._id}`, { money: user.money - price }).then((res) => {
-        const updatedUser = res.data.info.data;
-        login({ user: updatedUser });
+        const updatedUser = res.data.info.data.money;
+        login({ user: { ...user, money: updatedUser } });
       });
     });
   };
