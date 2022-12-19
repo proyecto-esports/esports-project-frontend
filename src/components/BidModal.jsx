@@ -28,7 +28,7 @@ const BidModal = ({ player }) => {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [price, setPrice] = useState(player.value);
-
+  const [resp, setResp] = useState();
   const handlePrice = (e) => {
     setPrice(e.target.value);
   };
@@ -42,7 +42,7 @@ const BidModal = ({ player }) => {
   };
 
   const { user, login } = useAuth();
-  let resp;
+
   const createBid = (ev) => {
     ev.preventDefault();
     const bodyBid = {
@@ -53,7 +53,8 @@ const BidModal = ({ player }) => {
 
     API.post('bids', bodyBid).then(() => {
       API.patch(`/users/${user._id}`, { money: user.money - price }).then((res) => {
-        resp = res;
+        setResp(res);
+
         const updatedUser = res.data.info.data.money;
         login({ user: { ...user, money: updatedUser } });
       });
@@ -151,17 +152,17 @@ const BidModal = ({ player }) => {
               <Button
                 bg={theme.dark.accent3}
                 margin="0 auto"
-                onClick={() => {
+                onClick={async () => {
                   onClose();
                   {
                     if (resp) {
                       toast({
-                        duration: 3000,
+                        duration: 2000,
                         render: () => (
                           <Box
                             color="black"
                             padding="2rem"
-                            bg={theme.dark.primary}
+                            bg={theme.dark.true}
                             display="flex"
                             flexDirection="column"
                             alignItems="center"
@@ -182,6 +183,37 @@ const BidModal = ({ player }) => {
                                 {price}
                               </Text>
                               <LogoMoney color="black" /> for{' '}
+                              <Text fontWeight="600" display="inline">
+                                {player.nickname}
+                              </Text>
+                            </Text>
+                          </Box>
+                        ),
+                      });
+                    } else {
+                      toast({
+                        duration: 2000,
+                        render: () => (
+                          <Box
+                            color="black"
+                            padding="2rem"
+                            bg={theme.dark.stas}
+                            display="flex"
+                            flexDirection="column"
+                            alignItems="center"
+                            boxShadow="outline"
+                            justifyContent="center"
+                            gap="1rem"
+                            width="max-content"
+                            borderRadius="1rem"
+                            position="fixed"
+                            left="50%"
+                            top="50%"
+                            transform="translate(-50%, -50%)"
+                          >
+                            <CheckIcon height="3rem" width="3rem" />
+                            <Text>
+                              The bid it´s so low for{' '}
                               <Text fontWeight="600" display="inline">
                                 {player.nickname}
                               </Text>

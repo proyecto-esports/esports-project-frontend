@@ -7,6 +7,7 @@ const theme = {
     stas: '#FF3B4B',
     bottons: '#EBE8E0',
     background: '#101221',
+    true: '#71c55b',
     popUpBackground: 'rgba(6, 44, 68, 0.66)',
   },
 };
