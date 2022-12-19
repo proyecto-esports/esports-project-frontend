@@ -3,7 +3,7 @@ import { useContext, useState } from 'react';
 
 import { UserContext } from '../context/jwtContext';
 import theme from './../theme';
-import LineupCards from './BenchPanel';
+import BenchPanel from './BenchPanel';
 
 const SlideEx = ({ player }) => {
   const { isOpen, onToggle, onClose } = useDisclosure();
@@ -99,7 +99,7 @@ const SlideEx = ({ player }) => {
           flexWrap="wrap"
           overflowY="scroll"
         >
-          <LineupCards />
+          <BenchPanel />
         </Box>
       </Slide>
     </>

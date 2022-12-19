@@ -6,7 +6,7 @@ import { useAuth } from '../hooks/AuthContext';
 import { API } from '../services/Api';
 import theme from './../theme';
 
-function AllPlayers() {
+const BenchPanel = () => {
   const { user, login } = useAuth();
   const userI = localStorage.getItem('user');
   const { currentPlayer, setNewPlayer } = useContext(UserContext);
@@ -114,6 +114,6 @@ function AllPlayers() {
       )}
     </>
   );
-}
+};
 
-export default AllPlayers;
+export default BenchPanel;
