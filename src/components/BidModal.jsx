@@ -24,6 +24,7 @@ import { API } from '../services/API';
 import theme from '../theme';
 import CardDataModal from './CardDataModal';
 import LogoMoney from './LogoMoney';
+
 const BidModal = ({ player }) => {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -56,72 +57,27 @@ const BidModal = ({ player }) => {
     API.post('/bids', bodyBid)
       .then((res) => {
         const { data: updatedUser } = res.data.info;
-          login({ user: { ...user, money: updatedUser.money } });
-          toast({
-            duration: 2000,
-            render: () => (
-              <Box
-                color="black"
-                padding="2rem"
-                bg={status === 'Success' ? theme.dark.success : theme.dark.failure}
-                display="flex"
-                flexDirection="column"
-                alignItems="center"
-                boxShadow="outline"
-                justifyContent="center"
-                gap="1rem"
-                width="max-content"
-                borderRadius="1rem"
-                position="fixed"
-                left="50%"
-                top="50%"
-                transform="translate(-50%, -50%)"
-              >
-
-                    <CheckIcon height="3rem" width="3rem" />
-                    <Text>
-                      You have bid{' '}
-                      <Text fontWeight="600" display="inline">
-                        {price}
-                      </Text>
-                      <LogoMoney color="black" /> for{' '}
-                      <Text fontWeight="600" display="inline">
-                        {player.nickname}
-                      </Text>
-                    </Text>
-                
-                
-              </Box>
-            ),
-      })
-      
-  }).catch(({ response: res }) => {
-    if (res.status === 201) {
-      
-    }
-    console.log(res);
-    toast({
-      duration: 2000,
-      render: () => (
-        <Box
-          color="black"
-          padding="2rem"
-          bg={status === 'Success' ? theme.dark.success : theme.dark.failure}
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          boxShadow="outline"
-          justifyContent="center"
-          gap="1rem"
-          width="max-content"
-          borderRadius="1rem"
-          position="fixed"
-          left="50%"
-          top="50%"
-          transform="translate(-50%, -50%)"
-        >
-          {status === 'Success' ? (
-            <>
+        login({ user: { ...user, money: updatedUser.money } });
+        toast({
+          duration: 2000,
+          render: () => (
+            <Box
+              color="black"
+              padding="2rem"
+              bg={theme.dark.success}
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              boxShadow="outline"
+              justifyContent="center"
+              gap="1rem"
+              width="max-content"
+              borderRadius="1rem"
+              position="fixed"
+              left="50%"
+              top="50%"
+              transform="translate(-50%, -50%)"
+            >
               <CheckIcon height="3rem" width="3rem" />
               <Text>
                 You have bid{' '}
@@ -133,21 +89,43 @@ const BidModal = ({ player }) => {
                   {player.nickname}
                 </Text>
               </Text>
-            </>
-          ) : (
-            <>
+            </Box>
+          ),
+        });
+      })
+      .catch(({ response: res }) => {
+        console.log(res);
+        toast({
+          duration: 2000,
+          render: () => (
+            <Box
+              color="black"
+              padding="2rem"
+              bg={theme.dark.failure}
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              boxShadow="outline"
+              justifyContent="center"
+              gap="1rem"
+              width="max-content"
+              borderRadius="1rem"
+              position="fixed"
+              left="50%"
+              top="50%"
+              transform="translate(-50%, -50%)"
+            >
               <CloseIcon height="3rem" width="3rem" color={theme.dark.background} />{' '}
               <Text>You don&quot;t have enough money: </Text>
               <Text fontWeight="600" display="inline">
                 {user.money} <LogoMoney color="black" /> &lt; {price}{' '}
                 <LogoMoney color="black" />
               </Text>
-            </>
-          )}
-        </Box>
-      ),
-    });
-  });
+            </Box>
+          ),
+        });
+      });
+  };
 
   return (
     <>
