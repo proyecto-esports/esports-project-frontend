@@ -32,7 +32,6 @@ const BenchPanel = () => {
       currentPlayer: currentPlayer,
       newPlayer: newP,
     };
-    currentPlayer ==
       API.put(`/users/changeLineUp/${user._id}`, changePlayer).then((res) => {
         res && setInterruptor(JSON.stringify(res))
       });
