@@ -54,6 +54,8 @@ const ChangePasswordModal = () => {
               borderRadius="1rem"
               position="fixed"
               left="50%"
+              border="8px"
+              borderColor={theme.dark.success}
               top="50%"
               transform="translate(-50%, -50%)"
             >
@@ -85,12 +87,14 @@ const ChangePasswordModal = () => {
             width="max-content"
             borderRadius="1rem"
             position="fixed"
+            border="8px"
+            borderColor={theme.dark.failure}
             left="50%"
             top="50%"
             transform="translate(-50%, -50%)"
           >
             <>
-              <CloseIcon height="3rem" width="3rem" color={theme.dark.stats} />
+              <CloseIcon height="3rem" width="3rem" color={theme.dark.failure} />
               <Text>Password not changed</Text>
             </>
           </Box>

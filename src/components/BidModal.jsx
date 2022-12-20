@@ -64,7 +64,7 @@ const BidModal = ({ player }) => {
             <Box
               color="black"
               padding="2rem"
-              bg={theme.dark.success}
+              bg={theme.dark.primary}
               display="flex"
               flexDirection="column"
               alignItems="center"
@@ -73,12 +73,14 @@ const BidModal = ({ player }) => {
               gap="1rem"
               width="max-content"
               borderRadius="1rem"
+              border="8px"
+              borderColor={theme.dark.success}
               position="fixed"
               left="50%"
               top="50%"
               transform="translate(-50%, -50%)"
             >
-              <CheckIcon height="3rem" width="3rem" />
+              <CheckIcon height="3rem" width="3rem" color={theme.dark.success} />
               <Text>
                 You have bid{' '}
                 <Text fontWeight="600" display="inline">
@@ -100,7 +102,9 @@ const BidModal = ({ player }) => {
             <Box
               color="black"
               padding="2rem"
-              bg={theme.dark.failure}
+              bg={theme.dark.primary}
+              border="8px"
+              borderColor={theme.dark.failure}
               display="flex"
               flexDirection="column"
               alignItems="center"
@@ -114,7 +118,7 @@ const BidModal = ({ player }) => {
               top="50%"
               transform="translate(-50%, -50%)"
             >
-              <CloseIcon height="3rem" width="3rem" color={theme.dark.background} />{' '}
+              <CloseIcon height="3rem" width="3rem" color={theme.dark.failure} />{' '}
               <Text>You don&quot;t have enough money: </Text>
               <Text fontWeight="600" display="inline">
                 {user.money} <LogoMoney color="black" /> &lt; {price}{' '}

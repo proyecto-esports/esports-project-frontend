@@ -72,9 +72,6 @@ const InviteGroupModal = () => {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3}>
-              Save
-            </Button>
             <Button onClick={onClose}>Cancel</Button>
           </ModalFooter>
         </ModalContent>

@@ -101,6 +101,7 @@ const CreateGroup = () => {
           padding="1rem"
           gap="1rem"
         >
+
           <Box>
             <FormLabel htmlFor="game" color={theme.dark.primary} margin="1rem 0">
               Select a game:
@@ -181,6 +182,7 @@ const CreateGroup = () => {
                 />
               </>
             )}
+
           </Box>
           <Box>
             <FormLabel htmlFor="name" color={theme.dark.primary} margin="1.2rem 0">
@@ -194,6 +196,7 @@ const CreateGroup = () => {
               color={theme.dark.accent1}
             />
           </Box>
+
           <Button
             type="submit"
             bg={theme.dark.primary}
