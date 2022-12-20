@@ -32,7 +32,9 @@ const SellModal = ({ idUserI, id }) => {
           <Box
             color="black"
             padding="2rem"
-            bg={theme.dark.success}
+            bg={theme.dark.primary}
+            border="8px"
+            borderColor={theme.dark.success}
             display="flex"
             flexDirection="column"
             alignItems="center"
@@ -46,7 +48,7 @@ const SellModal = ({ idUserI, id }) => {
             top="50%"
             transform="translate(-50%, -50%)"
           >
-            <CheckIcon height="3rem" width="3rem" color={theme.dark.background} />
+            <CheckIcon height="3rem" width="3rem" color={theme.dark.success} />
             <Text>Player sold</Text>
           </Box>
         ),
