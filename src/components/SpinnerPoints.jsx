@@ -25,15 +25,13 @@ const SpinnerModalPoints = () => {
     let renewRank = {};
     let renewUser = {};
     API.put(`users/points/${user.competition._id}`).then(
-      API.get(`/competitions/${user.competition._id.toString()}`).then((res) => {
+      API.get(`/competitions/${user.competition._id}`).then((res) => {
         const { users } = res.data.info.data;
-        console.log(users);
         users.sort((a, b) => {
           return b.points - a.points;
         });
         for (let i = 0; i < users.length; i++) {
           if (users[i] == users[0]) {
-            console.log('Hola');
             API.patch(`/users/money/${users[0]._id}`, first);
           }
           if (users[i] == users[1]) {
@@ -43,12 +41,10 @@ const SpinnerModalPoints = () => {
             API.patch(`/users/money/${users[2]._id}`, thirb);
           }
           if (users[i] != users[0] && users[i] != users[1] && users[i] != users[2]) {
-            console.log('adios');
             API.patch(`/users/money/${users[i]._id}`, rest);
           }
         }
         API.get(`/users/${user._id}`).then((res) => {
-          console.log(res);
           renewUser = res.data.info.data;
         });
         renewRank = { competition: res.data.info.data };

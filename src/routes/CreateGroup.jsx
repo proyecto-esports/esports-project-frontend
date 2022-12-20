@@ -71,7 +71,7 @@ const CreateGroup = () => {
       console.log(role);
       login({ user: { ...user, competition: competition, role: role } });
       res && navigate('/');
-      API.put(`users/inicialplayers/${user._id.toString()}`).then(() => {
+      API.put(`users/inicialplayers/${user._id}`).then(() => {
         API.patch(`competitions/${competition._id}/market`);
       });
     });
@@ -112,6 +112,7 @@ const CreateGroup = () => {
                 display="flex"
                 flexWrap="wrap"
                 gap="1rem"
+                color={theme.dark.primary}
               >
                 {games.map((game) => {
                   const { name, isDisabled } = game;

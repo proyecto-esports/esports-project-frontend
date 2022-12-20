@@ -15,7 +15,9 @@ const CurrentBids = () => {
     API.get('/bids').then((res) => {
       const { data } = res.data.info;
       const bids = data.filter((bid) => bid.user.toString() === user._id.toString());
-      setCurrentBids(bids);
+      if (bids.length > 0) {
+        setCurrentBids(bids);
+      }
     });
   }, []);
   console.log('BIDS', currentBids);

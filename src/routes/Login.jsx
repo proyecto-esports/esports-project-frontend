@@ -157,9 +157,6 @@ const Login = () => {
             </Button>
           </FormControl>
         </form>
-        <Button m="1rem" color="#DCBEE9" variant="solid">
-          Continue with Google
-        </Button>
         <Box display="flex" alignItems="center" width="100%">
           <Divider color={theme.dark.accent1} />
           <Text color={theme.dark.accent1}>or</Text>
@@ -183,3 +180,7 @@ const Login = () => {
 };
 
 export default Login;
+
+/*<Button m="1rem" color="#DCBEE9" variant="solid">
+          Continue with Google
+        </Button> */

@@ -6,6 +6,7 @@ const theme = {
     accent3: '#C400FF',
     stats: '#FF3B4B',
     bottons: '#EBE8E0',
+    success: '#71c55b',
     background: '#101221',
     success: '#71c55b',
     failure: '#EB4C25',

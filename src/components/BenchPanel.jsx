@@ -5,49 +5,40 @@ import { UserContext } from '../context/jwtContext';
 import { useAuth } from '../hooks/AuthContext';
 import { API } from '../services/Api';
 import theme from './../theme';
+import SellModal from './SellModal';
 
 const BenchPanel = () => {
   const { user, login } = useAuth();
-  const userI = localStorage.getItem('user');
   const { currentPlayer, setNewPlayer } = useContext(UserContext);
   const [bench, setBench] = useState([]);
-  const idUserI = JSON.parse(userI)._id;
+  const { setInterruptor, interruptor } = useContext(UserContext);
 
-  const getBench = async () => {
-    await API.get(`users/benchPlayers/${idUserI}`).then((res) => {
+  const getBench = () => {
+    API.get(`users/benchPlayers/${user._id}`).then((res) => {
       setBench(res.data.info.data);
       API.get(`/users/${user._id}`).then((res) => {
-        let renewMoney = { money: res.data.info.data.money };
-        login({ user: { ...user, ...renewMoney } });
+        let newInfoUser = res.data.info.data;
+        login({ user: newInfoUser });
       });
     });
   };
 
   useEffect(() => {
     getBench();
-  }, []);
+  }, [interruptor]);
 
   const data = (newP) => {
     const changePlayer = {
       currentPlayer: currentPlayer,
       newPlayer: newP,
     };
-    API.put(`/users/changeLineUp/${idUserI}`, changePlayer).then((res) => {
-      res && window.location.replace('')('/lineUp');
-    });
-  };
-  const handleOnClick = (id) => {
-    const newP = id;
-    data(newP);
+      API.put(`/users/changeLineUp/${user._id}`, changePlayer).then((res) => {
+        res && setInterruptor(JSON.stringify(res))
+      });
   };
 
-  const handleSellPlayer = async (id) => {
-    const playerSell = {
-      player: id,
-    };
-    await API.put(`/users/sell/${idUserI}`, playerSell).then((res) => {
-      res && window.location.replace('')('/lineUp');
-    });
+  const handleOnClick = (id) => {
+    data(id);
   };
 
   return (
@@ -87,18 +78,7 @@ const BenchPanel = () => {
                   borderRadius="5px"
                 />
               </Button>
-              <Button
-                width="3rem"
-                height="2rem"
-                border="2px"
-                borderColor={theme.dark.stats}
-                bg={theme.dark.bottons}
-                color={theme.dark.background}
-                fontWeight="bold"
-                onClick={() => handleSellPlayer(player._id)}
-              >
-                Sell
-              </Button>
+              <SellModal idUserI={user._id} id={player._id} />
               <Text
                 color={theme.dark.primary}
                 fontSize="1.2rem"

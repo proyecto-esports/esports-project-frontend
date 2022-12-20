@@ -1,3 +1,4 @@
+import { CheckIcon, CloseIcon } from '@chakra-ui/icons';
 import {
   Box,
   Button,
@@ -12,7 +13,7 @@ import {
   ModalOverlay,
   Text,
 } from '@chakra-ui/react';
-import { useDisclosure } from '@chakra-ui/react';
+import { useDisclosure, useToast } from '@chakra-ui/react';
 import { useState } from 'react';
 
 import { useAuth } from '../hooks/AuthContext';
@@ -20,23 +21,81 @@ import { API } from '../services/API';
 import theme from '../theme';
 
 const ChangePasswordModal = () => {
+  const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [newPassword, setNewPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const { user } = useAuth();
 
   const handleOnClick = () => {
-    if (newPassword === repeatPassword) {
+    if (newPassword !== '' && newPassword === repeatPassword) {
+      console.log(newPassword, repeatPassword);
       const data = {
         password: newPassword,
       };
-      console.log(user._id);
+
       API.patch(`/users/${user._id}`, data).then((res) => {
-        console.log(res);
-        onClose();
+        res.data.status === 'Success';
+
+        toast({
+          duration: 2000,
+          render: () => (
+            <Box
+              color="black"
+              padding="2rem"
+              bg={theme.dark.primary}
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              boxShadow="outline"
+              justifyContent="center"
+              gap="1rem"
+              width="max-content"
+              borderRadius="1rem"
+              position="fixed"
+              left="50%"
+              top="50%"
+              transform="translate(-50%, -50%)"
+            >
+              <>
+                <CheckIcon height="3rem" width="3rem" color={theme.dark.success} />
+                <Text>Password successfully changed!</Text>
+              </>
+            </Box>
+          ),
+        });
       });
+      onClose();
+      setNewPassword('');
+      setRepeatPassword('');
     } else {
-      console.log('iNCORRECT PASSWORD');
+      toast({
+        duration: 2000,
+        render: () => (
+          <Box
+            color="black"
+            padding="2rem"
+            bg={theme.dark.primary}
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            boxShadow="outline"
+            justifyContent="center"
+            gap="1rem"
+            width="max-content"
+            borderRadius="1rem"
+            position="fixed"
+            left="50%"
+            top="50%"
+            transform="translate(-50%, -50%)"
+          >
+            <>
+              <CloseIcon height="3rem" width="3rem" color={theme.dark.stas} />
+              <Text>Password not changed</Text>
+            </>
+          </Box>
+        ),
+      });
     }
   };
 
