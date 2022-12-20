@@ -5,6 +5,7 @@ import { UserContext } from '../context/jwtContext';
 import { useAuth } from '../hooks/AuthContext';
 import { API } from '../services/Api';
 import theme from './../theme';
+import SellModal from './SellModal';
 
 const BenchPanel = () => {
   const { user, login } = useAuth();
@@ -39,15 +40,6 @@ const BenchPanel = () => {
   const handleOnClick = (id) => {
     const newP = id;
     data(newP);
-  };
-
-  const handleSellPlayer = async (id) => {
-    const playerSell = {
-      player: id,
-    };
-    await API.put(`/users/sell/${idUserI}`, playerSell).then((res) => {
-      res && window.location.replace('')('/lineUp');
-    });
   };
 
   return (
@@ -87,18 +79,7 @@ const BenchPanel = () => {
                   borderRadius="5px"
                 />
               </Button>
-              <Button
-                width="3rem"
-                height="2rem"
-                border="2px"
-                borderColor={theme.dark.stas}
-                bg={theme.dark.bottons}
-                color={theme.dark.background}
-                fontWeight="bold"
-                onClick={() => handleSellPlayer(player._id)}
-              >
-                Sell
-              </Button>
+              <SellModal idUserI={idUserI} id={player._id} />
               <Text
                 color={theme.dark.primary}
                 fontSize="1.2rem"
