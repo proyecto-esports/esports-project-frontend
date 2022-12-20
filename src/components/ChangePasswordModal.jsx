@@ -29,14 +29,13 @@ const ChangePasswordModal = () => {
 
   const handleOnClick = () => {
     if (newPassword !== '' && newPassword === repeatPassword) {
+      console.log(newPassword, repeatPassword);
       const data = {
         password: newPassword,
       };
 
       API.patch(`/users/${user._id}`, data).then((res) => {
-        let pass = false;
-
-        res.data.status === 'Success' && (pass = true);
+        res.data.status === 'Success';
 
         toast({
           duration: 2000,
@@ -58,20 +57,44 @@ const ChangePasswordModal = () => {
               top="50%"
               transform="translate(-50%, -50%)"
             >
-              {pass ? (
-                <>
-                  <CheckIcon height="3rem" width="3rem" color={theme.dark.success} />
-                  <Text>Password changed</Text>
-                </>
-              ) : (
-                <>
-                  <CloseIcon height="3rem" width="3rem" color={theme.dark.stas} />
-                  <Text>Password not changed</Text>
-                </>
-              )}
+              <>
+                <CheckIcon height="3rem" width="3rem" color={theme.dark.success} />
+                <Text>Password successfully changed!</Text>
+              </>
             </Box>
           ),
         });
+      });
+      onClose();
+      setNewPassword('');
+      setRepeatPassword('');
+    } else {
+      toast({
+        duration: 2000,
+        render: () => (
+          <Box
+            color="black"
+            padding="2rem"
+            bg={theme.dark.primary}
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            boxShadow="outline"
+            justifyContent="center"
+            gap="1rem"
+            width="max-content"
+            borderRadius="1rem"
+            position="fixed"
+            left="50%"
+            top="50%"
+            transform="translate(-50%, -50%)"
+          >
+            <>
+              <CloseIcon height="3rem" width="3rem" color={theme.dark.stas} />
+              <Text>Password not changed</Text>
+            </>
+          </Box>
+        ),
       });
     }
   };
