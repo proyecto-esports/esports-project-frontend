@@ -51,7 +51,7 @@ const SellModal = ({ idUserI, id }) => {
       });
       onClose();
       setTimeout(() => {
-        res && window.location.replace('')('/lineUp');
+        res;
       }, 2000);
     });
   };
