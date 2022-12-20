@@ -44,9 +44,11 @@ const NavBar = () => {
         <Button onClick={() => navigate(-1)}>
           <ArrowLeftIcon />
         </Button>
-        <Box>
-          <Img src={logo} alt="logo" width="1.6rem" />
-        </Box>
+        <NavLink to="/">
+          <Box>
+            <Img src={logo} alt="logo" width="1.6rem" />
+          </Box>
+        </NavLink>
         <Menu>
           <MenuButton
             as={Button}

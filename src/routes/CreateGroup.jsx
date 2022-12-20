@@ -79,7 +79,7 @@ const CreateGroup = () => {
 
   return (
     <Box
-      h="calc(100vh - 4rem)"
+      h="calc(100vh - 6rem)"
       paddingTop="2rem"
       marginBottom="-4rem"
       w="100%"
@@ -101,90 +101,108 @@ const CreateGroup = () => {
           padding="1rem"
           gap="1rem"
         >
-          <FormLabel htmlFor="game" color={theme.dark.primary}>
-            Select a game:
-          </FormLabel>
-          <Controller
-            render={() => (
-              <RadioGroup
-                {...register('game')}
-                name="game"
-                display="flex"
-                flexWrap="wrap"
-                gap="1rem"
-                color={theme.dark.primary}
-              >
-                {games.map((game) => {
-                  const { name, isDisabled } = game;
-                  const handleClick = () => setSelectedGame(game);
-                  return (
-                    <RadioCard
-                      id={name}
-                      key={name}
-                      name="game"
-                      value={name}
-                      isDisabled={isDisabled}
-                      onClick={handleClick}
-                      border="2px"
-                      borderColor={theme.dark.accent2}
-                    >
-                      {name}
-                    </RadioCard>
-                  );
-                })}
-              </RadioGroup>
-            )}
-            name="game"
-            control={control}
-          />
+          <Box>
+            <FormLabel htmlFor="game" color={theme.dark.primary} margin="1rem 0">
+              Select a game:
+            </FormLabel>
+            <Controller
+              render={() => (
+                <RadioGroup
+                  {...register('game')}
+                  name="game"
+                  display="flex"
+                  flexWrap="wrap"
+                  gap="1rem"
+                  color={theme.dark.primary}
+                >
+                  {games.map((game) => {
+                    const { name, isDisabled } = game;
 
-          {selectedGame && (
-            <>
-              <FormLabel htmlFor="competition" color={theme.dark.primary}>
-                Competition:
-              </FormLabel>
-              <Controller
-                render={() => (
-                  <RadioGroup
-                    {...register('competition')}
-                    name="competition"
-                    display="flex"
-                    gap="1rem"
-                    color={theme.dark.accent1}
-                  >
-                    {selectedGame.competitions?.map((competition) => {
-                      const { name, isDisabled } = competition;
-                      return (
-                        <Radio id={name} value={name} key={name} isDisabled={isDisabled}>
-                          {name}
-                        </Radio>
-                      );
-                    })}
-                  </RadioGroup>
-                )}
-                name="competition"
-                control={control}
-              />
-            </>
-          )}
-          <FormLabel htmlFor="name" color={theme.dark.primary}>
-            Name of the group:
-          </FormLabel>
-          <Input
-            {...register('name')}
-            id="name"
-            name="name"
-            placeholder="Name"
-            color={theme.dark.accent1}
-          />
+                    const handleClick = () => setSelectedGame(game);
+                    return (
+                      <RadioCard
+                        id={name}
+                        key={name}
+                        name="game"
+                        value={name}
+                        isDisabled={isDisabled}
+                        onClick={handleClick}
+                        border="2px"
+                        borderColor={theme.dark.accent2}
+                        color={theme.dark.popUpBackground}
+                      >
+                        {name}
+                      </RadioCard>
+                    );
+                  })}
+                </RadioGroup>
+              )}
+              name="game"
+              control={control}
+            />
+          </Box>
+
+          <Box margin="0.6rem, 0">
+            {selectedGame && (
+              <>
+                <FormLabel
+                  htmlFor="competition"
+                  color={theme.dark.primary}
+                  margin="1.2rem 0"
+                >
+                  Competition:
+                </FormLabel>
+                <Controller
+                  render={() => (
+                    <RadioGroup
+                      {...register('competition')}
+                      name="competition"
+                      display="flex"
+                      gap="1rem"
+                      color={theme.dark.accent1}
+                    >
+                      {selectedGame.competitions?.map((competition) => {
+                        const { name, isDisabled } = competition;
+                        return (
+                          <Radio
+                            id={name}
+                            value={name}
+                            key={name}
+                            isDisabled={isDisabled}
+                          >
+                            {name}
+                          </Radio>
+                        );
+                      })}
+                    </RadioGroup>
+                  )}
+                  name="competition"
+                  control={control}
+                />
+              </>
+            )}
+          </Box>
+          <Box>
+            <FormLabel htmlFor="name" color={theme.dark.primary} margin="1.2rem 0">
+              Name of the group:
+            </FormLabel>
+            <Input
+              {...register('name')}
+              id="name"
+              name="name"
+              placeholder="Name"
+              color={theme.dark.accent1}
+            />
+          </Box>
           <Button
             type="submit"
-            bg={theme.dark.accent3}
-            color="#FFFFFF"
+            bg={theme.dark.primary}
+            color="#101221"
             variant="solid"
             marginTop="1rem"
-            width="max-content"
-            alignSelf="flex-end"
+            width="100%"
+            fontSize="large"
+            _hover={{ color: 'white', background: '#C400FF' }}
           >
             Create
           </Button>

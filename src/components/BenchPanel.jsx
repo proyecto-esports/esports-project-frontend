@@ -90,8 +90,14 @@ const BenchPanel = () => {
           </Box>
         ))
       ) : (
-        <Box>
-          <Text>
+        <Box display="flex" alignItems="center" justifyContent="center">
+          <Text
+            border="2px"
+            borderColor={theme.dark.accent1}
+            padding="1rem"
+            borderRadius="1rem"
+            fontWeight="bold"
+          >
             Your bench is empty, you can go to the market to bid for new recruits!
           </Text>
         </Box>
