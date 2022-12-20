@@ -28,9 +28,7 @@ const ChangePasswordModal = () => {
   const { user } = useAuth();
 
   const handleOnClick = () => {
-    /*  let pass = false; */
     if (newPassword !== '' && newPassword === repeatPassword) {
-      /*   pass = true; */
       console.log(newPassword, repeatPassword);
       const data = {
         password: newPassword,
