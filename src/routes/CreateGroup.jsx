@@ -126,7 +126,7 @@ const CreateGroup = () => {
                       isDisabled={isDisabled}
                       onClick={handleClick}
                       border="2px"
-                      borderColor={theme.dark.accent2}
+                      borderColor={theme.dark.accent1}
                     >
                       {name}
                     </RadioCard>
@@ -167,7 +167,7 @@ const CreateGroup = () => {
               />
             </>
           )}
-          <FormLabel htmlFor="name" color={theme.dark.primary}>
+          <FormLabel htmlFor="name" color={theme.dark.bottons}>
             Name of the group:
           </FormLabel>
           <Input
@@ -175,7 +175,7 @@ const CreateGroup = () => {
             id="name"
             name="name"
             placeholder="Name"
-            color={theme.dark.accent1}
+            color={theme.dark.bottons}
           />
           <Button
             type="submit"
