@@ -1,4 +1,4 @@
-import { Box, Img, Tab, Tabs } from '@chakra-ui/react';
+import { Box, Img, Tab, Tabs, Text } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
 
 import marketSVG from '../public/marketSVG.svg';
@@ -31,57 +31,61 @@ const TabBar = () => {
       <Tabs
         display="flex"
         flexDirection="row"
-        padding="0.5rem"
+        padding="0.2rem"
         justifyContent="space-around"
         defaultIndex={indexMark}
       >
         <Tab
           _selected={{
-            color: '#57f7E0',
-            borderBottom: ' 1.5px solid #101221',
-            bg: '#57f7E0',
+            shadow: '0px 0px 0.4rem',
           }}
+          color="white"
+          display="flex"
+          flexWrap="wrap"
           borderRadius="50%"
           width="3rem"
-          height="3rem"
+          height="2.6rem"
           padding="0"
-          bg={theme.dark.primary}
         >
           <NavLink to="/dashboard/lineup" color={theme.dark.primary}>
-            <Img src={teamSVG} alt="lineup" />
+            <Img w="2.5rem" src={teamSVG} alt="lineup" />
           </NavLink>
+          <Text fontSize="0.8rem">Line Up</Text>
         </Tab>
         <Tab
           _selected={{
-            color: '#57f7E0',
-            borderBottom: ' 1.5px solid #101221',
-            bg: '#57f7E0',
+            shadow: '0px 0px 0.4rem',
           }}
+          color="white"
+          display="flex"
           borderRadius="50%"
+          flexWrap="wrap"
           width="3rem"
-          height="3rem"
+          height="2.8rem"
           padding="0"
-          bg={theme.dark.primary}
         >
           <NavLink to="/dashboard/ranking" color={theme.dark.primary}>
-            <Img src={rankingSVG} alt="ranking" />
+            <Img w="2.5rem" src={rankingSVG} alt="ranking" />
           </NavLink>
+          <Text fontSize="0.8rem">Ranking</Text>
         </Tab>
         <Tab
           _selected={{
-            color: '#57f7E0',
-            borderBottom: ' 1.5px solid #101221',
-            bg: '#57f7E0',
+            shadow: '0rem 0rem 0.4rem',
           }}
+          border="none"
+          color="white"
+          display="flex"
           borderRadius="50%"
+          flexWrap="wrap"
           width="3rem"
-          height="3rem"
+          height="2.6rem"
           padding="0"
-          bg={theme.dark.primary}
         >
           <NavLink to="/dashboard/market" color={theme.dark.primary}>
-            <Img src={marketSVG} alt="market" />
+            <Img w="2.5rem" src={marketSVG} alt="market" />
           </NavLink>
+          <Text fontSize="0.8rem">Market</Text>
         </Tab>
       </Tabs>
     </Box>
