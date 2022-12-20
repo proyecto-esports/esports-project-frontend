@@ -67,7 +67,7 @@ const JoinModal = () => {
             </ModalBody>
           </form>
           <ModalFooter>
-            <Button bg={theme.dark.stas} onClick={onClose}>
+            <Button bg={theme.dark.stats} onClick={onClose}>
               Close
             </Button>
           </ModalFooter>

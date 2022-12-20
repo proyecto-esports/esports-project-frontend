@@ -32,7 +32,7 @@ const AdminPanel = () => {
             <SpinnerModal size="110px" text="" />
           </ModalBody>
           <ModalFooter>
-            <Button bg={theme.dark.stas} mr={3} onClick={onClose}>
+            <Button bg={theme.dark.stats} mr={3} onClick={onClose}>
               Close
             </Button>
           </ModalFooter>

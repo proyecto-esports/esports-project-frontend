@@ -91,7 +91,7 @@ const BenchPanel = () => {
                 width="3rem"
                 height="2rem"
                 border="2px"
-                borderColor={theme.dark.stas}
+                borderColor={theme.dark.stats}
                 bg={theme.dark.bottons}
                 color={theme.dark.background}
                 fontWeight="bold"

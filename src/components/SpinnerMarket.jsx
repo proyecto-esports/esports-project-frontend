@@ -55,7 +55,7 @@ const SpinnerMarket = () => {
             alignItems="center"
           >
             <Text>Scouting new players</Text>
-            <SkewLoader color={theme.dark.stas} size="110px" />
+            <SkewLoader color={theme.dark.stats} size="110px" />
           </Box>
         </ModalContent>
       </Modal>
