@@ -19,7 +19,11 @@ const AdminPanel = () => {
 
   return (
     <>
-      <Button onClick={onOpen} w="max-content">
+      <Button
+        onClick={onOpen}
+        w="max-content"
+        _hover={{ color: 'white', background: '#C400FF' }}
+      >
         Admin Panel
       </Button>
       <Modal isOpen={isOpen} onClose={onClose}>

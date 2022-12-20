@@ -43,6 +43,7 @@ const InviteGroupModal = () => {
         color="#FFFFFF"
         variant="solid"
         width="max-content"
+        _hover={{ color: '#101221', background: 'white' }}
       >
         Invite Friends
       </Button>
