@@ -1,11 +1,10 @@
-import { Box, Button, Text } from '@chakra-ui/react';
+import { Box, Button, Card, Text } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
 
 import CardGroup from '../components/CardGroup';
 import JoinModal from '../components/JoinModal';
 import { useAuth } from '../hooks/AuthContext';
 import theme from '../theme';
-
 const Home = () => {
   const { user } = useAuth();
 
@@ -43,9 +42,25 @@ const Home = () => {
         >
           <JoinModal />
           <NavLink to="/dashboard/create-group">
-            <Button>Create Group</Button>
+            <Button>
+              <Text>Create Group</Text>
+            </Button>
           </NavLink>
         </Box>
+        <Card
+          bg={theme.dark.popUpBackground}
+          w="90%"
+          color={theme.dark.primary}
+          padding="1rem"
+        >
+          <Text>
+            Welcome to E-Tactic v1.0! 🌈
+            <br />
+            Select either Create Group to generate and host your own League as the
+            Administrator or Join Group already created by a friend; just ask him for the
+            code & copy-paste!
+          </Text>
+        </Card>
       </Box>
     </>
   );
