@@ -32,9 +32,9 @@ const BenchPanel = () => {
       currentPlayer: currentPlayer,
       newPlayer: newP,
     };
-      API.put(`/users/changeLineUp/${user._id}`, changePlayer).then((res) => {
-        res && setInterruptor(JSON.stringify(res))
-      });
+    API.put(`/users/changeLineUp/${user._id}`, changePlayer).then((res) => {
+      res && setInterruptor(JSON.stringify(res));
+    });
   };
 
   const handleOnClick = (id) => {
@@ -43,7 +43,7 @@ const BenchPanel = () => {
 
   return (
     <>
-      {bench ? (
+      {bench.length ? (
         bench.map((player) => (
           <Box key={player._id} marginTop="10%" maxWidth="45%" h="35%">
             <Box
@@ -90,7 +90,11 @@ const BenchPanel = () => {
           </Box>
         ))
       ) : (
-        <Text>...Loading</Text>
+        <Box>
+          <Text>
+            Your bench is empty, you can go to the market to bid for new recruits!
+          </Text>
+        </Box>
       )}
     </>
   );
