@@ -15,7 +15,7 @@ import { useDisclosure, useToast } from '@chakra-ui/react';
 import { API } from '../services/API';
 import theme from '../theme';
 
-const SellModal = ({ idUserI, id }) => {
+const SellModal = ({ userId, playerId }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
 
@@ -23,7 +23,8 @@ const SellModal = ({ idUserI, id }) => {
     const playerSell = {
       player: id,
     };
-    await API.put(`/users/sell/${idUserI}`, playerSell).then((res) => {
+
+    await API.put(`/users/sell/${userId}`, playerSell).then((res) => {
       toast({
         duration: 2000,
         render: () => (
@@ -104,7 +105,7 @@ const SellModal = ({ idUserI, id }) => {
                 variant="solid"
                 type="button"
                 bg={theme.dark.success}
-                onClick={() => handleSellPlayer(id)}
+                onClick={() => handleSellPlayer(playerId)}
               >
                 Yes
               </Button>

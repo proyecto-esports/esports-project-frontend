@@ -2,23 +2,24 @@ import { Box, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
 import SlideEx from '../components/SlideEx';
+import { useAuth } from '../hooks/AuthContext';
 import { API } from '../services/Api';
 
 const LineUp = () => {
-  const [lineUp, setLineUp] = useState([]);
-  const user = localStorage.getItem('user');
-  const idUser = JSON.parse(user)._id;
+  const { user, login } = useAuth();
+  const { _id: id, lineup } = user;
 
-  const getLineUp = async () => {
-    await API.get(`/users/${idUser}`).then((res) => {
-      setLineUp(res.data.info.data.lineup);
-    });
-    return lineUp;
-  };
+  const [lineupStr, setLineupStr] = useState();
 
   useEffect(() => {
-    getLineUp();
-  }, []);
+    API.get(`/users/${id}`).then((res) => {
+      const updatedUser = res.data.info.data;
+      login({ user: updatedUser });
+      const nicknames = updatedUser.lineup.map((player) => player.nickname);
+      console.log('lineupStr', nicknames.join(''));
+      setLineupStr(nicknames.join(''));
+    });
+  }, [lineupStr]);
 
   return (
     <Box
@@ -39,8 +40,10 @@ const LineUp = () => {
         justifyContent="space-around"
         height="calc(100vh - 10rem)"
       >
-        {lineUp ? (
-          lineUp.map((player) => <SlideEx key={player._id} player={player} />)
+        {lineup ? (
+          lineup.map((player) => (
+            <SlideEx key={player._id} player={player} lineupStr={lineupStr} />
+          ))
         ) : (
           <Text>...Loading</Text>
         )}

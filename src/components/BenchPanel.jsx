@@ -1,45 +1,50 @@
 import { Box, Button, Image, Text } from '@chakra-ui/react';
 import { useContext, useEffect, useState } from 'react';
 
-import { UserContext } from '../context/jwtContext';
+// import { UserContext } from '../context/jwtContext';
 import { useAuth } from '../hooks/AuthContext';
 import { API } from '../services/Api';
 import theme from './../theme';
 import SellModal from './SellModal';
 
-const BenchPanel = () => {
+const BenchPanel = ({ currentPlayer, lineupStr }) => {
   const { user, login } = useAuth();
-  const userI = localStorage.getItem('user');
-  const { currentPlayer, setNewPlayer } = useContext(UserContext);
+  // const userI = localStorage.getItem('user');
+  // const { currentPlayer, setNewPlayer } = useContext(UserContext);
   const [bench, setBench] = useState([]);
-  const idUserI = JSON.parse(userI)._id;
-
-  const getBench = async () => {
-    await API.get(`users/benchPlayers/${idUserI}`).then((res) => {
-      setBench(res.data.info.data);
-      API.get(`/users/${user._id}`).then((res) => {
-        let renewMoney = { money: res.data.info.data.money };
-        login({ user: { ...user, ...renewMoney } });
-      });
-    });
-  };
+  // const idUserI = JSON.parse(userI)._id;
 
   useEffect(() => {
-    getBench();
-  }, [user]);
+    API.get(`users/benchPlayers/${user._id}`).then((res) => {
+      const { updatedUser } = res.data.info.data;
+      console.log('bench', bench);
+      setBench(res.data.info.data);
+      API.post(`/users/${user._id}`, { user: { ...updatedUser } }).then((res) => {
+        const user = res.data.info.data;
+        login({ user: user });
+      });
 
-  const data = (newP) => {
+      // API.get(`/users/${user._id}`).then((res) => {
+      //   const user = res.data.info.data;
+      //   login({ user: user });
+      // });
+
+      // API.post(`/users/${user._id}`, {user: {...user, }}).then((res) => {
+      //   const user = res.data.info.data;
+      //   login({ user: user });
+      // });
+    });
+  }, [lineupStr]);
+
+  const handleOnClick = (playerId) => {
     const changePlayer = {
       currentPlayer: currentPlayer,
-      newPlayer: newP,
+      newPlayer: playerId,
     };
-    API.put(`/users/changeLineUp/${idUserI}`, changePlayer).then((res) => {
-      res;
+    API.put(`/users/changeLineUp/${user._id}`, changePlayer).then((res) => {
+      const user = res.data.info.data;
+      login({ user: user });
     });
-  };
-  const handleOnClick = (id) => {
-    const newP = id;
-    data(newP);
   };
 
   return (
@@ -66,10 +71,7 @@ const BenchPanel = () => {
                 variant="unstyled"
                 width="100%"
                 height="100%"
-                onClick={() => {
-                  setNewPlayer(player._id);
-                  handleOnClick(player._id);
-                }}
+                onClick={() => handleOnClick(player._id)}
               >
                 <Image
                   maxWidth="8rem"
@@ -79,7 +81,7 @@ const BenchPanel = () => {
                   borderRadius="5px"
                 />
               </Button>
-              <SellModal idUserI={idUserI} id={player._id} />
+              <SellModal userId={user._id} playerId={player._id} />
               <Text
                 color={theme.dark.primary}
                 fontSize="1.2rem"

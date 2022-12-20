@@ -1,19 +1,21 @@
 import { Box, Button, Image, Slide, Text, useDisclosure } from '@chakra-ui/react';
 import { useContext, useState } from 'react';
 
-import { UserContext } from '../context/jwtContext';
+// import { UserContext } from '../context/jwtContext';
 import theme from './../theme';
 import BenchPanel from './BenchPanel';
 
-const SlideEx = ({ player }) => {
+const SlideEx = ({ player, lineupStr }) => {
   const { isOpen, onToggle, onClose } = useDisclosure();
-  const { setCurrentPlayer } = useContext(UserContext);
+  // const { setCurrentPlayer } = useContext(UserContext);
   const [scrollBlocked, setScrollBlocked] = useState(false);
-  console.log(scrollBlocked);
   const blocked =
     ((document.body.style.height = '100vh'), (document.body.style.overflowY = 'hidden'));
   const unBlocked =
     ((document.body.style.height = ''), (document.body.style.overflowY = ''));
+
+  const [currentPlayer, setCurrentPlayer] = useState();
+
   return (
     <>
       <Box
@@ -64,7 +66,6 @@ const SlideEx = ({ player }) => {
           </Text>
         </Button>
       </Box>
-
       <Slide
         position="fixed"
         direction="bottom"
@@ -99,7 +100,7 @@ const SlideEx = ({ player }) => {
           flexWrap="wrap"
           overflowY="scroll"
         >
-          <BenchPanel />
+          <BenchPanel currentPlayer={currentPlayer} lineupStr={lineupStr} />
         </Box>
       </Slide>
     </>

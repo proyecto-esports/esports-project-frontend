@@ -4,7 +4,6 @@ export const UserContext = createContext();
 
 export const UserContextProvider = ({ children }) => {
   const [currentPlayer, setCurrentPlayer] = useState('');
-  const [newPlayer, setNewPlayer] = useState('');
   const [players, setPlayers] = useState([]);
   const [competition, setCompetition] = useState([]);
   const [bids, setBids] = useState([]);
@@ -23,8 +22,6 @@ export const UserContextProvider = ({ children }) => {
         setUsers,
         currentPlayer,
         setCurrentPlayer,
-        newPlayer,
-        setNewPlayer,
       }}
     >
       {children}
