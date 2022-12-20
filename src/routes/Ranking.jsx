@@ -5,9 +5,9 @@ import InviteGroupModal from '../components/InviteGroupModal';
 import { useAuth } from '../hooks/AuthContext';
 import { API } from '../services/Api.js';
 import theme from '../theme';
+import thousandsSeparator from '../utils/thousandsSeparator';
 import AdminPanel from './../components/AdminPanel';
 import Table from './../components/Table';
-import thousandsSeparator from '../utils/thousandsSeparator';
 
 const Ranking = () => {
   const { user } = useAuth();

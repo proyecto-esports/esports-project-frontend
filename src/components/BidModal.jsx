@@ -22,9 +22,9 @@ import { useState } from 'react';
 import { useAuth } from '../hooks/AuthContext';
 import { API } from '../services/API';
 import theme from '../theme';
+import thousandsSeparator from '../utils/thousandsSeparator';
 import CardDataModal from './CardDataModal';
 import LogoMoney from './LogoMoney';
-import thousandsSeparator from '../utils/thousandsSeparator';
 const BidModal = ({ player }) => {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -35,11 +35,11 @@ const BidModal = ({ player }) => {
   };
 
   const handleLessPrice = () => {
-    setPrice(price / 10);
+    setPrice(price - 10);
   };
 
   const handleMorePrice = () => {
-    !price ? setPrice(100) : setPrice(price * 10);
+    !price ? setPrice(100) : setPrice(price + 10);
   };
 
   const { user, login } = useAuth();
