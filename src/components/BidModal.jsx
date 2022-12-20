@@ -43,7 +43,6 @@ const BidModal = ({ player }) => {
   };
 
   const { user, login } = useAuth();
-  let resp;
   const createBid = (ev) => {
     ev.preventDefault();
 
@@ -94,7 +93,7 @@ const BidModal = ({ player }) => {
           ),
         });
       })
-      .catch(({ response: res }) => {
+      .catch(() => {
         toast({
           duration: 2000,
           render: () => (
@@ -194,7 +193,7 @@ const BidModal = ({ player }) => {
                     type="number"
                     textAlign="center"
                     border="none"
-                    value={thousandsSeparator(price, '.')}
+                    value={price}
                     onChange={handlePrice}
                     min={player.value}
                   />

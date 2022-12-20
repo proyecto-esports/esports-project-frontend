@@ -90,7 +90,7 @@ const ChangePasswordModal = () => {
             transform="translate(-50%, -50%)"
           >
             <>
-              <CloseIcon height="3rem" width="3rem" color={theme.dark.stas} />
+              <CloseIcon height="3rem" width="3rem" color={theme.dark.stats} />
               <Text>Password not changed</Text>
             </>
           </Box>
