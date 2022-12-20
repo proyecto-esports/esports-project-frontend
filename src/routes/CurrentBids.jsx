@@ -1,4 +1,4 @@
-import { Box, Stack } from '@chakra-ui/react';
+import { Box, Stack, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import SkewLoader from 'react-spinners/SkewLoader';
 
@@ -15,7 +15,11 @@ const CurrentBids = () => {
     API.get('/bids').then((res) => {
       const { data } = res.data.info;
       const bids = data.filter((bid) => bid.user.toString() === user._id.toString());
-      setCurrentBids(bids);
+      if (bids.length > 0) {
+        setCurrentBids(bids);
+      }
+
+      console.log(bids);
     });
   }, []);
 
@@ -43,8 +47,11 @@ const CurrentBids = () => {
             flexDirection="column"
             justifyContent="center"
             alignItems="center"
+            gap="2.5rem"
+            padding="2rem"
           >
             <SkewLoader size="3rem" color={theme.dark.stas} />
+            <Text>You haven`t any bids placed.</Text>
           </Box>
         )}
       </Stack>
