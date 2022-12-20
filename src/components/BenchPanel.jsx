@@ -26,7 +26,7 @@ const BenchPanel = () => {
 
   useEffect(() => {
     getBench();
-  }, []);
+  }, [user]);
 
   const data = (newP) => {
     const changePlayer = {
@@ -34,7 +34,7 @@ const BenchPanel = () => {
       newPlayer: newP,
     };
     API.put(`/users/changeLineUp/${idUserI}`, changePlayer).then((res) => {
-      res && window.location.replace('')('/lineUp');
+      res;
     });
   };
   const handleOnClick = (id) => {
