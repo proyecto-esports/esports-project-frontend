@@ -9,7 +9,6 @@ const SlideEx = ({ player }) => {
   const { isOpen, onToggle, onClose } = useDisclosure();
   const { setCurrentPlayer } = useContext(UserContext);
   const [scrollBlocked, setScrollBlocked] = useState(false);
-  console.log(scrollBlocked);
   const blocked =
     ((document.body.style.height = '100vh'), (document.body.style.overflowY = 'hidden'));
   const unBlocked =
