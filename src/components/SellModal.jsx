@@ -11,26 +11,28 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useDisclosure, useToast } from '@chakra-ui/react';
+import { useContext } from 'react';
 
+import { UserContext } from '../context/jwtContext';
 import { API } from '../services/API';
 import theme from '../theme';
-
 const SellModal = ({ idUserI, id }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
-
+  const { setInterruptor } = useContext(UserContext);
   const handleSellPlayer = async (id) => {
     const playerSell = {
       player: id,
     };
     await API.put(`/users/sell/${idUserI}`, playerSell).then((res) => {
+      setInterruptor(JSON.stringify(res));
       toast({
         duration: 2000,
         render: () => (
           <Box
             color="black"
             padding="2rem"
-            bg={theme.dark.primary}
+            bg={theme.dark.success}
             display="flex"
             flexDirection="column"
             alignItems="center"
@@ -44,7 +46,7 @@ const SellModal = ({ idUserI, id }) => {
             top="50%"
             transform="translate(-50%, -50%)"
           >
-            <CheckIcon height="3rem" width="3rem" color={theme.dark.success} />
+            <CheckIcon height="3rem" width="3rem" color={theme.dark.background} />
             <Text>Player sold</Text>
           </Box>
         ),
@@ -62,7 +64,7 @@ const SellModal = ({ idUserI, id }) => {
         width="3rem"
         height="2rem"
         border="2px"
-        borderColor={theme.dark.stas}
+        borderColor={theme.dark.stats}
         bg={theme.dark.bottons}
         color={theme.dark.background}
         fontWeight="bold"
@@ -92,7 +94,7 @@ const SellModal = ({ idUserI, id }) => {
                 color={theme.dark.primary}
                 variant="solid"
                 type="button"
-                bg={theme.dark.stas}
+                bg={theme.dark.stats}
                 onClick={onClose}
               >
                 No

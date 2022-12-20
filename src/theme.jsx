@@ -8,7 +8,6 @@ const theme = {
     bottons: '#EBE8E0',
     success: '#71c55b',
     background: '#101221',
-    success: '#71c55b',
     failure: '#EB4C25',
     popUpBackground: 'rgba(6, 44, 68, 0.66)',
   },

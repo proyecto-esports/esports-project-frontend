@@ -32,9 +32,9 @@ const BenchPanel = () => {
       currentPlayer: currentPlayer,
       newPlayer: newP,
     };
-      API.put(`/users/changeLineUp/${user._id}`, changePlayer).then((res) => {
-        res && setInterruptor(JSON.stringify(res))
-      });
+    API.put(`/users/changeLineUp/${user._id}`, changePlayer).then((res) => {
+      res && setInterruptor(JSON.stringify(res));
+    });
   };
 
   const handleOnClick = (id) => {
