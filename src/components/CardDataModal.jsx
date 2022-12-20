@@ -50,7 +50,7 @@ const CardDataModal = ({ player }) => {
               <CircularProgress
                 max={40}
                 value={player.stats.kills}
-                color={theme.dark.stas}
+                color={theme.dark.stats}
               >
                 <CircularProgressLabel fontWeight="bold">
                   {player.stats.kills * 2.5}{' '}
@@ -64,7 +64,7 @@ const CardDataModal = ({ player }) => {
               <CircularProgress
                 max={6000}
                 value={player.stats.dmg}
-                color={theme.dark.stas}
+                color={theme.dark.stats}
               >
                 <CircularProgressLabel fontWeight="bold">
                   {player.stats.dmg}{' '}

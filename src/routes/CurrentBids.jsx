@@ -20,7 +20,7 @@ const CurrentBids = () => {
       }
     });
   }, []);
-
+  console.log('BIDS', currentBids);
   return (
     <Box justifySelf="start" w="100%" h="100%" bg={theme.dark.background}>
       <Stack
@@ -33,9 +33,10 @@ const CurrentBids = () => {
         padding="1rem 0rem"
       >
         {currentBids ? (
-          currentBids.map(({ player }) => (
-            <CardDataMarket key={player._id.toString()} player={player} />
-          ))
+          currentBids.map(({ player }) => {
+            console.log('player', player);
+            return <CardDataMarket key={player._id.toString()} player={player} />;
+          })
         ) : (
           <Box
             w="100%"
@@ -45,11 +46,10 @@ const CurrentBids = () => {
             flexDirection="column"
             justifyContent="center"
             alignItems="center"
-            gap="2.5rem"
-            padding="2rem"
+            gap="4rem"
           >
             <SkewLoader size="3rem" color={theme.dark.stas} />
-            <Text>You haven`t any bids placed.</Text>
+            <Text>You have no current bids...</Text>
           </Box>
         )}
       </Stack>

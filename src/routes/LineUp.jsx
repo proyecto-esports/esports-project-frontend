@@ -39,6 +39,7 @@ const LineUp = () => {
         alignItems="center"
         justifyContent="space-around"
         height="calc(100vh - 10rem)"
+        gap="0.4rem"
       >
         {lineUp ? (
           lineUp.map((player) => <SlideEx key={player._id} player={player} />)

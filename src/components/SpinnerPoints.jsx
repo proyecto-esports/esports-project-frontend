@@ -86,7 +86,7 @@ const SpinnerModalPoints = () => {
             justifyContent="space-around"
             alignItems="center"
           >
-            <SkewLoader color={theme.dark.stas} size="110px" />
+            <SkewLoader color={theme.dark.stats} size="110px" />
             <Text>One moment, the players are scoring</Text>
           </Box>
         </ModalContent>

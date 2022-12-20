@@ -42,7 +42,7 @@ const Market = () => {
             justifyContent="center"
             alignItems="center"
           >
-            <SkewLoader size="3rem" color={theme.dark.stas} />
+            <SkewLoader size="3rem" color={theme.dark.stats} />
           </Box>
         )}
       </Stack>
