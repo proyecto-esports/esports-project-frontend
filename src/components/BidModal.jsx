@@ -35,11 +35,11 @@ const BidModal = ({ player }) => {
   };
 
   const handleLessPrice = () => {
-    setPrice(price - 10);
+    setPrice(price - 500);
   };
 
   const handleMorePrice = () => {
-    !price ? setPrice(100) : setPrice(price + 10);
+    !price ? setPrice(100) : setPrice(price + 500);
   };
 
   const { user, login } = useAuth();
