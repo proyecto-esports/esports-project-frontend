@@ -9,37 +9,36 @@ import SellModal from './SellModal';
 
 const BenchPanel = () => {
   const { user, login } = useAuth();
-  const userI = localStorage.getItem('user');
   const { currentPlayer, setNewPlayer } = useContext(UserContext);
   const [bench, setBench] = useState([]);
-  const idUserI = JSON.parse(userI)._id;
+  const { setInterruptor, interruptor } = useContext(UserContext);
 
-  const getBench = async () => {
-    await API.get(`users/benchPlayers/${idUserI}`).then((res) => {
+  const getBench = () => {
+    API.get(`users/benchPlayers/${user._id}`).then((res) => {
       setBench(res.data.info.data);
       API.get(`/users/${user._id}`).then((res) => {
-        let renewMoney = { money: res.data.info.data.money };
-        login({ user: { ...user, ...renewMoney } });
+        let newInfoUser = res.data.info.data;
+        login({ user: newInfoUser });
       });
     });
   };
 
   useEffect(() => {
     getBench();
-  }, [user]);
+  }, [interruptor]);
 
   const data = (newP) => {
     const changePlayer = {
       currentPlayer: currentPlayer,
       newPlayer: newP,
     };
-    API.put(`/users/changeLineUp/${idUserI}`, changePlayer).then((res) => {
-      res;
-    });
+      API.put(`/users/changeLineUp/${user._id}`, changePlayer).then((res) => {
+        res && setInterruptor(JSON.stringify(res))
+      });
   };
+
   const handleOnClick = (id) => {
-    const newP = id;
-    data(newP);
+    data(id);
   };
 
   return (
@@ -79,7 +78,7 @@ const BenchPanel = () => {
                   borderRadius="5px"
                 />
               </Button>
-              <SellModal idUserI={idUserI} id={player._id} />
+              <SellModal idUserI={user._id} id={player._id} />
               <Text
                 color={theme.dark.primary}
                 fontSize="1.2rem"

@@ -1,16 +1,17 @@
 import { Box, Text } from '@chakra-ui/react';
+import { useContext } from 'react';
 import { useEffect, useState } from 'react';
 
 import SlideEx from '../components/SlideEx';
+import { UserContext } from '../context/jwtContext';
+import { useAuth } from '../hooks/AuthContext';
 import { API } from '../services/Api';
-
 const LineUp = () => {
+  const { user } = useAuth();
   const [lineUp, setLineUp] = useState([]);
-  const user = localStorage.getItem('user');
-  const idUser = JSON.parse(user)._id;
-
+  const { interruptor } = useContext(UserContext);
   const getLineUp = async () => {
-    await API.get(`/users/${idUser}`).then((res) => {
+    await API.get(`/users/${user._id}`).then((res) => {
       setLineUp(res.data.info.data.lineup);
     });
     return lineUp;
@@ -18,7 +19,7 @@ const LineUp = () => {
 
   useEffect(() => {
     getLineUp();
-  }, []);
+  }, [interruptor]);
 
   return (
     <Box

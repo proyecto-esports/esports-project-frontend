@@ -112,6 +112,7 @@ const CreateGroup = () => {
                 display="flex"
                 flexWrap="wrap"
                 gap="1rem"
+                color={theme.dark.primary}
               >
                 {games.map((game) => {
                   const { name, isDisabled } = game;
