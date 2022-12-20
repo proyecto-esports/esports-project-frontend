@@ -24,6 +24,7 @@ import { API } from '../services/API';
 import theme from '../theme';
 import CardDataModal from './CardDataModal';
 import LogoMoney from './LogoMoney';
+import thousandsSeparator from '../utils/thousandsSeparator';
 const BidModal = ({ player }) => {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -34,11 +35,11 @@ const BidModal = ({ player }) => {
   };
 
   const handleLessPrice = () => {
-    setPrice(price / 100);
+    setPrice(price / 10);
   };
 
   const handleMorePrice = () => {
-    !price ? setPrice(100) : setPrice(price * 100);
+    !price ? setPrice(100) : setPrice(price * 10);
   };
 
   const { user, login } = useAuth();
@@ -71,7 +72,8 @@ const BidModal = ({ player }) => {
         color={theme.dark.background}
         fontWeight="bold"
       >
-        {player.value} <LogoMoney color={theme.dark.background} />
+        {thousandsSeparator(player.value, '.')}{' '}
+        <LogoMoney color={theme.dark.background} />
       </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -99,10 +101,11 @@ const BidModal = ({ player }) => {
               <Text
                 border="2px"
                 borderColor={theme.dark.primary}
-                padding="0.2rem"
+                padding="0.4rem"
                 borderRadius="2xl"
               >
-                {user.money} <LogoMoney color={theme.dark.primary} />
+                {thousandsSeparator(user.money, '.')}{' '}
+                <LogoMoney color={theme.dark.primary} />
               </Text>
             </Box>
             <ModalCloseButton color={theme.dark.primary} />
@@ -126,7 +129,7 @@ const BidModal = ({ player }) => {
                     type="number"
                     textAlign="center"
                     border="none"
-                    value={price}
+                    value={thousandsSeparator(price, '.')}
                     onChange={handlePrice}
                     min={player.value}
                   />

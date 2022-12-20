@@ -7,6 +7,7 @@ import { API } from '../services/Api.js';
 import theme from '../theme';
 import AdminPanel from './../components/AdminPanel';
 import Table from './../components/Table';
+import thousandsSeparator from '../utils/thousandsSeparator';
 
 const Ranking = () => {
   const { user } = useAuth();
@@ -20,10 +21,15 @@ const Ranking = () => {
       users.sort((a, b) => {
         return b.points - a.points;
       });
-
+      let points;
       setRows(
         users.map((user, i) => {
-          return [`${i + 1}º`, user.username, user.points];
+          points = user.points;
+          if (points === undefined) {
+            return [`${i + 1}º`, user.username, points];
+          } else {
+            return [`${i + 1}º`, user.username, thousandsSeparator(points, '.')];
+          }
         }),
       );
     });
