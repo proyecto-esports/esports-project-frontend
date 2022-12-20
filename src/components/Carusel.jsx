@@ -41,7 +41,7 @@ export const Carusel1 = () => {
         minWidth="12rem"
       />
       <Text color={theme.dark.primary}>
-        Onde inside, you are assigned 5 players who will be your lineup 🤾🏼‍♂️.
+        Once inside, you are assigned 5 players who will be your lineup 🤾🏼‍♂️.
       </Text>
     </Box>
   );

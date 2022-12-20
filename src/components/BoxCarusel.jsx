@@ -11,7 +11,8 @@ const BoxCarrusel = () => {
   return (
     <Box
       display="flex"
-      maxWidth="90%"
+      width="90%"
+      maxWidth="320px"
       background={theme.dark.popUpBackground}
       overflow="hidden"
       borderRadius="8px"
