@@ -18,8 +18,6 @@ const CurrentBids = () => {
       if (bids.length > 0) {
         setCurrentBids(bids);
       }
-
-      console.log(bids);
     });
   }, []);
 
