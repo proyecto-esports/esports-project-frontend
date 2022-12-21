@@ -1,6 +1,7 @@
-import { Box, Button, Card, Text } from '@chakra-ui/react';
+import { Box, Button, Text } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
 
+import BoxCarrusel from '../components/BoxCarusel';
 import CardGroup from '../components/CardGroup';
 import JoinModal from '../components/JoinModal';
 import { useAuth } from '../hooks/AuthContext';
@@ -47,7 +48,7 @@ const Home = () => {
             </Button>
           </NavLink>
         </Box>
-        <Card
+        {/* <Card
           bg={theme.dark.popUpBackground}
           w="90%"
           color={theme.dark.primary}
@@ -60,7 +61,8 @@ const Home = () => {
             Administrator or Join Group already created by a friend; just ask him for the
             code & copy-paste!
           </Text>
-        </Card>
+        </Card> */}
+        <BoxCarrusel />
       </Box>
     </>
   );
