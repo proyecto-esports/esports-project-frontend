@@ -42,8 +42,13 @@ const InviteGroupModal = () => {
         bg={theme.dark.accent3}
         color="#FFFFFF"
         variant="solid"
+        marginTop="1rem"
         width="max-content"
-        _hover={{ color: '#101221', background: 'white' }}
+        _hover={{
+          color: '#C400FF',
+          background: 'transparent',
+          border: '2px solid #C400FF',
+        }}
       >
         Invite Friends
       </Button>
