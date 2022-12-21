@@ -121,10 +121,17 @@ const ChangePasswordModal = () => {
           <ModalHeader />
           <ModalCloseButton />
           <ModalBody display="flex" flexDirection="column" gap="1.5rem" padding="1.5rem">
-            <Text>Enter a new password</Text>
-            <Input type="password" onChange={(e) => setNewPassword(e.target.value)} />
-            <Text>Repeat new password</Text>
-            <Input type="password" onChange={(e) => setRepeatPassword(e.target.value)} />
+            <Box>
+              <Text padding="0.8rem 0">Enter a new password</Text>
+              <Input type="password" onChange={(e) => setNewPassword(e.target.value)} />
+            </Box>
+            <Box>
+              <Text padding="0.8rem 0">Repeat new password</Text>
+              <Input
+                type="password"
+                onChange={(e) => setRepeatPassword(e.target.value)}
+              />
+            </Box>
             <Button
               type="button"
               bg={theme.dark.accent2}

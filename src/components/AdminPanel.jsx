@@ -21,8 +21,16 @@ const AdminPanel = () => {
     <>
       <Button
         onClick={onOpen}
-        w="max-content"
-        _hover={{ color: 'white', background: '#C400FF' }}
+        bg={theme.dark.accent3}
+        color="#FFFFFF"
+        variant="solid"
+        marginTop="1rem"
+        width="max-content"
+        _hover={{
+          color: '#C400FF',
+          background: 'transparent',
+          border: '2px solid #C400FF',
+        }}
       >
         Admin Panel
       </Button>
