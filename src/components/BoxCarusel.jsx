@@ -34,7 +34,7 @@ const BoxCarrusel = () => {
           <path d="M21.2 23.4a.998.998 0 0 0 0 1.2l3 4a.999.999 0 1 0 1.6-1.199L23.25 24l2.55-3.402a.997.997 0 0 0-.2-1.399 1 1 0 0 0-1.4.2l-3 4z"></path>
         </svg>
       </Box>
-      <Box display="flex" width="auto">
+      <Box display="flex" overflowX="auto" overflow="hidden" width="auto">
         {count <= 0 && <Carusel0 />}
         {count === 1 && <Carusel1 />}
         {count === 2 && <Carusel2 />}
